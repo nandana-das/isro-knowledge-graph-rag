@@ -78,6 +78,30 @@ To reproduce the collection and derived artifacts:
 The expanded benchmark, when run, must use a separate output path and the
 frozen ID list; it must not overwrite `data/results/evaluation_results.json`.
 
+The expanded runtime can be profiled on six frozen test questions before a
+full run:
+
+```powershell
+$env:HF_HUB_OFFLINE='1'; $env:TRANSFORMERS_OFFLINE='1'
+.venv\Scripts\python.exe src\evaluation\profile_expanded_runtime.py
+```
+
+The reproducible expanded benchmark writes one JSONL checkpoint per completed
+question and resumes safely after interruption. The ten-question validation
+uses a separate checkpoint; the full run uses the checkpoint shown below and
+only writes final outputs after all 180 frozen test questions are complete:
+
+```powershell
+.venv\Scripts\python.exe src\evaluation\run_expanded_benchmark.py --limit 10 --checkpoint data\results\evaluation_expanded_validation_checkpoint.jsonl
+.venv\Scripts\python.exe src\evaluation\run_expanded_benchmark.py --checkpoint data\results\evaluation_expanded_checkpoint.jsonl --answers-output data\results\answers_aditya_expanded.json --evaluation-output data\results\evaluation_results_aditya_expanded.json --finalize
+.venv\Scripts\python.exe src\evaluation\analyze_aditya_expansion.py
+```
+
+The expanded evaluation and its baseline comparison are separate from the
+canonical result. The optional Aditya-L1-focused question set is stored at
+`data/benchmark/aditya_l1_optional_qa.json` and is not mixed into the 180-
+question benchmark.
+
 ---
 
 ## Current benchmark results

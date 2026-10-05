@@ -16,13 +16,16 @@ os.environ["TOKENIZERS_PARALLELISM"] = "false"
 warnings.filterwarnings("ignore")
 
 ROOT = Path(__file__).resolve().parents[2]
+from src.retriever.embedding_model import get_embedding_model
+
 INDEX_PATH = ROOT / "data" / "index" / "faiss_index.index"
 CHUNKS_PATH = ROOT / "data" / "chunks" / "chunks.json"
 @lru_cache(maxsize=1)
 def _load_model() -> SentenceTransformer:
-    return SentenceTransformer("all-MiniLM-L6-v2", device="cpu")
+    return get_embedding_model()
 
 
+@lru_cache(maxsize=1)
 def _load_chunks() -> list[str]:
     if not CHUNKS_PATH.exists():
         return []
@@ -47,6 +50,11 @@ def _load_chunks() -> list[str]:
     return texts
 
 
+@lru_cache(maxsize=1)
+def _load_index():
+    return faiss.read_index(str(INDEX_PATH))
+
+
 def _query_keywords(query: str) -> list[str]:
     return [word.lower() for word in query.split() if len(word) > 3]
 
@@ -65,7 +73,7 @@ def get_passage_context(query: str, top_k: int = 5) -> str:
     if not chunks:
         return ""
 
-    index = faiss.read_index(str(INDEX_PATH))
+    index = _load_index()
     if index is None or index.ntotal == 0:
         return ""
     if index.ntotal == 0:

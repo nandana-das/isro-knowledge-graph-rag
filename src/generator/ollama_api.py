@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import re
+import time
 
 import requests
 
@@ -10,6 +11,7 @@ from src.generator.prompt import SYSTEM_PROMPT, build_user_prompt
 
 OLLAMA_URL = "http://localhost:11434/api/generate"
 MODEL_NAME = "mistral:7b-instruct-q4_K_M"
+OLLAMA_TIMEOUT = (5, 180)
 UNKNOWN = "I don't know."
 FILLER_MARKERS = (
     "don't hesitate",
@@ -38,42 +40,84 @@ def _clean_response(response_text: str) -> str:
 
 def generate(query: str, context: str, options: dict | None = None) -> str:
     """Ask Ollama to answer from the supplied retrieval context only."""
+    answer, _ = generate_with_metrics(query, context, options=options)
+    return answer
+
+
+def generate_with_metrics(query: str, context: str, options: dict | None = None) -> tuple[str, dict]:
+    """Generate with timing and Ollama telemetry while preserving the normal output."""
+    started = time.perf_counter()
+    metrics = {
+        "prompt_construction_ms": 0.0,
+        "request_latency_ms": 0.0,
+        "total_generation_ms": 0.0,
+        "prompt_chars": 0,
+        "prompt_tokens": None,
+        "generated_tokens": None,
+        "eval_duration_ns": None,
+        "prompt_eval_duration_ns": None,
+        "status": "unknown",
+        "failure": None,
+    }
     if not query or not query.strip():
-        return UNKNOWN
+        metrics["status"] = "empty_query"
+        return UNKNOWN, metrics
 
     context_text = (context or "").strip()
 
     if not context_text:
-        return UNKNOWN
+        metrics["status"] = "empty_context"
+        return UNKNOWN, metrics
 
+    prompt_started = time.perf_counter()
+    user_prompt = build_user_prompt(context_text, query)
+    metrics["prompt_construction_ms"] = round((time.perf_counter() - prompt_started) * 1000, 4)
+    metrics["prompt_chars"] = len(user_prompt)
     payload = {
         "model": MODEL_NAME,
         "system": SYSTEM_PROMPT,
-        "prompt": build_user_prompt(context_text, query),
+        "prompt": user_prompt,
         "stream": False,
+        "keep_alive": -1,
     }
     if options:
         payload["options"] = options
 
     try:
-        response = requests.post(OLLAMA_URL, json=payload, timeout=120)
+        request_started = time.perf_counter()
+        response = requests.post(OLLAMA_URL, json=payload, timeout=OLLAMA_TIMEOUT)
+        metrics["request_latency_ms"] = round((time.perf_counter() - request_started) * 1000, 4)
         response.raise_for_status()
         data = response.json()
         if isinstance(data, dict):
+            metrics["prompt_tokens"] = data.get("prompt_eval_count")
+            metrics["generated_tokens"] = data.get("eval_count")
+            metrics["eval_duration_ns"] = data.get("eval_duration")
+            metrics["prompt_eval_duration_ns"] = data.get("prompt_eval_duration")
             if "response" in data and isinstance(data["response"], str):
-                return _clean_response(data["response"])
+                metrics["status"] = "ok"
+                return _clean_response(data["response"]), _finish_metrics(metrics, started)
             if isinstance(data.get("message"), dict):
                 answer = data["message"].get("content", "")
                 if answer:
-                    return _clean_response(answer)
+                    metrics["status"] = "ok"
+                    return _clean_response(answer), _finish_metrics(metrics, started)
         if isinstance(data, list):
             for item in data:
                 if isinstance(item, dict) and isinstance(item.get("response"), str):
-                    return _clean_response(item["response"])
-    except Exception:
-        pass
+                    metrics["status"] = "ok"
+                    return _clean_response(item["response"]), _finish_metrics(metrics, started)
+        metrics["status"] = "invalid_response"
+    except Exception as exc:
+        metrics["status"] = "error"
+        metrics["failure"] = type(exc).__name__
 
-    return UNKNOWN
+    return UNKNOWN, _finish_metrics(metrics, started)
+
+
+def _finish_metrics(metrics: dict, started: float) -> dict:
+    metrics["total_generation_ms"] = round((time.perf_counter() - started) * 1000, 4)
+    return metrics
 
 
 if __name__ == "__main__":
