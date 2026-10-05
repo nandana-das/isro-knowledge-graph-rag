@@ -1,0 +1,14 @@
+{
+  "experiment": "kg_quality_evaluation",
+  "status": "pending_human_annotation",
+  "sample_size": 100,
+  "sampling": "deterministic systematic sample from knowledge_graph.json edges; step=floor(N/100)",
+  "metrics": [
+    "entity correctness",
+    "relation correctness",
+    "triple validity",
+    "error rate"
+  ],
+  "result": "No precision or error rate computed because annotation columns are blank.",
+  "template": "data\\human_eval\\kg_quality_annotation_template.csv"
+}

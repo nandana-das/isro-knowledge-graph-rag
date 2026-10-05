@@ -1,0 +1,39 @@
+"""Write a machine-readable status ledger for all proposed journal experiments."""
+
+from __future__ import annotations
+
+import json
+import sys
+from datetime import datetime, timezone
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[2]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from src.evaluation.analysis_utils import RESULTS_DIR, ROOT
+
+
+def main() -> None:
+    experiments = [
+        {"id": 1, "name": "statistical significance", "status": "executed", "purpose": "Paired tests on frozen 180-question outputs.", "dataset": "canonical test set", "N": 180, "systems": ["KG-RAG", "BM25 + LLM", "Vanilla RAG"], "metrics": ["ROUGE-L", "coverage", "exact match", "IDK"], "result_file": "data/results/statistical_tests.json", "script": "src/evaluation/statistical_tests.py"},
+        {"id": 2, "name": "tier-wise statistical analysis", "status": "executed", "purpose": "Test KG-RAG differences by complete tier.", "dataset": "canonical test set", "N": {"tier_1": 90, "tier_2": 54, "tier_3": 36}, "systems": ["KG-RAG", "BM25 + LLM", "Vanilla RAG"], "metrics": ["ROUGE-L", "coverage", "exact match", "IDK"], "result_file": "data/results/tier_statistical_tests.json", "script": "src/evaluation/tier_statistical_tests.py"},
+        {"id": 3, "name": "retrieval quality", "status": "not feasible", "purpose": "Chunk-level relevance evaluation.", "dataset": "benchmark source metadata", "N": 200, "systems": ["BM25", "FAISS", "KG", "Hybrid KG + FAISS"], "metrics": ["Recall@1", "Recall@3", "Recall@5", "Recall@10", "MRR"], "result_file": "data/results/retrieval_metrics.json", "script": "src/evaluation/retrieval_quality.py"},
+        {"id": 4, "name": "component ablation", "status": "partially executed", "purpose": "Preserve existing 50-question ablation and gate unsupported variants.", "dataset": "existing 50-question subset", "N": 50, "systems": ["KG-only", "FAISS-only", "Full KG-RAG"], "metrics": ["ROUGE-L", "coverage", "IDK"], "result_file": "data/results/component_ablation_results.json", "script": "src/evaluation/component_ablation.py"},
+        {"id": 5, "name": "1-hop versus 2-hop", "status": "pending human/compute run", "purpose": "Measure graph traversal depth effects.", "dataset": "same 50-question subset", "N": 50, "systems": ["1-hop", "2-hop"], "metrics": ["ROUGE-L", "coverage", "exact match", "IDK", "context size", "latency"], "result_file": "data/results/hop_ablation_results.json", "script": "src/evaluation/hop_ablation.py"},
+        {"id": 6, "name": "top-k sensitivity", "status": "pending human/compute run", "purpose": "Measure alternate retrieval depths.", "dataset": "future deterministic representative subset", "N": None, "systems": ["KG-RAG"], "metrics": ["ROUGE-L", "coverage", "IDK", "latency"], "result_file": "data/results/topk_sensitivity.json", "script": "src/evaluation/topk_sensitivity.py"},
+        {"id": 7, "name": "resource/latency profiling", "status": "executed partial", "purpose": "Measure locally observable retrieval cost.", "dataset": "3 frozen test questions, 1 per tier", "N": 3, "systems": ["BM25 + LLM retrieval"], "metrics": ["retrieval latency", "context tokens", "process RSS delta"], "result_file": "data/results/resource_profile.json", "script": "src/evaluation/resource_profile.py"},
+        {"id": 8, "name": "KG quality", "status": "pending human annotation", "purpose": "Verify a deterministic sample of extracted triples.", "dataset": "100 sampled graph edges", "N": 100, "systems": ["KG extractor"], "metrics": ["entity correctness", "relation correctness", "triple validity", "error rate"], "result_file": "data/results/kg_quality_evaluation.json", "script": "src/evaluation/kg_quality.py"},
+        {"id": 9, "name": "unanswerable/abstention", "status": "not feasible", "purpose": "Evaluate abstention on verified out-of-corpus questions.", "dataset": "no verified negative set available", "N": 0, "systems": ["BM25 + LLM", "Vanilla RAG", "KG-RAG"], "metrics": ["correct abstention", "unsupported answer", "hallucination"], "result_file": "data/results/abstention_evaluation.json", "script": "src/evaluation/abstention_evaluation.py"},
+        {"id": 10, "name": "human evaluation", "status": "pending human annotation", "purpose": "Prepare blinded/structured ratings without fabricating judgments.", "dataset": "75 questions, 25 per tier", "N": 75, "systems": ["BM25 + LLM", "Vanilla RAG", "KG-RAG"], "metrics": ["correctness", "faithfulness", "relevance", "completeness"], "result_file": "data/human_eval/human_evaluation_template.csv", "script": "src/evaluation/human_evaluation.py"},
+        {"id": 11, "name": "paraphrase robustness", "status": "pending human annotation", "purpose": "Create and review a small semantic-equivalence subset.", "dataset": "30 questions, 10 per tier", "N": 30, "systems": ["stored systems; future rerun"], "metrics": ["ROUGE-L", "coverage", "IDK"], "result_file": "data/results/paraphrase_robustness.json", "script": "src/evaluation/paraphrase_robustness.py"},
+        {"id": 12, "name": "temporal/relational tier analysis", "status": "executed", "purpose": "Report complete tier-wise performance and differences.", "dataset": "canonical test set", "N": {"tier_2": 54, "tier_3": 36}, "systems": ["KG-RAG", "BM25 + LLM", "Vanilla RAG"], "metrics": ["ROUGE-L", "coverage", "IDK"], "result_file": "data/results/tier_comparison_data.json; paper/figures/tier_comparison.png", "script": "src/evaluation/tier_analysis.py"},
+    ]
+    out = {"experiment": "q1_journal_experiment_summary", "canonical_benchmark_unchanged": True, "experiments": experiments, "generated_at_utc": datetime.now(timezone.utc).isoformat()}
+    path = RESULTS_DIR / "q1_experiment_summary.json"
+    path.write_text(json.dumps(out, indent=2) + "\n", encoding="utf-8")
+    print(f"Saved {path}")
+
+
+if __name__ == "__main__":
+    main()

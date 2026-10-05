@@ -32,6 +32,10 @@ The repository uses a fixed, deterministic split over the 200-question ISRO benc
 
 The authoritative result file is `data/results/evaluation_results.json`.
 
+The canonical benchmark is frozen. The additional journal analyses below read
+the saved per-question outputs and do not rerun generation or replace the
+canonical result file.
+
 ---
 
 ## Local pipeline and configuration
@@ -87,6 +91,53 @@ The repository also contains a separate 50-question ablation experiment, reporte
 | Full KG-RAG | 50 | 0.2952 | 0.4564 | 0.1000 |
 
 This is a separate experiment and must not be mixed with the main benchmark results.
+
+## Additional journal experiments
+
+The reproducible experiment ledger is `data/results/q1_experiment_summary.json`.
+Every experiment has a script under `src/evaluation/` and writes a separate
+artifact under `data/results/`.
+
+Executed from frozen outputs:
+
+- paired bootstrap confidence intervals, Wilcoxon signed-rank tests, and paired effect sizes in `statistical_tests.json`
+- complete Tier 1/2/3 paired analysis in `tier_statistical_tests.json`
+- tier comparison data and `paper/figures/tier_comparison.png`
+- a guarded retrieval-quality check that correctly reports no execution because chunk relevance judgments are not available
+- a preserved report of the existing 50-question ablation plus explicit pending status for unsupported variants
+- a partial, retrieval-only resource profile for three BM25 queries; dense retrieval attempted unavailable Hugging Face network access and LLM timing was not measured
+- human-evaluation, KG-quality, and paraphrase annotation templates without fabricated ratings
+
+Pending or not feasible:
+
+- retrieval Recall@k/MRR requires manually verified relevance labels
+- two-hop, alternate top-k, and expanded component ablations require additional generation runs
+- KG precision, human evaluation, paraphrase robustness, and abstention robustness require manual annotation/verification
+
+Run the full non-generative journal analysis package with:
+
+```powershell
+.venv\Scripts\python.exe src\evaluation\statistical_tests.py
+.venv\Scripts\python.exe src\evaluation\tier_statistical_tests.py
+.venv\Scripts\python.exe src\evaluation\tier_analysis.py
+.venv\Scripts\python.exe src\evaluation\retrieval_quality.py
+.venv\Scripts\python.exe src\evaluation\component_ablation.py
+.venv\Scripts\python.exe src\evaluation\hop_ablation.py
+.venv\Scripts\python.exe src\evaluation\topk_sensitivity.py
+.venv\Scripts\python.exe src\evaluation\human_evaluation.py
+.venv\Scripts\python.exe src\evaluation\kg_quality.py
+.venv\Scripts\python.exe src\evaluation\abstention_evaluation.py
+.venv\Scripts\python.exe src\evaluation\paraphrase_robustness.py
+.venv\Scripts\python.exe src\evaluation\q1_summary.py
+```
+
+The resource profiler is intentionally partial and local-only:
+
+```powershell
+.venv\Scripts\python.exe src\evaluation\resource_profile.py --systems bm25_llm --questions-per-tier 1
+```
+
+No RAGAS result is included: it is not part of the executed evaluation path.
 
 ---
 

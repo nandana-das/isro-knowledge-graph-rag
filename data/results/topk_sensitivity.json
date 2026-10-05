@@ -1,0 +1,21 @@
+{
+  "experiment": "topk_sensitivity",
+  "status": "pending_generation",
+  "subset": "deterministic representative subset to be generated in a future run",
+  "k_values": [
+    1,
+    3,
+    5,
+    10
+  ],
+  "metrics": [
+    "rouge_l",
+    "coverage",
+    "idk",
+    "latency"
+  ],
+  "reason": "No stored per-question outputs exist for alternate k values; no curve or figure was fabricated.",
+  "figure_status": "not_created_without_measured_values",
+  "canonical_benchmark_untouched": true,
+  "generated_at_utc": "2026-10-05T03:54:08.865225+00:00"
+}

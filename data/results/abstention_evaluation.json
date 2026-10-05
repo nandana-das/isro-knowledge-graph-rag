@@ -1,0 +1,18 @@
+{
+  "experiment": "unanswerable_abstention",
+  "status": "not_executed",
+  "reason": "No trustworthy manually verified unanswerable set is present.",
+  "input_template": "data\\abstention\\unanswerable_questions.csv",
+  "metrics": [
+    "correct abstention rate",
+    "unsupported-answer rate",
+    "hallucination rate"
+  ],
+  "n_questions": 0,
+  "systems": [
+    "BM25 + LLM",
+    "Vanilla RAG",
+    "KG-RAG"
+  ],
+  "generated_at_utc": "2026-10-05T04:53:07.846015+00:00"
+}

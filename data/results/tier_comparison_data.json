@@ -1,0 +1,86 @@
+{
+  "source": "frozen per-question outputs",
+  "records": [
+    {
+      "tier": 1,
+      "n": 90,
+      "system": "bm25_llm",
+      "rouge_l": 0.321987,
+      "reference_token_coverage": 0.519912,
+      "exact_match": 0.055556,
+      "idk_rate": 0.033333
+    },
+    {
+      "tier": 1,
+      "n": 90,
+      "system": "vanilla_rag",
+      "rouge_l": 0.322251,
+      "reference_token_coverage": 0.463179,
+      "exact_match": 0.066667,
+      "idk_rate": 0.122222
+    },
+    {
+      "tier": 1,
+      "n": 90,
+      "system": "kg_rag",
+      "rouge_l": 0.307995,
+      "reference_token_coverage": 0.438147,
+      "exact_match": 0.066667,
+      "idk_rate": 0.155556
+    },
+    {
+      "tier": 2,
+      "n": 54,
+      "system": "bm25_llm",
+      "rouge_l": 0.258678,
+      "reference_token_coverage": 0.344785,
+      "exact_match": 0.0,
+      "idk_rate": 0.0
+    },
+    {
+      "tier": 2,
+      "n": 54,
+      "system": "vanilla_rag",
+      "rouge_l": 0.230559,
+      "reference_token_coverage": 0.321311,
+      "exact_match": 0.0,
+      "idk_rate": 0.111111
+    },
+    {
+      "tier": 2,
+      "n": 54,
+      "system": "kg_rag",
+      "rouge_l": 0.224634,
+      "reference_token_coverage": 0.346236,
+      "exact_match": 0.0,
+      "idk_rate": 0.092593
+    },
+    {
+      "tier": 3,
+      "n": 36,
+      "system": "bm25_llm",
+      "rouge_l": 0.264696,
+      "reference_token_coverage": 0.353231,
+      "exact_match": 0.0,
+      "idk_rate": 0.0
+    },
+    {
+      "tier": 3,
+      "n": 36,
+      "system": "vanilla_rag",
+      "rouge_l": 0.238707,
+      "reference_token_coverage": 0.35462,
+      "exact_match": 0.0,
+      "idk_rate": 0.138889
+    },
+    {
+      "tier": 3,
+      "n": 36,
+      "system": "kg_rag",
+      "rouge_l": 0.261076,
+      "reference_token_coverage": 0.345607,
+      "exact_match": 0.0,
+      "idk_rate": 0.055556
+    }
+  ]
+}

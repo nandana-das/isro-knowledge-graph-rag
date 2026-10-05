@@ -1,0 +1,55 @@
+{
+  "experiment": "component_ablation",
+  "status": "partially_executed",
+  "dataset": "existing deterministic stratified 50-question ablation subset",
+  "canonical_benchmark_untouched": true,
+  "existing_configurations": {
+    "kg_only": {
+      "status": "available_from_existing_artifact",
+      "aggregate": {
+        "rouge_l": 0.0927,
+        "coverage": 0.1078,
+        "idk_rate": 0.76,
+        "n": 50
+      }
+    },
+    "faiss_only": {
+      "status": "available_from_existing_artifact",
+      "aggregate": {
+        "rouge_l": 0.283,
+        "coverage": 0.4077,
+        "idk_rate": 0.34,
+        "n": 50
+      }
+    },
+    "full_kgrag": {
+      "status": "available_from_existing_artifact",
+      "aggregate": {
+        "rouge_l": 0.2952,
+        "coverage": 0.4564,
+        "idk_rate": 0.1,
+        "n": 50
+      }
+    }
+  },
+  "requested_configurations": {
+    "kg_plus_faiss_without_entity_filtering": {
+      "status": "pending",
+      "reason": "No implemented configuration switch and no stored raw answers."
+    },
+    "kg_plus_faiss_without_relation_filtering": {
+      "status": "pending",
+      "reason": "No implemented configuration switch and no stored raw answers."
+    },
+    "kg_plus_faiss_1_hop": {
+      "status": "pending",
+      "reason": "New generation run required; no stored raw answers."
+    },
+    "kg_plus_faiss_2_hop": {
+      "status": "pending",
+      "reason": "New generation run required; no stored raw answers."
+    }
+  },
+  "note": "The historical ablation_results.json was preserved and not overwritten.",
+  "generated_at_utc": "2026-10-05T03:54:06.513235+00:00"
+}

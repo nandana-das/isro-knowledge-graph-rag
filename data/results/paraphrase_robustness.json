@@ -1,0 +1,13 @@
+{
+  "experiment": "paraphrase_robustness",
+  "status": "pending_manual_paraphrase_review",
+  "subset_size": 30,
+  "template": "data\\paraphrase\\paraphrase_review_template.csv",
+  "metrics": [
+    "ROUGE-L",
+    "coverage",
+    "IDK"
+  ],
+  "reason": "No paraphrase was accepted without manual semantic-equivalence review; no robustness score was fabricated.",
+  "generated_at_utc": "2026-10-05T03:54:55.402343+00:00"
+}

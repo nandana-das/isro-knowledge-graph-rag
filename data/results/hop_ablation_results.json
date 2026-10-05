@@ -1,0 +1,20 @@
+{
+  "experiment": "hop_ablation",
+  "status": "pending_generation",
+  "dataset": "same deterministic 50-question ablation subset as existing ablation",
+  "configurations": [
+    "1-hop",
+    "2-hop"
+  ],
+  "metrics": [
+    "rouge_l",
+    "reference_token_coverage",
+    "exact_match",
+    "idk",
+    "retrieval_context_size",
+    "latency"
+  ],
+  "reason": "The repository exposes two-hop retrieval but stores no per-question answers or latency traces for either hop setting; executing this requires a new additional-subset generation run.",
+  "canonical_benchmark_untouched": true,
+  "generated_at_utc": "2026-10-05T03:54:07.692931+00:00"
+}

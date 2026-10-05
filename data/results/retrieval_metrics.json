@@ -1,0 +1,26 @@
+{
+  "experiment": "retrieval_quality",
+  "status": "not_executed",
+  "reason": "Retrieval-level evaluation requires manually verified relevance judgments and was not executed.",
+  "candidate_source_fields": [
+    "source_url",
+    "source_note"
+  ],
+  "label_decision": "Source URLs and source notes identify verification provenance, not relevant chunk IDs; no labels were inferred.",
+  "required_future_input": "Manually verified relevant chunk/document judgments for each evaluated question.",
+  "candidate_questions": 200,
+  "systems": [
+    "BM25",
+    "FAISS",
+    "KG",
+    "Hybrid KG + FAISS"
+  ],
+  "metrics": [
+    "Recall@1",
+    "Recall@3",
+    "Recall@5",
+    "Recall@10",
+    "MRR"
+  ],
+  "generated_at_utc": "2026-10-05T03:54:05.327927+00:00"
+}

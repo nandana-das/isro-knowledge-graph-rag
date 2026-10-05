@@ -114,43 +114,42 @@ We manually built ISRO-QA, a benchmark of 200 question-answer pairs, each verifi
 
 \subsection{Baselines and Evaluation Metrics}
 
-We compare KG-RAG against two baselines under identical hardware and corpus conditions. BM25+LLM retrieves the top passages using BM25 sparse retrieval and passes them to Mistral-7B for generation, representing traditional keyword-based retrieval. Vanilla RAG swaps BM25 for FAISS dense retrieval but removes the knowledge graph entirely, isolating the KG contribution. We additionally ran GraphRAG \cite{edge2024graphrag} by substituting Mistral-7B for its required GPT-4 model; this degraded configuration produced a mean ROUGE-L of 0.089 and an IDK rate of 61\%, confirming that the community detection pipeline is not viable without a GPT-4 class model and making direct comparison with published GraphRAG results inappropriate. Systems are evaluated on ROUGE-L (longest common subsequence F1 against the reference), Answer Coverage (fraction of reference words in the prediction), Exact Match, and IDK Rate (fraction of abstentions). We acknowledge that both ROUGE-L and Coverage are lexical metrics that reward surface-form overlap rather than factual correctness; LLM-judge evaluation and human evaluation are planned as future work. Given the benchmark size of 200 questions, results are reported as point estimates without confidence intervals; statistical significance testing is identified as a limitation. The system uses spaCy 3.7, NetworkX 3.3, FAISS-CPU 1.8, sentence-transformers 2.7, and Ollama 0.1.x.
+We compare KG-RAG against two baselines under identical hardware and corpus conditions. BM25+LLM retrieves the top passages using BM25 sparse retrieval and passes them to Mistral-7B for generation, representing traditional keyword-based retrieval. Vanilla RAG swaps BM25 for FAISS dense retrieval but removes the knowledge graph entirely, isolating the KG contribution. Systems are evaluated on ROUGE-L (longest common subsequence F1 against the reference), reference-token coverage, Exact Match, and IDK Rate (fraction of abstentions). We acknowledge that these are lexical metrics that reward surface-form overlap rather than factual correctness; human evaluation is therefore prepared separately and has not been completed. The canonical 180-question test set is frozen; paired confidence intervals and Wilcoxon tests are reported in the additional analysis, without rerunning generation. The system uses spaCy 3.7, NetworkX 3.3, FAISS-CPU 1.8, sentence-transformers, and Ollama.
 
 \section{Results and Discussion}
 \label{sec:results}
 
 \subsection{Main Results}
 
-Table~\ref{tab:results} reports performance across all 200 ISRO-QA questions. KG-RAG achieves ROUGE-L 0.274 and Coverage 0.403, outperforming Vanilla RAG on both metrics. Table~\ref{tab:results} also shows that BM25+LLM leads on ROUGE-L (0.287) and Coverage (0.421) — this is expected, since keyword retrieval returns passages that share more tokens with the reference answers, inflating lexical scores without necessarily producing more accurate responses. The same critique applies symmetrically to KG-RAG's gains: the 15.6\% relative ROUGE-L improvement over Vanilla RAG (0.274 vs 0.237) and the 9.2\% relative Coverage gain (0.403 vs 0.369) reflect lexical coverage improvements rather than verified factual accuracy gains. Results should be interpreted as indicative given the benchmark size and the absence of formal significance testing. KG-RAG abstains on 9.0\% of questions — the system declines to answer when retrieved context is insufficient rather than guessing.
+Table~\ref{tab:results} reports the frozen 180-question test set, not the 20-question development set. BM25+LLM is strongest overall on the two principal lexical metrics (ROUGE-L 0.2915; coverage 0.4340). KG-RAG (0.2736; 0.3921) does not outperform BM25 and is slightly below Vanilla RAG (0.2780; 0.3989). The paired analysis finds no significant KG-RAG advantage over Vanilla RAG for ROUGE-L, coverage, exact match, or IDK (all two-sided Wilcoxon $p \geq 0.356$ where defined). Against BM25, KG-RAG has significantly lower coverage ($p=0.011$) and a higher IDK rate ($p<0.001$). These are lexical findings and do not establish factual correctness.
 
 \begin{table}[h]
 \centering
-\caption{Performance on ISRO-QA benchmark (200 questions).}
+\caption{Canonical performance on the frozen ISRO-QA test set (180 questions).}
 \label{tab:results}
 \begin{tabular}{lcccc}
 \hline
 \textbf{System} & \textbf{ROUGE-L} & \textbf{Coverage} & \textbf{EM} & \textbf{IDK\%} \\
 \hline
-BM25 + LLM             & 0.287 & 0.421 & 0.020 & 3.5\% \\
-Vanilla RAG            & 0.237 & 0.369 & 0.015 & 4.5\% \\
-GraphRAG (degraded)    & 0.089 & --    & --    & 61.0\% \\
-\textbf{KG-RAG (ours)} & \textbf{0.274} & \textbf{0.403} & \textbf{0.025} & 9.0\% \\
+BM25 + LLM             & 0.2915 & 0.4340 & 0.0278 & 1.67\% \\
+Vanilla RAG            & 0.2780 & 0.3989 & 0.0333 & 12.22\% \\
+\textbf{KG-RAG (ours)} & 0.2736 & 0.3921 & 0.0333 & 11.67\% \\
 \hline
 \end{tabular}
 \end{table}
 
-Figure~\ref{fig:results} visualizes these scores side by side. The left panel of Figure~\ref{fig:results} shows that KG-RAG and BM25+LLM are close on ROUGE-L while Vanilla RAG trails noticeably, and the right panel shows the same pattern on Coverage, with KG-RAG's gain over Vanilla RAG (+0.034) clearly visible.
+Figure~\ref{fig:results} visualizes the canonical point estimates. The figure should be read as a comparison of lexical overlap and abstention behavior, not as evidence of factual superiority.
 
 \begin{figure}[h]
 \centering
 \includegraphics[width=\columnwidth]{results_comparison.png}
-\caption{ROUGE-L and Answer Coverage comparison across all systems on ISRO-QA (200 questions). KG-RAG outperforms Vanilla RAG on both metrics; BM25+LLM leads due to lexical overlap advantage.}
+\caption{ROUGE-L and reference-token coverage on the frozen 180-question test set. BM25+LLM is the strongest lexical performer; KG-RAG is not universally superior.}
 \label{fig:results}
 \end{figure}
 
 \subsection{Per-Tier Analysis}
 
-Table~\ref{tab:tier} breaks down abstention rates by question difficulty tier. Table~\ref{tab:tier} reveals that KG-RAG struggles most on Tier 1 factoid questions (11.0\% IDK), where spaCy's general-purpose NER misses many ISRO-specific entity names, causing KG expansion to return empty context for a significant fraction of queries. This is the clearest limitation of the current system and the strongest motivation for a custom ISRO entity ruler. On Tier 3 timeline questions, KG-RAG achieves the lowest IDK rate of all systems (2.5\%), which reflects the knowledge graph's explicit storage of launch dates and event sequences as typed edges — making temporal facts directly accessible without requiring the model to infer them from passage text.
+Table~\ref{tab:tier} breaks down abstention rates by tier on the test split. KG-RAG has its highest IDK rate on Tier 1 factoid questions (15.56\%) and its lowest on Tier 3 timeline questions (5.56\%). Relative to Vanilla RAG, the largest directional KG improvement is on Tier 3: ROUGE-L is higher by 0.0224 and IDK is lower by 8.33 percentage points, but neither difference is statistically significant in the paired tier analysis ($p=0.485$ and $p=0.083$, respectively). The complete Tier 2 and Tier 3 comparison is shown in Fig.~\ref{fig:tiercomparison}; it should be interpreted as exploratory evidence rather than a claim of significance.
 
 \begin{table}[h]
 \centering
@@ -158,18 +157,29 @@ Table~\ref{tab:tier} breaks down abstention rates by question difficulty tier. T
 \label{tab:tier}
 \begin{tabular}{lccc}
 \hline
-\textbf{System} & \textbf{Tier 1 (100)} & \textbf{Tier 2 (60)} & \textbf{Tier 3 (40)} \\
+\textbf{System} & \textbf{Tier 1 (90)} & \textbf{Tier 2 (54)} & \textbf{Tier 3 (36)} \\
 \hline
-BM25 + LLM      & 6.0\%  & 1.7\% & 0.0\% \\
-Vanilla RAG     & 2.0\%  & 6.7\% & 5.0\% \\
-\textbf{KG-RAG} & 11.0\% & 8.3\% & \textbf{2.5\%} \\
+BM25 + LLM      & 3.33\%  & 0.00\% & 0.00\% \\
+Vanilla RAG     & 12.22\%  & 11.11\% & 13.89\% \\
+\textbf{KG-RAG} & 15.56\% & 9.26\% & 5.56\% \\
 \hline
 \end{tabular}
 \end{table}
 
+\begin{figure}[h]
+\centering
+\includegraphics[width=\columnwidth]{tier_comparison.png}
+\caption{Tier-wise ROUGE-L and reference-token coverage on the complete canonical test tiers.}
+\label{fig:tiercomparison}
+\end{figure}
+
+\subsection{Paired Statistical Analysis}
+
+The statistical analysis treats the question as the unit of analysis and uses the same stored answer for every paired comparison. For KG-RAG minus Vanilla RAG, the mean paired differences are $-0.0044$ for ROUGE-L (95\% bootstrap CI $[-0.0277,0.0185]$), $-0.0068$ for coverage (CI $[-0.0334,0.0202]$), and $-0.0056$ for IDK rate (CI $[-0.0444,0.0333]$); the corresponding Wilcoxon $p$-values are 0.403, 0.357, and 0.782. Thus, the frozen benchmark does not support a significant overall KG advantage over Vanilla RAG. Against BM25, KG-RAG's coverage difference is $-0.0420$ (CI $[-0.0724,-0.0121]$, $p=0.011$), while its ROUGE-L difference is $-0.0179$ (CI $[-0.0429,0.0086]$, $p=0.183$). Exact-match testing has too few non-zero paired differences for a meaningful Wilcoxon test in the KG-vs-BM25 comparison and is reported as such in the machine-readable artifact.
+
 \subsection{Ablation Study}
 
-Table~\ref{tab:ablation} presents ablation results on a 50-question sample comparing KG-only retrieval, FAISS-only retrieval, and full KG-RAG. Table~\ref{tab:ablation} shows that KG-only retrieval is nearly unusable on its own — it fails to answer 96\% of questions because spaCy NER cannot reliably link query terms to graph nodes, confirming that dense retrieval is the essential backbone. FAISS-only retrieval performs well at ROUGE-L 0.279 and Coverage 0.435, and adding the KG on top raises Coverage by 5.7 percentage points to 0.492. This gain indicates that graph context helps the model produce answers covering more of the reference content, likely by supplying entity-relation facts that passage chunks alone do not contain.
+Table~\ref{tab:ablation} presents the separate existing 50-question sample comparing KG-only retrieval, FAISS-only retrieval, and full KG-RAG. KG-only is weakest (ROUGE-L 0.0927; coverage 0.1078; IDK 76\%), while Full KG-RAG exceeds FAISS-only on ROUGE-L and coverage in this subset. This result is limited to the ablation subset and is not evidence that KG-RAG wins the canonical benchmark. Expanded filtering and hop variants remain pending because no compatible raw answer traces are stored.
 
 \begin{table}[h]
 \centering
@@ -179,32 +189,32 @@ Table~\ref{tab:ablation} presents ablation results on a 50-question sample compa
 \hline
 \textbf{Configuration} & \textbf{ROUGE-L} & \textbf{Coverage} & \textbf{IDK\%} \\
 \hline
-KG-only              & 0.011 & 0.014 & 96.0\% \\
-FAISS-only           & 0.279 & 0.435 & 22.0\% \\
-\textbf{Full KG-RAG} & \textbf{0.281} & \textbf{0.492} & \textbf{20.0\%} \\
+KG-only              & 0.0927 & 0.1078 & 76.0\% \\
+FAISS-only           & 0.2830 & 0.4077 & 34.0\% \\
+\textbf{Full KG-RAG} & \textbf{0.2952} & \textbf{0.4564} & \textbf{10.0\%} \\
 \hline
 \end{tabular}
 \end{table}
 
-Figure~\ref{fig:ablation} makes the +5.7pp Coverage gain from adding the KG immediately visible. The left panel of Figure~\ref{fig:ablation} shows that ROUGE-L barely changes between FAISS-only and Full KG-RAG, while the right panel shows the Coverage jump clearly — confirming that the KG's primary contribution is breadth of factual coverage rather than lexical surface-form improvement.
+Figure~\ref{fig:ablation} visualizes the separate subset result; it must not be conflated with the canonical 180-question benchmark.
 
 \begin{figure}[h]
 \centering
 \includegraphics[width=\columnwidth]{ablation_results.png}
-\caption{Ablation results on 50-question sample. The Coverage panel (right) shows the +5.7 percentage point gain from adding KG augmentation on top of FAISS-only dense retrieval.}
+\caption{Ablation results on the separate 50-question sample. The Coverage panel (right) shows the measured +4.87 percentage-point difference between Full KG-RAG and FAISS-only.}
 \label{fig:ablation}
 \end{figure}
 
 \subsection{Discussion}
 
-Three conclusions stand out. First, KG-RAG consistently beats Vanilla RAG across all metrics, confirming that even an automatically constructed knowledge graph adds measurable value for domain-specific QA. Second, BM25's lead on ROUGE-L is a metric artifact — keyword retrieval optimizes for token overlap with reference answers, which is exactly what ROUGE-L measures. Crucially, the same caveat applies to KG-RAG's reported gains: without human evaluation or LLM-judge scoring, we cannot confirm that higher ROUGE-L and Coverage translate to better factual accuracy. Third, the ablation directly quantifies the KG contribution at +5.7pp Coverage — the clearest and most defensible result in the paper.
+Three conclusions stand out. First, BM25+LLM is the strongest overall lexical performer, and KG-RAG does not outperform it on the frozen test set. Second, KG-RAG is directionally better than Vanilla RAG on Tier 3 ROUGE-L and IDK, but the paired tier tests do not establish statistical significance; the evidence supports a targeted-benefit hypothesis, not universal superiority. Third, the separate 50-question ablation indicates that the full hybrid configuration is more useful than KG-only or FAISS-only in that subset, while the expanded component and hop analyses remain pending.
 
-The most significant limitation is spaCy NER's weakness on ISRO terminology: a custom entity ruler would reduce Tier 1 abstention substantially. The FAISS Flat L2 index does not scale past roughly 10,000 chunks with acceptable latency; larger deployments would need FAISS IVF or HNSW. The benchmark, while the first of its kind for ISRO domain QA, would benefit from formal inter-annotator agreement measurement and independent validation. Future work will explore two-hop KG expansion, RAGAS Faithfulness evaluation with a local embedding server, and extension of the framework to other government scientific corpora.
+The additional evaluation also makes the remaining evidence gaps explicit. Retrieval Recall@k/MRR cannot be computed without manually verified chunk relevance judgments. Human factual evaluation, KG-triple verification, a verified unanswerable set, and manually reviewed paraphrases are prepared but not completed. Resource profiling measured only BM25 retrieval on three queries; dense retrieval attempted unavailable Hugging Face network access, and generation, peak RAM/VRAM, and tokens/sec were not measured. The FAISS Flat L2 index does not scale past roughly 10,000 chunks with acceptable latency; larger deployments would need approximate indexing. Future work should complete the annotation packages and run the planned additional-subset generation experiments before making factual or efficiency claims.
 
 \section{Conclusion}
 \label{sec:conclusion}
 
-We built KG-RAG, a system that answers factual questions about ISRO by combining an automatically constructed domain-specific knowledge graph with FAISS dense retrieval, running entirely on consumer hardware at zero cost. The knowledge graph — 2,193 nodes and 4,655 typed edges — was built from 339 raw web documents using spaCy NER and dependency parsing, with no pre-existing knowledge base or cloud API involved. Ablation experiments show that adding the KG to dense retrieval raises Answer Coverage by 5.7 percentage points on a 50-question sample. We introduced ISRO-QA, a 200-question benchmark spanning three difficulty tiers, publicly released to support future work in this area. On ISRO-QA, KG-RAG achieves ROUGE-L 0.274 and Coverage 0.403 with a 9\% abstention rate reflecting deliberate context grounding. Results are point estimates without formal significance testing and should be treated as indicative; human evaluation and statistical testing over multiple runs are left for follow-up work. We hope this work provides a practical and reproducible starting point for building domain-specific QA systems over government scientific corpora where annotation resources and cloud infrastructure are typically unavailable.
+We built KG-RAG, a system that answers factual questions about ISRO by combining an automatically constructed domain-specific knowledge graph with FAISS dense retrieval, running locally without cloud-hosted model access. On the frozen 180-question test set, BM25+LLM is the strongest lexical system (ROUGE-L 0.2915; coverage 0.4340), while KG-RAG obtains 0.2736 and 0.3921. Paired tests do not show a significant overall advantage for KG-RAG over Vanilla RAG, although Tier 3 shows a promising but non-significant directional pattern. The existing 50-question ablation supports retaining the hybrid design as an experimental configuration, not as proof of main-benchmark superiority. The released scripts, raw stored outputs, explicit pending statuses, and annotation templates provide a reproducible basis for completing factual, retrieval, and resource evaluations without overstating current evidence.
 
 \begin{thebibliography}{20}
 
