@@ -6,6 +6,7 @@ import argparse
 import json
 import re
 import sys
+from functools import lru_cache
 from pathlib import Path
 
 from rank_bm25 import BM25Okapi
@@ -19,6 +20,7 @@ from src.generator.ollama_api import generate
 CHUNKS_PATH = ROOT / "data" / "chunks" / "chunks.json"
 
 
+@lru_cache(maxsize=1)
 def _load_chunks() -> list[str]:
     payload = json.loads(CHUNKS_PATH.read_text(encoding="utf-8"))
     items = payload if isinstance(payload, list) else payload.get("chunks", [])

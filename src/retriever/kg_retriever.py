@@ -1,4 +1,8 @@
-"""Knowledge-graph context retrieval with two-hop neighbourhood expansion."""
+"""Knowledge-graph context retrieval for the main KG-RAG pipeline.
+
+The canonical pipeline uses one-hop neighbourhood expansion; two-hop retrieval
+remains available as an optional experimental flag.
+"""
 
 from __future__ import annotations
 
@@ -195,7 +199,9 @@ def _serialize_triples(triples: list[tuple[str, str, str]]) -> str:
 def get_kg_context(entities: list[str], two_hop: bool = False, max_triples_per_entity: int = 50) -> str:
     """
     Retrieve KG context for a list of entities.
-    Uses two-hop expansion by default for richer relational context.
+
+    The canonical experiment uses one-hop expansion; two-hop remains an optional
+    ablation mode rather than the default.
     """
     if not entities:
         return ""

@@ -7,6 +7,7 @@ import json
 import os
 import sys
 import warnings
+from functools import lru_cache
 from pathlib import Path
 
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
@@ -24,9 +25,12 @@ from src.generator.ollama_api import generate
 
 INDEX_PATH = ROOT / "data" / "index" / "faiss_index.index"
 CHUNKS_PATH = ROOT / "data" / "chunks" / "chunks.json"
-MODEL = SentenceTransformer("all-MiniLM-L6-v2", device="cpu")
+@lru_cache(maxsize=1)
+def _load_model() -> SentenceTransformer:
+    return SentenceTransformer("all-MiniLM-L6-v2", device="cpu")
 
 
+@lru_cache(maxsize=1)
 def _load_chunks() -> list[str]:
     payload = json.loads(CHUNKS_PATH.read_text(encoding="utf-8"))
     items = payload if isinstance(payload, list) else payload.get("chunks", [])
@@ -39,7 +43,7 @@ def retrieve_context(question: str, top_k: int = 5) -> str:
     if not chunks or not INDEX_PATH.exists():
         return ""
     index = faiss.read_index(str(INDEX_PATH))
-    vector = MODEL.encode([question], convert_to_numpy=True, normalize_embeddings=True)
+    vector = _load_model().encode([question], convert_to_numpy=True, normalize_embeddings=True)
     _, indices = index.search(np.asarray(vector, dtype=np.float32), top_k)
     passages = [chunks[int(i)] for i in indices[0] if 0 <= i < len(chunks)]
     return "\n\n".join(passages)

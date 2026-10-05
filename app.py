@@ -4,6 +4,7 @@ KG-RAG only version
 Run with: streamlit run app.py
 """
 
+import json
 import streamlit as st
 import sys
 import time
@@ -30,8 +31,17 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 ROOT = Path(__file__).resolve().parent
+RESULTS_PATH = ROOT / "data" / "results" / "evaluation_results.json"
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
+
+
+def load_canonical_results():
+    if not RESULTS_PATH.exists():
+        return {}
+    with RESULTS_PATH.open("r", encoding="utf-8") as f:
+        return json.load(f)
+
 
 @st.cache_resource(show_spinner="Loading KG-RAG pipeline...")
 def load_pipeline():
@@ -58,6 +68,9 @@ with st.sidebar:
     st.markdown("### 🚀 KG-RAG for ISRO")
     st.markdown("---")
 
+    canonical = load_canonical_results()
+    results = canonical.get("system_results", {})
+    graph_stats = canonical.get("graph_stats", {})
     try:
         pipeline = load_pipeline()
         G = pipeline['graph']
@@ -67,8 +80,8 @@ with st.sidebar:
     except Exception as e:
         st.error(f"Pipeline error: {e}")
         pipeline = None
-        n_nodes = 31314
-        n_edges = 95189
+        n_nodes = int(graph_stats.get("nodes", 0) or 0)
+        n_edges = int(graph_stats.get("edges", 0) or 0)
 
     st.markdown("### 📊 System Stats")
     st.markdown(f"""
@@ -81,12 +94,12 @@ with st.sidebar:
         <div class="stat-label">KG Edges</div>
     </div>
     <div class="stat-box">
-        <div class="stat-number">4,557</div>
-        <div class="stat-label">Document Chunks</div>
+        <div class="stat-number">{len(results) if results else 0}</div>
+        <div class="stat-label">Systems Evaluated</div>
     </div>
     <div class="stat-box">
-        <div class="stat-number">339</div>
-        <div class="stat-label">Source Documents</div>
+        <div class="stat-number">{canonical.get('evaluation_protocol', {}).get('test_size', 0)}</div>
+        <div class="stat-label">Test Questions</div>
     </div>
     """, unsafe_allow_html=True)
 
@@ -100,15 +113,19 @@ with st.sidebar:
     - **LLM:** Mistral-7B-Instruct Q4_K_M
     """)
 
-    st.markdown("### 📈 Benchmark")
-    st.markdown("""
-    | Metric | Score |
-    |---|---|
-    | ROUGE-L | 0.274 |
-    | Coverage | 0.403 |
-    | IDK Rate | 8.5% |
-    | Ablation +Coverage | +4.8pp |
-    """)
+    st.markdown("### 📈 Canonical Benchmark")
+    if results:
+        kg = results.get("kg_rag", {})
+        st.markdown(f"""
+        | Metric | Score |
+        |---|---|
+        | ROUGE-L | {kg.get('rouge_l', 0.0):.4f} |
+        | Coverage | {kg.get('reference_token_coverage', 0.0):.4f} |
+        | Exact Match | {kg.get('exact_match', 0.0):.4f} |
+        | IDK Rate | {kg.get('idk_rate', 0.0):.4f} |
+        """)
+    else:
+        st.markdown("Results file is not available yet.")
 
     show_context = st.checkbox("Show retrieved context", value=False)
 
@@ -229,27 +246,29 @@ with st.expander("📐 How KG-RAG Works", expanded=False):
     ```
     """)
 
-with st.expander("📊 Evaluation Results", expanded=False):
-    st.markdown("""
-    #### ISRO-QA Benchmark (200 Questions)
-    | System | ROUGE-L | Coverage | IDK% |
-    |---|---|---|---|
-    | **KG-RAG (ours)** | **0.274** | **0.403** | 8.5% |
-    | BM25 + LLM | 0.287 | 0.421 | 3.5% |
-    | Vanilla RAG | 0.237 | 0.369 | 4.5% |
-
-    #### Per-Tier IDK Rate
-    | System | Tier 1 | Tier 2 | Tier 3 |
-    |---|---|---|---|
-    | **KG-RAG** | 11.0% | **6.7%** | **2.5%** |
-    | Vanilla RAG | 2.0% | 11.7% | 15.0% |
-
-    #### Ablation Study
-    | Config | Coverage | IDK% |
-    |---|---|---|
-    | KG-only | 0.108 | 76.0% |
-    | FAISS-only | 0.408 | 34.0% |
-    | **Full KG-RAG** | **0.456** | **10.0%** |
-    """)
+with st.expander("📊 Canonical Evaluation Results", expanded=False):
+    canonical = load_canonical_results()
+    results = canonical.get("system_results", {})
+    if results:
+        st.markdown("""
+        #### ISRO-QA Benchmark (180-question test set)
+        | System | ROUGE-L | Coverage | Exact Match | IDK% |
+        |---|---:|---:|---:|---:|
+        | BM25 + LLM | 0.2915 | 0.4340 | 0.0278 | 1.67% |
+        | Vanilla RAG | 0.2780 | 0.3989 | 0.0333 | 12.22% |
+        | KG-RAG | 0.2736 | 0.3921 | 0.0333 | 11.67% |
+        """)
+        tier_results = canonical.get("tier_results", {})
+        if tier_results:
+            st.markdown("""
+            #### Per-tier results on the 180-question test set
+            | System | Tier 1 | Tier 2 | Tier 3 |
+            |---|---|---|---|
+            | BM25 + LLM | 0.3220 / 0.5199 / 0.0556 / 3.33% | 0.2587 / 0.3448 / 0.0000 / 0.00% | 0.2647 / 0.3532 / 0.0000 / 0.00% |
+            | Vanilla RAG | 0.3222 / 0.4632 / 0.0667 / 12.22% | 0.2306 / 0.3213 / 0.0000 / 11.11% | 0.2387 / 0.3546 / 0.0000 / 13.89% |
+            | KG-RAG | 0.3080 / 0.4381 / 0.0667 / 15.56% | 0.2246 / 0.3462 / 0.0000 / 9.26% | 0.2611 / 0.3456 / 0.0000 / 5.56% |
+            """)
+    else:
+        st.info("Canonical evaluation results are not available yet. See data/results/evaluation_results.json.")
 
 st.caption("KG-RAG for ISRO Domain QA · Alliance University · ICNLP 2027")

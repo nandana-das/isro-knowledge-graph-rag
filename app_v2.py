@@ -327,11 +327,16 @@ try:
     loaded = True
 except Exception as e:
     pipeline = None
-    n_nodes = 31314
-    n_edges = 95189
+    n_nodes = 0
+    n_edges = 0
     loaded = False
 
 # ── HERO ─────────────────────────────────────────────────────────
+try:
+    canonical = json.loads((ROOT / 'data' / 'results' / 'evaluation_results.json').read_text(encoding='utf-8'))
+except Exception:
+    canonical = {}
+
 st.markdown(f"""
 <div class="hero">
     <div class="hero-badge">🛰️ M.Tech Capstone Project · Alliance University · 2026</div>
@@ -357,23 +362,23 @@ st.markdown(f"""
         </div>
         <div class="stat-card">
             <div class="stat-icon">📄</div>
-            <div class="stat-val">4,557</div>
-            <div class="stat-lbl">Chunks</div>
+            <div class="stat-val">{canonical.get('benchmark', {}).get('test_questions', 180):,}</div>
+            <div class="stat-lbl">Test Questions</div>
         </div>
         <div class="stat-card">
             <div class="stat-icon">🌐</div>
-            <div class="stat-val">339</div>
-            <div class="stat-lbl">Documents</div>
+            <div class="stat-val">{canonical.get('benchmark', {}).get('total_questions', 200):,}</div>
+            <div class="stat-lbl">Total Benchmark</div>
         </div>
         <div class="stat-card">
             <div class="stat-icon">🎯</div>
-            <div class="stat-val">175</div>
-            <div class="stat-lbl">Entity Patterns</div>
+            <div class="stat-val">{canonical.get('evaluation_protocol', {}).get('dev_size', 20):,}</div>
+            <div class="stat-lbl">Dev Set</div>
         </div>
         <div class="stat-card">
             <div class="stat-icon">📊</div>
-            <div class="stat-val">200</div>
-            <div class="stat-lbl">QA Benchmark</div>
+            <div class="stat-val">{len(canonical.get('system_results', {}))}</div>
+            <div class="stat-lbl">Systems</div>
         </div>
     </div>
     {'<div style="display:inline-block;background:rgba(16,185,129,0.15);border:1px solid rgba(16,185,129,0.3);color:#34D399;padding:0.3rem 0.8rem;border-radius:6px;font-size:0.82rem;">✅ Pipeline Loaded</div>' if loaded else '<div style="color:#F87171;font-size:0.85rem;">⚠️ Start Ollama to enable live QA</div>'}
@@ -498,7 +503,7 @@ with pipe_col1:
         <div class="step-num">2</div>
         <div>
             <div class="step-title">🕸️ Knowledge Graph Construction</div>
-            <div class="step-desc">spaCy en_core_web_lg + 175-pattern ISRO EntityRuler extracts missions, launch vehicles, scientists, payloads. Dependency parser builds (subject, relation, object) triples → NetworkX graph: 31,314 nodes, 95,189 edges.</div>
+            <div class="step-desc">spaCy en_core_web_lg + 175-pattern ISRO EntityRuler extracts missions, launch vehicles, scientists, payloads. Dependency parser builds (subject, relation, object) triples → NetworkX graph built from the actual local graph artifact for the benchmark.</div>
         </div>
     </div>
     <div class="pipeline-step">
@@ -541,46 +546,45 @@ st.markdown('<div class="section-header">📊 Evaluation Results</div>', unsafe_
 res_col1, res_col2 = st.columns(2)
 
 with res_col1:
-    st.markdown("**Main Results — ISRO-QA Benchmark (200 Questions)**")
+    st.markdown("**Main Results — ISRO-QA Benchmark (180-question test set)**")
     st.markdown("""
     <table class="result-table">
         <thead>
             <tr><th>System</th><th>ROUGE-L</th><th>Coverage</th><th>IDK%</th></tr>
         </thead>
         <tbody>
-            <tr><td>BM25 + LLM</td><td>0.287</td><td>0.421</td><td>3.5%</td></tr>
-            <tr><td>Vanilla RAG</td><td>0.237</td><td>0.369</td><td>4.5%</td></tr>
-            <tr><td>GraphRAG (local)</td><td>0.089</td><td>—</td><td>61.0%</td></tr>
-            <tr class="highlight"><td>🏆 KG-RAG (ours) <span class="badge-ours">ours</span></td><td>0.274</td><td>0.403</td><td>8.5%</td></tr>
+            <tr><td>BM25 + LLM</td><td>0.2915</td><td>0.4340</td><td>1.67%</td></tr>
+            <tr><td>Vanilla RAG</td><td>0.2780</td><td>0.3989</td><td>12.22%</td></tr>
+            <tr class="highlight"><td>KG-RAG</td><td>0.2736</td><td>0.3921</td><td>11.67%</td></tr>
         </tbody>
     </table>
     """, unsafe_allow_html=True)
 
-    st.markdown("<br>**Per-Tier IDK Rate — KG-RAG strongest on Tier 2 & 3**", unsafe_allow_html=True)
+    st.markdown("<br>**Per-Tier Results (180-question test set)**", unsafe_allow_html=True)
     st.markdown("""
     <table class="result-table">
         <thead>
-            <tr><th>System</th><th>Tier 1 Factoid</th><th>Tier 2 Multi-hop</th><th>Tier 3 Timeline</th></tr>
+            <tr><th>System</th><th>Tier 1</th><th>Tier 2</th><th>Tier 3</th></tr>
         </thead>
         <tbody>
-            <tr><td>BM25 + LLM</td><td>4.0%</td><td>1.7%</td><td>0.0%</td></tr>
-            <tr><td>Vanilla RAG</td><td>2.0%</td><td>11.7%</td><td>15.0%</td></tr>
-            <tr class="highlight"><td>KG-RAG (ours)</td><td>11.0%</td><td><b>6.7%</b> <span class="badge-best">best</span></td><td><b>2.5%</b> <span class="badge-best">best</span></td></tr>
+            <tr><td>BM25 + LLM</td><td>0.3220 / 0.5199 / 3.33%</td><td>0.2587 / 0.3448 / 0.00%</td><td>0.2647 / 0.3532 / 0.00%</td></tr>
+            <tr><td>Vanilla RAG</td><td>0.3222 / 0.4632 / 12.22%</td><td>0.2306 / 0.3213 / 11.11%</td><td>0.2387 / 0.3546 / 13.89%</td></tr>
+            <tr class="highlight"><td>KG-RAG</td><td>0.3080 / 0.4381 / 15.56%</td><td>0.2246 / 0.3462 / 9.26%</td><td>0.2611 / 0.3456 / 5.56%</td></tr>
         </tbody>
     </table>
     """, unsafe_allow_html=True)
 
 with res_col2:
-    st.markdown("**Ablation Study — KG Contribution (50-Question Sample)**")
+    st.markdown("**Ablation Study — Separate 50-question experiment**")
     st.markdown("""
     <table class="result-table">
         <thead>
             <tr><th>Configuration</th><th>ROUGE-L</th><th>Coverage</th><th>IDK%</th></tr>
         </thead>
         <tbody>
-            <tr><td>KG-only</td><td>0.093</td><td>0.108</td><td>76.0%</td></tr>
-            <tr><td>FAISS-only</td><td>0.283</td><td>0.408</td><td>34.0%</td></tr>
-            <tr class="highlight"><td>Full KG-RAG <span class="badge-ours">+4.8pp</span></td><td><b>0.295</b></td><td><b>0.456</b></td><td><b>10.0%</b></td></tr>
+            <tr><td>KG-only</td><td>0.0927</td><td>0.1078</td><td>76.00%</td></tr>
+            <tr><td>FAISS-only</td><td>0.2830</td><td>0.4077</td><td>34.00%</td></tr>
+            <tr class="highlight"><td>Full KG-RAG</td><td>0.2952</td><td>0.4564</td><td>10.00%</td></tr>
         </tbody>
     </table>
     """, unsafe_allow_html=True)
@@ -589,7 +593,7 @@ with res_col2:
     st.markdown("""
     <div class="metric-grid">
         <div class="metric-card best">
-            <div class="metric-val">0.274</div>
+            <div class="metric-val">0.2736</div>
             <div class="metric-lbl">ROUGE-L</div>
             <div class="metric-sys">KG-RAG</div>
         </div>
@@ -661,9 +665,8 @@ with paper_col1:
             We propose KG-RAG, a framework that automatically constructs a domain-specific knowledge graph 
             from 339 unstructured ISRO documents using spaCy NER augmented with a 175-pattern ISRO entity ruler, 
             combining it with FAISS dense retrieval and locally quantized Mistral-7B-Instruct (Q4_K_M) via Ollama.
-            KG-RAG achieves ROUGE-L 0.274 and Answer Coverage 0.403, outperforming Vanilla RAG (0.237/0.369), 
-            with ablation experiments confirming a 4.8 percentage point coverage gain from KG augmentation.
-            The system is strongest on multi-hop relational (6.7% IDK) and timeline reasoning questions (2.5% IDK).
+            The canonical benchmark consists of a deterministic 200-question ISRO set with a 20-dev / 180-test split. On the official 180-question test set, BM25 + LLM reaches ROUGE-L 0.2915 and coverage 0.4340, Vanilla RAG reaches 0.2780 and 0.3989, and KG-RAG reaches 0.2736 and 0.3921. These are lexical metrics and should not be interpreted as factual correctness guarantees.
+            The separate ablation experiment reports KG-only 0.0927 / 0.1078, FAISS-only 0.2830 / 0.4077, and Full KG-RAG 0.2952 / 0.4564 on a 50-question sample.
         </div>
     </div>
     """, unsafe_allow_html=True)
@@ -673,13 +676,13 @@ with paper_col2:
     <div class="qa-container">
         <div style="font-size:0.9rem;font-weight:600;color:#60A5FA;margin-bottom:0.8rem;">🏷️ Key Contributions</div>
         <div style="font-size:0.85rem;color:#94A3B8;line-height:1.8;">
-            ✦ First KG-RAG system for ISRO domain<br>
+            ✦ Deterministic 20-dev / 180-test benchmark protocol<br>
             ✦ Auto-constructs KG from raw web text<br>
             ✦ 175-pattern ISRO EntityRuler<br>
-            ✦ ISRO-QA: 200-question benchmark<br>
+            ✦ Canonical metrics: ROUGE-L, coverage, exact match, IDK rate<br>
             ✦ Zero cloud cost deployment<br>
-            ✦ Ablation: +4.8pp Coverage from KG<br>
-            ✦ Best IDK on Tier 3 timeline (2.5%)
+            ✦ Separate 50-question ablation study<br>
+            ✦ Lexical evaluation only; no human factual metric yet
         </div>
         <div style="margin-top:1rem;font-size:0.85rem;font-weight:600;color:#60A5FA;">🛠️ Tech Stack</div>
         <div style="font-size:0.82rem;color:#64748B;line-height:1.8;margin-top:0.3rem;">
