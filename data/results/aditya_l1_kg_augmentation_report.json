@@ -8,10 +8,11 @@
     "ADITYA_L1_ISSDC_PAGE",
     "ADITYA_L1_MISSION_BOOKLET"
   ],
-  "added_nodes": 44,
+  "removed_existing_aditya_edges": 482,
+  "added_nodes": 0,
   "added_edges": 482,
   "before": {
-    "nodes": 31314,
+    "nodes": 31358,
     "edges": 95189
   },
   "after": {

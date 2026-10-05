@@ -32,6 +32,12 @@ def main() -> None:
     else:
         graph = nx.MultiDiGraph()
 
+    removed_existing = 0
+    for subject, target, key, data in list(graph.edges(keys=True, data=True)):
+        if str(data.get("document_id", "")).startswith("ADITYA_L1_"):
+            graph.remove_edge(subject, target, key)
+            removed_existing += 1
+
     before = {"nodes": graph.number_of_nodes(), "edges": graph.number_of_edges()}
     addition = build_graph(new_chunks, load_nlp())
     for subject, target, data in addition.edges(data=True):
@@ -43,6 +49,7 @@ def main() -> None:
         "chunks_path": str(CHUNKS_PATH.relative_to(ROOT)),
         "new_chunk_count": len(new_chunks),
         "new_document_ids": sorted({chunk["document_id"] for chunk in new_chunks}),
+        "removed_existing_aditya_edges": removed_existing,
         "added_nodes": graph.number_of_nodes() - before["nodes"],
         "added_edges": graph.number_of_edges() - before["edges"],
         "before": before,
