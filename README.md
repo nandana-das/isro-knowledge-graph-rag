@@ -50,6 +50,32 @@ The current benchmark pipeline runs locally with:
 
 This is a lexical evaluation pipeline; it does not establish factual correctness in a human-judged sense. It measures answer overlap and question-level abstention, not semantic faithfulness or full factual verification.
 
+## Aditya-L1 corpus expansion
+
+The repository now includes an auditable expansion sourced only from official
+ISSDC, ALPPS/ISRO, and PRADAN/ISSDC endpoints. The source ledger is
+`data/source_manifest.csv`; archived official files are under
+`data/documents/aditya_l1/official/`. Two PRADAN endpoints returned HTTP 504
+after retry and were recorded as unavailable without substitution. The scanned
+ISSDC payload PDF is preserved but excluded from text chunking because it has no
+extractable text layer.
+
+The expansion adds 58 provenance-tagged chunks, 44 graph nodes, and 482 graph
+edges. The rebuilt FAISS index contains one vector per 27,545 chunks. The
+verification report is `data/results/aditya_l1_corpus_expansion_report.json`;
+the canonical benchmark result file is checked to remain unchanged.
+
+To reproduce the collection and derived artifacts:
+
+```powershell
+.venv\Scripts\python.exe src\corpus\expand_aditya_l1.py --download
+.venv\Scripts\python.exe src\preprocessing\chunk.py --input-dir data\raw --output-dir data\chunks --chunk-size 512 --stride 128
+.venv\Scripts\python.exe src\corpus\verify_expansion.py
+```
+
+The expanded benchmark, when run, must use a separate output path and the
+frozen ID list; it must not overwrite `data/results/evaluation_results.json`.
+
 ---
 
 ## Current benchmark results
