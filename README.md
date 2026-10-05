@@ -70,6 +70,8 @@ To reproduce the collection and derived artifacts:
 ```powershell
 .venv\Scripts\python.exe src\corpus\expand_aditya_l1.py --download
 .venv\Scripts\python.exe src\preprocessing\chunk.py --input-dir data\raw --output-dir data\chunks --chunk-size 512 --stride 128
+.venv\Scripts\python.exe src\corpus\rebuild_index.py --batch-size 256
+.venv\Scripts\python.exe src\corpus\augment_knowledge_graph.py
 .venv\Scripts\python.exe src\corpus\verify_expansion.py
 ```
 
