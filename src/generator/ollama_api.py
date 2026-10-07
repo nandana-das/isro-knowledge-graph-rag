@@ -9,7 +9,7 @@ import requests
 
 from src.generator.prompt import SYSTEM_PROMPT, build_user_prompt
 
-OLLAMA_URL = "http://localhost:11434/api/generate"
+OLLAMA_URL = "http://127.0.0.1:11434/api/generate"
 MODEL_NAME = "mistral:7b-instruct-q4_K_M"
 OLLAMA_TIMEOUT = (5, 180)
 UNKNOWN = "I don't know."
