@@ -129,3 +129,31 @@ follow from this outcome within this study.
 Report all three systems on all endpoints, all sensitivity sets, the
 integrity-check results and every deviation from this plan. Report the
 truncated (earlier) and corrected (this) results side by side.
+
+## 11. Clarifications made before any rating or result was seen
+
+Recorded 2026-10-08 while generation was running and before any generated
+answer, metric or rating had been inspected. They fill gaps in §6–§8 and do
+not change any endpoint, comparison or decision rule.
+
+1. **Unsupported-claim aggregation across raters:** an item counts as
+   containing an unsupported claim if **any** rater flags it (conservative).
+   The 1–5 scales use the rater mean, as in §8.
+2. **"I don't know" answers:** they make no claim, so they are fully grounded
+   and carry no unsupported claim, but score low on correctness and
+   completeness. This is written into the rater guidelines.
+3. **Wilcoxon computation:** `scipy.stats.wilcoxon`, `zero_method="wilcox"`,
+   default `method` (exact for small samples without ties, normal
+   approximation otherwise). If every difference is zero, p = 1.
+4. **Sensitivity sets (§4):** report means, mean differences, bootstrap CIs and
+   wins/losses/ties only, with no p-values. The deduplicated set keeps the
+   lowest question ID per unique question text.
+5. **Secondary family (§6):** all non-primary human comparisons (C vs V, A vs V
+   on the other four endpoints; C vs A on all five) form one Holm family.
+   Automated metrics are reported with uncorrected p-values, labelled
+   exploratory.
+6. **Package presentation:** questions appear in benchmark order; candidate
+   letters are shuffled per question; each rater receives an identical CSV.
+7. **Code:** analysis is `src/evaluation/analyze_corrected_rerun.py` and the
+   package builder is `src/evaluation/build_corrected_rerun_human_package.py`,
+   both committed before any rating exists.
