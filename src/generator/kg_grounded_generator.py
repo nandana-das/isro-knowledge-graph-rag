@@ -8,7 +8,9 @@ from typing import Any
 
 from src.generator.ollama_api import UNKNOWN, generate_with_metrics
 from src.generator.prompt import SYSTEM_PROMPT, build_user_prompt
+from src.generator.token_budget import EVIDENCE, count_tokens, evidence_budget, trim_to_tokens
 
+# Maximum evidence per prompt in model tokens; the context window may lower it further.
 TOKEN_BUDGET = 1500
 STRUCTURED_SYSTEM_PROMPT = (
     "You answer factual questions using only supplied evidence. KG FACTS are verified "
@@ -55,13 +57,9 @@ class GenerationTrace:
     unsupported_claim_proxy: bool = False
 
 
-def _tokens(text: str) -> list[str]:
-    return (text or "").split()
-
-
-def _bounded(text: str, budget: int) -> str:
-    words = _tokens(text)
-    return " ".join(words[:budget])
+def _evidence_budget(system: str, question: str, inner_template: str, options: dict[str, Any]) -> int:
+    """Evidence tokens that fit once generate_with_metrics wraps ``inner_template``."""
+    return evidence_budget(system, build_user_prompt(inner_template, question), options, cap=TOKEN_BUDGET)
 
 
 def extract_dense_text(context: str) -> str:
@@ -135,21 +133,21 @@ def classify_conflict(facts: list[KGFact], dense_text: str) -> str:
 
 
 def build_structured_context(facts: list[KGFact], dense_text: str, budget: int = TOKEN_BUDGET) -> tuple[str, dict[str, int]]:
+    """Build KG-first evidence within ``budget`` model tokens; dense text gets the remainder."""
     kg_block = serialize_kg_facts(facts)
     dense_block = dense_text.strip()
     header = "KG FACTS:\n"
     separator = "\n\nTEXTUAL EVIDENCE:\n"
-    fixed_tokens = len(_tokens(header)) + len(_tokens(separator))
-    kg_budget = min(len(_tokens(kg_block)), max(0, budget - fixed_tokens))
-    remaining = max(0, budget - fixed_tokens - kg_budget)
-    bounded_kg = _bounded(kg_block, kg_budget)
-    bounded_dense = _bounded(dense_block, remaining)
-    context = f"{header}{bounded_kg}{separator}{bounded_dense}".strip()
+    fixed_tokens = count_tokens(header) + count_tokens(separator)
+    bounded_kg = trim_to_tokens(kg_block, max(0, budget - fixed_tokens))
+    remaining = max(0, budget - fixed_tokens - count_tokens(bounded_kg))
+    bounded_dense = trim_to_tokens(dense_block, remaining)
+    context = trim_to_tokens(f"{header}{bounded_kg}{separator}{bounded_dense}".strip(), budget)
     stats = {
-        "kg_token_count": len(_tokens(bounded_kg)),
-        "dense_token_count": len(_tokens(bounded_dense)),
+        "kg_token_count": count_tokens(bounded_kg),
+        "dense_token_count": count_tokens(bounded_dense),
         "bm25_token_count": 0,
-        "total_token_count": len(_tokens(context)),
+        "total_token_count": count_tokens(context),
     }
     return context, stats
 
@@ -174,29 +172,35 @@ def generate_condition(
 ) -> tuple[str, GenerationTrace, dict[str, Any]]:
     """Generate one condition without retrieval or evidence changes."""
     if condition == "A_CURRENT":
-        context = _bounded(current_context, TOKEN_BUDGET)
+        context = trim_to_tokens(current_context, _evidence_budget(SYSTEM_PROMPT, question, EVIDENCE, options))
         answer, telemetry = generate_with_metrics(question, context, options=options)
-        stats = {"kg_token_count": 0, "dense_token_count": len(_tokens(context)), "bm25_token_count": 0, "total_token_count": len(_tokens(context))}
+        stats = {"kg_token_count": 0, "dense_token_count": count_tokens(context), "bm25_token_count": 0, "total_token_count": count_tokens(context)}
         trace = GenerationTrace(condition, len(facts), len({f.path_id for f in facts}), len({c for f in facts for c in f.source_chunks}), **stats, conflict_classification=classify_conflict(facts, dense_text), used_fact_path_ids=(), ignored_fact_path_ids=tuple(sorted({f.path_id for f in facts})), hop_depth=hop_depth, abstained=answer.casefold().strip() == UNKNOWN.casefold(), unsupported_claim_proxy=_unsupported_proxy(answer, facts))
         return answer, trace, telemetry
 
-    context, stats = build_structured_context(facts, dense_text)
+    # Evidence is fitted before wrapping so the window guard never cuts the inner question.
     if condition == "B_STRUCTURED":
-        user = (
-            f"{context}\n\nQUESTION:\n{question}\n\n"
+        template = (
+            f"{EVIDENCE}\n\nQUESTION:\n{question}\n\n"
             "Answer only from the evidence above. Preserve relation direction. ANSWER:"
         )
+        context, stats = build_structured_context(facts, dense_text, _evidence_budget(STRUCTURED_SYSTEM_PROMPT, question, template, options))
+        user = template.replace(EVIDENCE, context)
         answer, telemetry = generate_with_metrics(question, user, options=options, system_prompt=STRUCTURED_SYSTEM_PROMPT)
         plan = ""
     elif condition == "C_TWO_STAGE":
-        plan_prompt = f"{context}\n\nQUESTION:\n{question}\n\nANSWER PLAN:"
+        plan_template = f"{EVIDENCE}\n\nQUESTION:\n{question}\n\nANSWER PLAN:"
+        context, stats = build_structured_context(facts, dense_text, _evidence_budget(PLAN_SYSTEM_PROMPT, question, plan_template, options))
+        plan_prompt = plan_template.replace(EVIDENCE, context)
         plan, plan_telemetry = generate_with_metrics(question, plan_prompt, options=options, system_prompt=PLAN_SYSTEM_PROMPT)
-        final_prompt = (
-            f"VERIFIED KG FACTS:\n{serialize_kg_facts(facts)}\n\n"
+        final_template = (
+            f"VERIFIED KG FACTS:\n{EVIDENCE}\n\n"
             f"ANSWER PLAN:\n{plan}\n\nQUESTION:\n{question}\n\n"
             "Write the final answer using only the verified facts and plan. ANSWER:"
         )
-        answer, telemetry = generate_with_metrics(question, _bounded(final_prompt, TOKEN_BUDGET), options=options, system_prompt=STRUCTURED_SYSTEM_PROMPT)
+        fact_budget = _evidence_budget(STRUCTURED_SYSTEM_PROMPT, question, final_template, options)
+        final_prompt = final_template.replace(EVIDENCE, trim_to_tokens(serialize_kg_facts(facts), fact_budget))
+        answer, telemetry = generate_with_metrics(question, final_prompt, options=options, system_prompt=STRUCTURED_SYSTEM_PROMPT)
         telemetry = {"plan": plan_telemetry, "final": telemetry}
     else:
         raise ValueError(f"Unknown generation condition: {condition}")

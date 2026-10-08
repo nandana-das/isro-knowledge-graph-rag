@@ -11,6 +11,7 @@ import requests
 
 from src.evaluation.evaluate_relational_qa import metrics
 from src.generator.ollama_api import MODEL_NAME, OLLAMA_TIMEOUT, SYSTEM_PROMPT, _clean_response
+from src.generator.token_budget import EVIDENCE, fit_evidence
 
 ROOT = Path(__file__).resolve().parents[2]
 RESULTS = ROOT / "data" / "results" / "relation_aware"
@@ -92,8 +93,10 @@ def main() -> None:
                 key = (question["question_id"], variant)
                 if key in existing:
                     continue
-                prompt = template.format(context=context, question=question["question"])
+                user_template = template.replace("{question}", question["question"]).replace("{context}", EVIDENCE)
+                prompt, fit = fit_evidence(SYSTEM_PROMPT, user_template, context, OPTIONS)
                 answer, telemetry = generate(prompt)
+                telemetry.update(fit)
                 row = {
                     "question_id": question["question_id"],
                     "question": question["question"],

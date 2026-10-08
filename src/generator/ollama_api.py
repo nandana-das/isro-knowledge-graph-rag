@@ -4,10 +4,12 @@ from __future__ import annotations
 
 import re
 import time
+import warnings
 
 import requests
 
 from src.generator.prompt import SYSTEM_PROMPT, build_user_prompt
+from src.generator.token_budget import EVIDENCE, fit_evidence, with_context_window
 
 OLLAMA_URL = "http://127.0.0.1:11434/api/generate"
 MODEL_NAME = "mistral:7b-instruct-q4_K_M"
@@ -75,18 +77,21 @@ def generate_with_metrics(
         return UNKNOWN, metrics
 
     prompt_started = time.perf_counter()
-    user_prompt = build_user_prompt(context_text, query)
+    system = system_prompt or SYSTEM_PROMPT
+    options = with_context_window(options)
+    # Fit the context to the window ourselves; Ollama would otherwise drop its head.
+    user_prompt, fit = fit_evidence(system, build_user_prompt(EVIDENCE, query), context_text, options)
+    metrics.update(fit)
     metrics["prompt_construction_ms"] = round((time.perf_counter() - prompt_started) * 1000, 4)
     metrics["prompt_chars"] = len(user_prompt)
     payload = {
         "model": MODEL_NAME,
-        "system": system_prompt or SYSTEM_PROMPT,
+        "system": system,
         "prompt": user_prompt,
         "stream": False,
         "keep_alive": -1,
+        "options": options,
     }
-    if options:
-        payload["options"] = options
 
     try:
         request_started = time.perf_counter()
@@ -96,6 +101,7 @@ def generate_with_metrics(
         data = response.json()
         if isinstance(data, dict):
             metrics["prompt_tokens"] = data.get("prompt_eval_count")
+            metrics["ollama_truncated"] = _ollama_truncated(metrics["prompt_tokens"], metrics["prompt_tokens_expected"])
             metrics["generated_tokens"] = data.get("eval_count")
             metrics["eval_duration_ns"] = data.get("eval_duration")
             metrics["prompt_eval_duration_ns"] = data.get("prompt_eval_duration")
@@ -118,6 +124,18 @@ def generate_with_metrics(
         metrics["failure"] = type(exc).__name__
 
     return UNKNOWN, _finish_metrics(metrics, started)
+
+
+def _ollama_truncated(observed: int | None, expected: int) -> bool:
+    """Flag a prompt Ollama evaluated only partially despite pre-fitting."""
+    if observed is None or observed >= expected - 2:
+        return False
+    warnings.warn(
+        f"Ollama evaluated {observed} of {expected} prompt tokens; the prompt was truncated.",
+        RuntimeWarning,
+        stacklevel=3,
+    )
+    return True
 
 
 def _finish_metrics(metrics: dict, started: float) -> dict:
