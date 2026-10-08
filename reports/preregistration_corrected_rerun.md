@@ -197,3 +197,30 @@ Recorded 2026-10-08, before the analysis script was run on any rating.
   must state this, e.g. "AI-drafted scores reviewed by one human rater
   (99.2% unchanged)".
 - The analysis plan (§5–§7, §11) is otherwise unchanged.
+
+## 14. Independent human spot-check (fixed before any spot-check rating)
+
+Recorded 2026-10-08 after the primary analysis (§13) and before any
+spot-check score exists. Purpose: test whether the model-anchored rater-1
+scores agree with an independent human.
+
+- **Sample:** 20 of the 60 primary questions, drawn with
+  `random.Random(20261022).sample` from the sorted question IDs. The list is in
+  `data/results/corrected_rerun/spotcheck_selection.json`, giving 60 candidate
+  answers. It includes rakg_064, one of the three partially unblinded items
+  (§13); it was not replaced.
+- **Rater:** a person who has not seen the model draft, the rater-1 scores,
+  any analysis output or `data/results/corrected_rerun/`. They score the
+  blank `data/annotations/corrected_rerun_spotcheck.csv` from scratch using
+  the same guidelines, and save it as `corrected_rerun_spotcheck_filled.csv`.
+- **Analysis:** `src/evaluation/analyze_corrected_rerun_spotcheck.py`.
+  Krippendorff's α between the checker and rater 1 per dimension (ordinal;
+  nominal for unsupported claims), exact agreement, and both raters'
+  A−V and C−V correctness differences with bootstrap CIs on the 20 questions.
+- **Validation criterion:** PASSED only if correctness ordinal α ≥ 0.667
+  **and** the checker's A−V and C−V mean correctness differences have the same
+  sign as rater 1's. Otherwise FAILED.
+- **Reporting:** the outcome is reported either way. If PASSED, the primary
+  results may be described as AI-drafted scores validated against an
+  independent human on a random subset. If FAILED, the primary results must
+  be reported as unvalidated, with the disagreement shown.
