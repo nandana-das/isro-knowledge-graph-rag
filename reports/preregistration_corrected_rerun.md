@@ -177,3 +177,23 @@ Recorded 2026-10-08, after generation and before any human rating existed.
   final.
 - **Unused file:** `corrected_rerun_human_eval_rater2.csv` remains in the
   package but is not part of the analysis.
+
+## 13. Provenance of the rater-1 scores (recorded before analysis)
+
+Recorded 2026-10-08, before the analysis script was run on any rating.
+
+- **Scores analysed:** `data/annotations/corrected_rerun_human_eval_rater1_filled.csv`
+  (SHA-256 `7d216c83…3914`). The project owner states that they rated it.
+- **Starting point:** the rater worked from a fully pre-filled sheet drafted by
+  a language model, kept for audit as
+  `data/annotations/corrected_rerun_rater1_model_draft_AUDIT_ONLY.csv`
+  (SHA-256 `d16b79b8…8fed`). The model and its inputs are not recorded.
+- **Overlap:** 1,071 of 1,080 score cells (99.2%) in the analysed file equal
+  the model draft. 9 cells differ, across 7 of 72 questions.
+- **Consequence for interpretation:** this deviates from §12, which required
+  scoring the blank file without seeing model scores. The rating is
+  model-anchored: a single human reviewed and adopted model-drafted scores.
+  It is not an independent human evaluation. Every report of these results
+  must state this, e.g. "AI-drafted scores reviewed by one human rater
+  (99.2% unchanged)".
+- The analysis plan (§5–§7, §11) is otherwise unchanged.
