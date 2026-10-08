@@ -157,3 +157,23 @@ not change any endpoint, comparison or decision rule.
 7. **Code:** analysis is `src/evaluation/analyze_corrected_rerun.py` and the
    package builder is `src/evaluation/build_corrected_rerun_human_package.py`,
    both committed before any rating exists.
+
+## 12. Deviation: single human rater
+
+Recorded 2026-10-08, after generation and before any human rating existed.
+
+- **Change:** the human evaluation uses **one** human rater instead of the two
+  or more confirmed at approval. §8 already provides for this case: the
+  analysis uses that rater's scores directly, the single rater is stated as a
+  limitation, and no agreement figure is reported. Endpoints, comparisons,
+  tests and the decision rule (§5–§7) are unchanged.
+- **Reason:** a second independent human rater was not available.
+- **Excluded material:** a fully pre-filled rater-1 sheet drafted by a language
+  model was received and is **not** used as, or as a starting point for, human
+  ratings. The human rater scores the blank package file
+  (`data/annotations/corrected_rerun_human_eval_rater1.csv`) without seeing
+  any model-generated scores. The model draft may only appear as a separately
+  labelled, non-preregistered AI-judge comparison after the human analysis is
+  final.
+- **Unused file:** `corrected_rerun_human_eval_rater2.csv` remains in the
+  package but is not part of the analysis.
