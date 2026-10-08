@@ -130,7 +130,9 @@ def load_ratings() -> tuple[dict, list[Path]]:
                     raise RuntimeError(f"{path.name}: candidate hash mismatch {row['question_id']} {label}")
                 cell = ratings.setdefault((row["question_id"], system), {d: [] for d in DIMENSIONS})
                 for dimension in DIMENSIONS:
-                    value = int(row[f"{label}_{dimension}"])
+                    raw = row[f"{label}_{dimension}"].strip()
+                    # Spreadsheet exports write whole numbers as "5.0"; fractional scores are invalid.
+                    value = int(float(raw)) if raw and float(raw).is_integer() else None
                     allowed = (0, 1) if dimension == "unsupported_claim" else (1, 2, 3, 4, 5)
                     if value not in allowed:
                         raise RuntimeError(f"{path.name}: invalid {dimension}={value} for {row['question_id']} {label}")
