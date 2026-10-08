@@ -38,13 +38,18 @@ def _clean_response(response_text: str) -> str:
     return answer or UNKNOWN
 
 
-def generate(query: str, context: str, options: dict | None = None) -> str:
+def generate(query: str, context: str, options: dict | None = None, system_prompt: str | None = None) -> str:
     """Ask Ollama to answer from the supplied retrieval context only."""
-    answer, _ = generate_with_metrics(query, context, options=options)
+    answer, _ = generate_with_metrics(query, context, options=options, system_prompt=system_prompt)
     return answer
 
 
-def generate_with_metrics(query: str, context: str, options: dict | None = None) -> tuple[str, dict]:
+def generate_with_metrics(
+    query: str,
+    context: str,
+    options: dict | None = None,
+    system_prompt: str | None = None,
+) -> tuple[str, dict]:
     """Generate with timing and Ollama telemetry while preserving the normal output."""
     started = time.perf_counter()
     metrics = {
@@ -75,7 +80,7 @@ def generate_with_metrics(query: str, context: str, options: dict | None = None)
     metrics["prompt_chars"] = len(user_prompt)
     payload = {
         "model": MODEL_NAME,
-        "system": SYSTEM_PROMPT,
+        "system": system_prompt or SYSTEM_PROMPT,
         "prompt": user_prompt,
         "stream": False,
         "keep_alive": -1,
@@ -122,4 +127,3 @@ def _finish_metrics(metrics: dict, started: float) -> dict:
 
 if __name__ == "__main__":
     print(generate("What is ISRO?", "ISRO is the Indian Space Research Organisation."))
-

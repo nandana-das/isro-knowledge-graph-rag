@@ -206,6 +206,7 @@ data/chunks/
 data/kg/
 data/index/
 data/cleaned/
+paper/
 # Temporary file for partial code execution
 tempCodeRunnerFile.py
 
