@@ -224,3 +224,22 @@ scores agree with an independent human.
   results may be described as AI-drafted scores validated against an
   independent human on a random subset. If FAILED, the primary results must
   be reported as unvalidated, with the disagreement shown.
+
+## 15. Spot-check presentation format (recorded before any spot-check rating)
+
+Recorded 2026-10-08, before the kit was given to the evaluator.
+
+- The evaluator receives `KG-RAG_Spotcheck_Scoring.xlsx` (one row per answer,
+  dropdowns, locked source text) plus a PDF of the guidelines, built by
+  `src/evaluation/build_spotcheck_evaluator_kit.py` from the blank
+  `corrected_rerun_spotcheck.csv`. The CSV is included as a backup. Reason:
+  Excel can change the encoding of a UTF-8 CSV on save, which would alter the
+  hash-checked answer text.
+- `src/evaluation/import_spotcheck_workbook.py` converts the returned workbook
+  into `corrected_rerun_spotcheck_filled.csv`. It checks every answer against
+  the package and every score against the allowed values. §14's analysis is
+  unchanged.
+- The scoring rubric is word-for-word the one rater 1 received. Additions are
+  procedural only: independence rules (no AI tools, no discussion, no other
+  ratings), filling instructions, and one sentence stating that 2 and 4 mark
+  levels between the described anchors.
