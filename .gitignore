@@ -223,3 +223,6 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Paper bundles are kept locally, like paper/
+*_updated.zip
