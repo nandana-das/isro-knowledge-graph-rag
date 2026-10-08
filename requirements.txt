@@ -19,6 +19,5 @@ transformers>=4.41.0
 
 # Testing
 pytest>=8.0.0
-
-# Frontend tooling is handled separately in frontend/package.json
+
 
