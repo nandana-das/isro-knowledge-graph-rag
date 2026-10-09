@@ -189,6 +189,22 @@ pytest -q
 
 ---
 
+## HTTP API for frontends
+
+`src/api` serves the relation-aware KG-RAG system (system A) over HTTP, so a
+frontend can be built in any framework. The guide, TypeScript types and
+OpenAPI spec are in [`docs/frontend/`](docs/frontend/README.md).
+
+```bash
+python -m src.api --mock
+```
+
+Mock mode needs only git-tracked files. Live mode (`python -m src.api`)
+needs Ollama and the local index; it reproduces system A's rerun answers
+exactly. Interactive docs are at http://127.0.0.1:8000/docs.
+
+---
+
 ## Repository layout
 
 ```
@@ -209,6 +225,8 @@ src/
   baselines/             BM25 + LLM, vanilla RAG, GraphRAG, LightRAG
   evaluation/            Runners, analyses, and human-evaluation package builders
 tests/                   pytest suite
+src/api/                 HTTP API for frontends (FastAPI)
+docs/frontend/           Frontend guide, TypeScript types, OpenAPI spec
 app.py, app_v2.py        Streamlit demo apps
 ```
 

@@ -26,7 +26,8 @@ def _load_model() -> SentenceTransformer:
 
 
 @lru_cache(maxsize=1)
-def _load_chunks() -> list[str]:
+def _load_chunk_records() -> list[dict]:
+    """Non-empty chunks in index order, as dicts with at least a ``text`` key."""
     if not CHUNKS_PATH.exists():
         return []
     payload = json.loads(CHUNKS_PATH.read_text(encoding="utf-8"))
@@ -37,17 +38,22 @@ def _load_chunks() -> list[str]:
     else:
         items = []
 
-    texts: list[str] = []
+    records: list[dict] = []
     for item in items:
         if isinstance(item, dict):
             text = item.get("text") or item.get("content") or ""
             if isinstance(text, str) and text.strip():
-                texts.append(text.strip())
+                records.append({**item, "text": text.strip()})
         elif isinstance(item, str):
             value = item.strip()
             if value:
-                texts.append(value)
-    return texts
+                records.append({"text": value})
+    return records
+
+
+@lru_cache(maxsize=1)
+def _load_chunks() -> list[str]:
+    return [record["text"] for record in _load_chunk_records()]
 
 
 @lru_cache(maxsize=1)
