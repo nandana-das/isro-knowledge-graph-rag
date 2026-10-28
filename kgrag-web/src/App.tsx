@@ -1,6 +1,8 @@
 import { Fragment, useEffect, useState } from "react";
 import { ask, getExamples, getHealth } from "./api";
 import type { AskResponse, Example, Health, Hop } from "./api";
+import { loadRecorded, recordedAnswer } from "./recorded";
+import type { RecordedFile } from "./recorded";
 import "./App.css";
 
 const MISSIONS = [
@@ -17,6 +19,7 @@ const ROLES: Record<string, [string, string]> = {
 };
 const GLYPH: Record<string, string> = { Mission: "◉", Payload: "◆", Organization: "▣", Entity: "●" };
 const words = (s: string) => s.replace(/_/g, " ").toLowerCase();
+const OFFLINE_HINT = "The live system is offline right now, so new questions can't be answered. The example questions work any time.";
 
 function Graph({ hops, sel, onSel }: { hops: Hop[]; sel: string | null; onSel: (id: string) => void }) {
   const role = (h: Hop, i: 0 | 1) => (ROLES[h.relation] ?? ["Entity", "Entity"])[i];
@@ -49,6 +52,8 @@ function Graph({ hops, sel, onSel }: { hops: Hop[]; sel: string | null; onSel: (
 
 export default function App() {
   const [health, setHealth] = useState<Health | null>(null);
+  const [reachable, setReachable] = useState<boolean | null>(null);
+  const [recorded, setRecorded] = useState<RecordedFile | null>(null);
   const [examples, setExamples] = useState<Example[]>([]);
   const [mission, setMission] = useState(0);
   const [question, setQuestion] = useState("");
@@ -61,6 +66,11 @@ export default function App() {
   const [sel, setSel] = useState<string | null>(null);
 
   const ready = health?.status === "ready";
+  const starting = reachable === true && health?.status === "warming_up";
+
+  useEffect(() => {
+    loadRecorded().then(setRecorded);
+  }, []);
 
   useEffect(() => {
     let stop = false;
@@ -69,14 +79,15 @@ export default function App() {
         const h = await getHealth();
         if (stop) return;
         setHealth(h);
+        setReachable(true);
         if (h.status === "ready") {
           setExamples(await getExamples());
           return;
         }
       } catch {
-        /* backend not reachable yet */
+        if (!stop) setReachable(false);
       }
-      if (!stop) setTimeout(check, 3000);
+      if (!stop) setTimeout(check, 5000);
     };
     check();
     return () => {
@@ -94,7 +105,10 @@ export default function App() {
     setSel(null);
     setMenu(false);
     try {
-      setResult(await ask(q));
+      const saved = await recordedAnswer(q);
+      if (saved) setResult(saved);
+      else if (!ready) setError(OFFLINE_HINT);
+      else setResult(await ask(q));
     } catch (e) {
       setError(e instanceof Error ? e.message : "The service is currently unavailable. Please try again later.");
     } finally {
@@ -110,8 +124,9 @@ export default function App() {
     setMenu(false);
   };
 
+  const allExamples = examples.length ? examples : recorded?.examples ?? [];
   const targetMission = MISSIONS[mission];
-  const matched = examples.filter((e) => {
+  const matched = allExamples.filter((e) => {
     const missionField = (e.mission || "").toLowerCase();
     const key = targetMission.key.toLowerCase();
     const name = targetMission.name.toLowerCase();
@@ -122,7 +137,7 @@ export default function App() {
       e.question.toLowerCase().includes(name)
     );
   });
-  const list = matched.length ? matched : examples;
+  const list = matched.length ? matched : allExamples;
   const shown = more ? list : list.slice(0, 6);
 
   const seen = new Set<string>();
@@ -174,24 +189,37 @@ export default function App() {
         <div className="foot">
           <span className={"led" + (ready ? " ok" : "")} />
           <div>
-            <b>{ready ? "System ready" : "Connecting…"}</b>
-            <small>{health?.model ? `Model: ${health.model}` : "Waiting for the API"}</small>
+            <b>{ready ? "Live system ready" : starting ? "Live system starting…" : reachable === false ? "Live system offline" : "Connecting…"}</b>
+            <small>{ready || starting ? `Model: ${health?.model}` : recorded ? "Example questions still work" : "Waiting for the API"}</small>
           </div>
         </div>
       </aside>
 
       <main className="main">
-        {!ready ? (
+        {!ready && !recorded ? (
           <section className="card state">
             <div>
-              <h2>Waiting for the archive</h2>
+              <h2>{starting ? "The live system is starting" : "Waiting for the archive"}</h2>
               <p className="soft">
-                The API isn't reachable yet. Start it with <code>python -m src.api --mock</code>. This page connects on its own.
+                {starting
+                  ? "Loading the knowledge graph and model. This takes about 2–3 minutes; this page connects on its own."
+                  : "The live system isn't reachable right now. This page connects on its own when it comes back."}
+                {import.meta.env.DEV && !starting && (
+                  <> Developer tip: start it with <code>python -m src.api --mock</code>.</>
+                )}
               </p>
             </div>
           </section>
         ) : !traceView ? (
           <>
+            {!ready && (
+              <div className="banner">
+                <b>{starting ? "Live system starting" : "Live system offline"}</b> ·{" "}
+                {starting
+                  ? "It will be ready in about 2–3 minutes. Example questions below work right away."
+                  : "Example questions below show answers recorded from the live system. New questions need the live system."}
+              </div>
+            )}
             <section className="hero">
               <div className="scene" aria-hidden="true">
                 <div className="earth" />
@@ -260,6 +288,12 @@ export default function App() {
         ) : (
           <>
             <button className="link back" onClick={reset}>← Back to home</button>
+            {result?.mode === "recorded" && (
+              <div className="banner">
+                <b>Recorded answer</b> · Produced earlier by the live system
+                {recorded && ` on ${recorded.generated_utc.slice(0, 10)}`} for this example question, and shown instantly.
+              </div>
+            )}
             {result?.mode === "mock" && (
               <div className="banner">
                 <b>Demo answer · Mock mode</b> · Not from the live system. The facts and sources below are real.
@@ -273,8 +307,8 @@ export default function App() {
               </div>
               {result && (
                 <span className="pill">
-                  {result.mode === "mock" ? "Mock mode" : "Live mode"}
-                  {result.usage.latency_ms != null && ` · ${result.usage.latency_ms} ms`}
+                  {result.mode === "mock" ? "Mock mode" : result.mode === "recorded" ? "Recorded answer" : "Live mode"}
+                  {result.mode !== "recorded" && result.usage.latency_ms != null && ` · ${result.usage.latency_ms} ms`}
                 </span>
               )}
             </section>
@@ -284,7 +318,7 @@ export default function App() {
                 <span className="spin" />
                 <div>
                   <h3>Analyzing your question…</h3>
-                  <p className="soft">This may take a few seconds.</p>
+                  <p className="soft">Live answers usually take 10–30 seconds.</p>
                 </div>
               </section>
             )}
@@ -292,7 +326,7 @@ export default function App() {
             {error && (
               <section className="card state bad">
                 <div>
-                  <h3>Something went wrong</h3>
+                  <h3>{error === OFFLINE_HINT ? "Live system offline" : "Something went wrong"}</h3>
                   <p className="soft">{error}</p>
                   <button className="outline" onClick={() => submit(asked)}>Retry</button>
                 </div>
@@ -356,7 +390,7 @@ export default function App() {
                       <h3>Supporting text passages</h3>
                       {result.passages.map((p: any, i: number) => (
                         <details key={i} className="psg">
-                          <summary>{p.title ?? p.source_file ?? `Passage ${i + 1}`}</summary>
+                          <summary>{p.title ?? (p.source_url ?? p.url)?.replace(/^https?:\/\//, "") ?? `Passage ${i + 1}`}</summary>
                           <p>{p.text ?? p.content ?? p.passage ?? ""}</p>
                           {(p.source_url ?? p.url) && (
                             <a href={p.source_url ?? p.url} target="_blank" rel="noreferrer">Open source ↗</a>

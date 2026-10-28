@@ -229,3 +229,6 @@ __marimo__/
 
 # Generated evaluator hand-off kits (rebuild with build_spotcheck_evaluator_kit.py)
 handoff/
+
+# Personal hosting settings (deploy/public.env.example is the template)
+deploy/public.env

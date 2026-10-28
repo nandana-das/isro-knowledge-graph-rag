@@ -1,6 +1,7 @@
 const BASE = (typeof import.meta !== "undefined" && import.meta.env?.VITE_API_URL) || "http://127.0.0.1:8000";
 
-export type Mode = "live" | "mock";
+// "recorded": a live answer saved in public/recorded_answers.json and served without the API.
+export type Mode = "live" | "mock" | "recorded";
 
 export interface Source {
   document_id: string;
@@ -82,6 +83,9 @@ export type Health = HealthResponse;
 
 const OFFLINE = "The service is currently unavailable. Please try again later.";
 
+// ngrok's free plan answers with a browser-warning page unless this header is sent.
+const HEADERS = { "ngrok-skip-browser-warning": "true" };
+
 async function errorMessage(r: Response): Promise<string> {
   try {
     const d = (await r.json())?.detail;
@@ -94,13 +98,13 @@ async function errorMessage(r: Response): Promise<string> {
 }
 
 export async function getHealth(): Promise<Health> {
-  const r = await fetch(`${BASE}/api/health`);
+  const r = await fetch(`${BASE}/api/health`, { headers: HEADERS });
   if (!r.ok) throw new Error(await errorMessage(r));
   return r.json();
 }
 
 export async function getExamples(): Promise<Example[]> {
-  const r = await fetch(`${BASE}/api/examples`);
+  const r = await fetch(`${BASE}/api/examples`, { headers: HEADERS });
   if (!r.ok) throw new Error(await errorMessage(r));
   const data = await r.json();
   if (Array.isArray(data)) {
@@ -117,7 +121,7 @@ export async function ask(question: string): Promise<AskResponse> {
   try {
     r = await fetch(`${BASE}/api/ask`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { ...HEADERS, "Content-Type": "application/json" },
       body: JSON.stringify({ question }),
     });
   } catch {

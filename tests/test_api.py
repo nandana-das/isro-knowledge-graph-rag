@@ -79,3 +79,43 @@ def test_model_unavailable_returns_503(client, monkeypatch):
 def test_not_ready_returns_503(client, monkeypatch):
     monkeypatch.setattr(client.app.state.pipeline, "status", "warming_up")
     assert client.post("/api/ask", json={"question": "Which launch vehicle launched AstroSat?"}).status_code == 503
+
+
+def test_cors_allows_ngrok_header_from_configured_site(monkeypatch):
+    monkeypatch.setenv("KG_RAG_MOCK_DELAY_MS", "0")
+    monkeypatch.setenv("KG_RAG_CORS_ORIGINS", "https://astra.example.app")
+    with TestClient(create_app("mock")) as test_client:
+        response = test_client.options(
+            "/api/ask",
+            headers={
+                "Origin": "https://astra.example.app",
+                "Access-Control-Request-Method": "POST",
+                "Access-Control-Request-Headers": "content-type,ngrok-skip-browser-warning",
+            },
+        )
+    assert response.status_code == 200
+    assert response.headers.get("access-control-allow-origin") == "https://astra.example.app"
+    assert "ngrok-skip-browser-warning" in response.headers.get("access-control-allow-headers", "").lower()
+
+
+def test_live_generation_retries_once_after_runner_error(monkeypatch):
+    import src.api.pipeline as pipeline_module
+    import src.generator.ollama_api as ollama_api
+    import src.retriever.faiss_retriever as faiss_retriever
+
+    calls = []
+
+    def flaky_generate(question, context, options=None, system_prompt=None):
+        calls.append(question)
+        if len(calls) == 1:
+            return "I don't know.", {"status": "error", "failure": "HTTPError"}
+        return "PSLV-C30 (XL)", {"status": "ok", "prompt_tokens": 10, "context_tokens_used": 5, "context_trimmed": False}
+
+    empty = {"retrieved_chunk_ids": [], "retrieved_chunk_scores": [], "retrieved_text": []}
+    monkeypatch.setattr(pipeline_module, "retrieve_dense_chunks", lambda q: empty)
+    monkeypatch.setattr(pipeline_module, "retrieve_bm25_chunks", lambda q: empty)
+    monkeypatch.setattr(pipeline_module, "GENERATION_RETRY_DELAY_S", 0)
+    monkeypatch.setattr(ollama_api, "generate_with_metrics", flaky_generate)
+    monkeypatch.setattr(faiss_retriever, "_load_chunk_records", lambda: [])
+    response = pipeline_module.LivePipeline().answer("Which launch vehicle launched AstroSat?")
+    assert len(calls) == 2 and response.answer == "PSLV-C30 (XL)" and response.mode == "live"

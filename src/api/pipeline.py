@@ -32,6 +32,7 @@ from src.retriever.relation_aware import RelationAwareKG, RelationEvidence, fuse
 from src.retriever.search_service import retrieve_bm25_chunks, retrieve_dense_chunks
 
 MAX_PATHS_SHOWN = 10
+GENERATION_RETRY_DELAY_S = 5
 EXCERPT_CHARS = 600
 SOURCE_LINE = re.compile(r"^#\s*Source:\s*(\S+)")
 
@@ -136,6 +137,11 @@ class LivePipeline:
         context = trim_to_tokens(context, _evidence_budget(SYSTEM_PROMPT, question, EVIDENCE, OPTIONS))
         with self._generation_lock:
             answer, telemetry = generate_with_metrics(question, context, options=OPTIONS)
+            if telemetry.get("status") == "error":
+                # Ollama's model runner can crash on a GPU/driver error and restarts
+                # on the next request, so one retry hides a transient failure.
+                time.sleep(GENERATION_RETRY_DELAY_S)
+                answer, telemetry = generate_with_metrics(question, context, options=OPTIONS)
         if telemetry.get("status") != "ok":
             raise GenerationUnavailable(f"Language model unavailable ({telemetry.get('failure') or telemetry.get('status')}). Is Ollama running?")
 
