@@ -4,6 +4,9 @@ const ENV = typeof import.meta !== "undefined" ? import.meta.env : undefined;
 // (recorded answers only).
 const BASE = ENV?.VITE_API_URL || (ENV?.PROD ? "" : "http://127.0.0.1:8000");
 
+// False on a deployed site without VITE_API_URL: there is no live API to check.
+export const API_CONFIGURED = BASE !== "";
+
 // "recorded": a live answer saved in public/recorded_answers.json and served without the API.
 export type Mode = "live" | "mock" | "recorded";
 

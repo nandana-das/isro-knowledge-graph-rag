@@ -1,5 +1,5 @@
 import { Fragment, useEffect, useState } from "react";
-import { ask, getExamples, getHealth } from "./api";
+import { API_CONFIGURED, ask, getExamples, getHealth } from "./api";
 import type { AskResponse, Example, Health, Hop } from "./api";
 import { loadRecorded, recordedAnswer } from "./recorded";
 import type { RecordedFile } from "./recorded";
@@ -52,7 +52,8 @@ function Graph({ hops, sel, onSel }: { hops: Hop[]; sel: string | null; onSel: (
 
 export default function App() {
   const [health, setHealth] = useState<Health | null>(null);
-  const [reachable, setReachable] = useState<boolean | null>(null);
+  // No API configured (deployed without VITE_API_URL): offline from the start.
+  const [reachable, setReachable] = useState<boolean | null>(API_CONFIGURED ? null : false);
   const [recorded, setRecorded] = useState<RecordedFile | null>(null);
   const [examples, setExamples] = useState<Example[]>([]);
   const [mission, setMission] = useState(0);
@@ -73,6 +74,7 @@ export default function App() {
   }, []);
 
   useEffect(() => {
+    if (!API_CONFIGURED) return;
     let stop = false;
     const check = async () => {
       try {
