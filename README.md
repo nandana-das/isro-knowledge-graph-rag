@@ -115,7 +115,7 @@ npm ci
 npm run dev
 ```
 
-**Public hosting:** the website runs on Vercel (always on). Live answers come from the API on a laptop through an ngrok tunnel. While the laptop is off, the ~50 example questions still answer instantly from recorded live answers (`kgrag-web/public/recorded_answers.json`, produced by `python -m src.api.export_recorded`). Setup guide: [`deploy/README.md`](deploy/README.md).
+**Public hosting:** the website runs on Vercel (always on). Live answers come from the API on a laptop through a Tailscale Funnel (free, permanent HTTPS address). While the laptop is off, the ~50 example questions still answer instantly from recorded live answers (`kgrag-web/public/recorded_answers.json`, produced by `python -m src.api.export_recorded`). Setup guide: [`deploy/README.md`](deploy/README.md).
 
 ---
 

@@ -56,8 +56,7 @@ def create_app(mode: str | None = None) -> FastAPI:
         CORSMiddleware,
         allow_origins=[o.strip() for o in os.environ.get("KG_RAG_CORS_ORIGINS", DEFAULT_ORIGINS).split(",") if o.strip()],
         allow_methods=["GET", "POST"],
-        # ngrok's free plan serves a warning page unless the client sends this header.
-        allow_headers=["Content-Type", "ngrok-skip-browser-warning"],
+        allow_headers=["Content-Type"],
     )
 
     @app.get("/api/health", response_model=HealthResponse, tags=["system"])

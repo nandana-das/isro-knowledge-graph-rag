@@ -1,7 +1,8 @@
 # Make the live KG-RAG API reachable from the hosted website.
-# Starts Ollama (if needed), the API, and an ngrok tunnel on your static domain.
+# Starts Ollama (if needed), the API, and a Tailscale Funnel to it.
 # Run from anywhere:  powershell -ExecutionPolicy Bypass -File deploy\start-public.ps1
-# Stop: close the two windows it opens (API and ngrok).
+# Stop: close the two windows it opens (API and Funnel). Closing the Funnel
+# window ends public access.
 
 $ErrorActionPreference = "Stop"
 $Root = Split-Path -Parent $PSScriptRoot
@@ -16,18 +17,26 @@ Get-Content $EnvFile | Where-Object { $_ -match '^\s*[A-Z_]+\s*=' } | ForEach-Ob
     $Name, $Value = $_ -split '=', 2
     $Config[$Name.Trim()] = $Value.Trim()
 }
-foreach ($Key in "NGROK_DOMAIN", "FRONTEND_ORIGIN") {
-    if (-not $Config[$Key] -or $Config[$Key] -like "*your-*") {
-        Write-Host "Set $Key in deploy\public.env first." -ForegroundColor Red
-        exit 1
-    }
-}
-$Domain = $Config["NGROK_DOMAIN"] -replace '^https?://', '' -replace '/$', ''
-
-if (-not (Get-Command ngrok -ErrorAction SilentlyContinue)) {
-    Write-Host "ngrok is not installed. See deploy\README.md, step 1." -ForegroundColor Red
+if (-not $Config["FRONTEND_ORIGIN"] -or $Config["FRONTEND_ORIGIN"] -like "*your-*") {
+    Write-Host "Set FRONTEND_ORIGIN in deploy\public.env first." -ForegroundColor Red
     exit 1
 }
+
+$Tailscale = (Get-Command tailscale -ErrorAction SilentlyContinue).Source
+if (-not $Tailscale -and (Test-Path "$env:ProgramFiles\Tailscale\tailscale.exe")) {
+    $Tailscale = "$env:ProgramFiles\Tailscale\tailscale.exe"
+}
+if (-not $Tailscale) {
+    Write-Host "Tailscale is not installed. See deploy\README.md, step 1." -ForegroundColor Red
+    exit 1
+}
+$Status = & $Tailscale status --json | ConvertFrom-Json
+if ($Status.BackendState -ne "Running") {
+    Write-Host "Tailscale is not logged in or not running (state: $($Status.BackendState)). Open Tailscale and log in." -ForegroundColor Red
+    exit 1
+}
+$PublicHost = $Status.Self.DNSName.TrimEnd('.')
+
 $Python = Join-Path $Root ".venv\Scripts\python.exe"
 if (-not (Test-Path $Python)) {
     Write-Host "Project virtual environment not found at $Python" -ForegroundColor Red
@@ -51,11 +60,12 @@ $ApiCommand = "`$env:HF_HUB_OFFLINE='1'; `$env:TRANSFORMERS_OFFLINE='1'; `$env:K
 Start-Process powershell -ArgumentList "-NoExit", "-Command", $ApiCommand
 Write-Host "API: starting in a new window (about 2-3 minutes to warm up)"
 
-# 3. Tunnel
-Start-Process powershell -ArgumentList "-NoExit", "-Command", "ngrok http 8000 --url=https://$Domain"
-Write-Host "ngrok: tunnel starting in a new window"
+# 3. Public HTTPS address (foreground, so closing the window stops it)
+Start-Process powershell -ArgumentList "-NoExit", "-Command", "& '$Tailscale' funnel 8000"
+Write-Host "Tailscale Funnel: starting in a new window"
 
 Write-Host ""
-Write-Host "Live API (public): https://$Domain/api/health" -ForegroundColor Green
+Write-Host "Live API (public): https://$PublicHost/api/health" -ForegroundColor Green
 Write-Host "Website:           $($Config['FRONTEND_ORIGIN'])" -ForegroundColor Green
+Write-Host "Vercel's VITE_API_URL must be: https://$PublicHost"
 Write-Host "The website switches from 'offline' to 'live' by itself once the API is ready."

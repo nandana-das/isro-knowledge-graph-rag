@@ -81,7 +81,7 @@ def test_not_ready_returns_503(client, monkeypatch):
     assert client.post("/api/ask", json={"question": "Which launch vehicle launched AstroSat?"}).status_code == 503
 
 
-def test_cors_allows_ngrok_header_from_configured_site(monkeypatch):
+def test_cors_allows_configured_site(monkeypatch):
     monkeypatch.setenv("KG_RAG_MOCK_DELAY_MS", "0")
     monkeypatch.setenv("KG_RAG_CORS_ORIGINS", "https://astra.example.app")
     with TestClient(create_app("mock")) as test_client:
@@ -90,12 +90,12 @@ def test_cors_allows_ngrok_header_from_configured_site(monkeypatch):
             headers={
                 "Origin": "https://astra.example.app",
                 "Access-Control-Request-Method": "POST",
-                "Access-Control-Request-Headers": "content-type,ngrok-skip-browser-warning",
+                "Access-Control-Request-Headers": "content-type",
             },
         )
     assert response.status_code == 200
     assert response.headers.get("access-control-allow-origin") == "https://astra.example.app"
-    assert "ngrok-skip-browser-warning" in response.headers.get("access-control-allow-headers", "").lower()
+    assert "content-type" in response.headers.get("access-control-allow-headers", "").lower()
 
 
 def test_live_generation_retries_once_after_runner_error(monkeypatch):

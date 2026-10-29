@@ -83,9 +83,6 @@ export type Health = HealthResponse;
 
 const OFFLINE = "The service is currently unavailable. Please try again later.";
 
-// ngrok's free plan answers with a browser-warning page unless this header is sent.
-const HEADERS = { "ngrok-skip-browser-warning": "true" };
-
 async function errorMessage(r: Response): Promise<string> {
   try {
     const d = (await r.json())?.detail;
@@ -98,13 +95,13 @@ async function errorMessage(r: Response): Promise<string> {
 }
 
 export async function getHealth(): Promise<Health> {
-  const r = await fetch(`${BASE}/api/health`, { headers: HEADERS });
+  const r = await fetch(`${BASE}/api/health`);
   if (!r.ok) throw new Error(await errorMessage(r));
   return r.json();
 }
 
 export async function getExamples(): Promise<Example[]> {
-  const r = await fetch(`${BASE}/api/examples`, { headers: HEADERS });
+  const r = await fetch(`${BASE}/api/examples`);
   if (!r.ok) throw new Error(await errorMessage(r));
   const data = await r.json();
   if (Array.isArray(data)) {
@@ -121,7 +118,7 @@ export async function ask(question: string): Promise<AskResponse> {
   try {
     r = await fetch(`${BASE}/api/ask`, {
       method: "POST",
-      headers: { ...HEADERS, "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ question }),
     });
   } catch {
