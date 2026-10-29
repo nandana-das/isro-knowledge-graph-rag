@@ -21,7 +21,7 @@ small { font-size: 13px; }
 .soft { color: var(--soft); }
 .sm { font-size: 13px; }
 
-.app { display: grid; grid-template-columns: 240px 1fr; min-height: 100vh; }
+.app { display: grid; grid-template-columns: 240px minmax(0, 1fr); min-height: 100vh; }
 .mbar { display: none; }
 
 .side { background: var(--indigo); color: #eaf0fa; padding: 24px 14px; display: flex; flex-direction: column; gap: 2px; position: sticky; top: 0; height: 100vh; overflow-y: auto; }
@@ -59,7 +59,7 @@ h2 { font-size: 20px; font-weight: 600; margin-bottom: 4px; }
 .composer button, .outline { background: var(--saffron); color: var(--indigo); border: 0; border-radius: 10px; padding: 0 24px; min-height: 48px; font-weight: 600; }
 .outline { background: none; border: 1px solid var(--saffron); margin-top: 12px; }
 
-.homegrid { display: grid; grid-template-columns: 1fr 300px; gap: 32px; margin-top: 24px; }
+.homegrid { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 32px; margin-top: 24px; }
 .exgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 14px; }
 .ex { text-align: left; background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; min-height: 56px; color: var(--ink); }
 .ex:hover { border-color: var(--saffron); background: #fffaf2; }
@@ -81,8 +81,8 @@ h2 { font-size: 20px; font-weight: 600; margin-bottom: 4px; }
 .spin { width: 28px; height: 28px; border: 3px solid var(--ice); border-top-color: var(--saffron); border-radius: 50%; animation: spin 0.9s linear infinite; flex: none; }
 @keyframes spin { to { transform: rotate(360deg); } }
 
-.work { display: grid; grid-template-columns: 65fr 35fr; gap: 24px; margin-top: 16px; align-items: start; }
-.col { display: grid; gap: 24px; }
+.work { display: grid; grid-template-columns: minmax(0, 65fr) minmax(0, 35fr); gap: 24px; margin-top: 16px; align-items: start; }
+.col { display: grid; grid-template-columns: minmax(0, 1fr); gap: 24px; }
 .answer { background: #eaf7f0; border-color: #bfe5d0; border-left: 4px solid var(--green); }
 .answer.idk { background: var(--ice); border-color: var(--line); border-left-color: var(--soft); }
 .answer p { font-size: 22px; line-height: 1.4; margin-top: 6px; }
@@ -130,7 +130,7 @@ blockquote { margin: 0; padding: 10px 12px; border-left: 3px solid var(--saffron
   .side.open { transform: none; }
   .main { padding: 16px 16px 48px; }
   .scene { width: 100%; opacity: 0.3; }
-  .homegrid, .work, .exgrid { grid-template-columns: 1fr; }
+  .homegrid, .work, .exgrid { grid-template-columns: minmax(0, 1fr); }
   .kv { grid-template-columns: 1fr; gap: 4px; }
   .qhead { flex-direction: column; }
   .composer button { padding: 0 16px; }
