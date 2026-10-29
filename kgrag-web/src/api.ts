@@ -1,4 +1,8 @@
-const BASE = (typeof import.meta !== "undefined" && import.meta.env?.VITE_API_URL) || "http://127.0.0.1:8000";
+const ENV = typeof import.meta !== "undefined" ? import.meta.env : undefined;
+// The localhost fallback is for local development only. A deployed site without
+// VITE_API_URL must not probe the visitor's own machine; it runs offline instead
+// (recorded answers only).
+const BASE = ENV?.VITE_API_URL || (ENV?.PROD ? "" : "http://127.0.0.1:8000");
 
 // "recorded": a live answer saved in public/recorded_answers.json and served without the API.
 export type Mode = "live" | "mock" | "recorded";

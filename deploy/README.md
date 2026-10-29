@@ -41,7 +41,9 @@ One-time setup takes about 20 minutes. Afterwards, going live is one command.
    - **Root Directory**: `kgrag-web` (click Edit next to it)
    - **Framework Preset**: Vite (detected automatically)
    - **Environment Variables**: name `VITE_API_URL`, value = your Tailscale
-     address from step 1.4 (e.g. `https://astra.tail1234.ts.net`, no trailing slash)
+     address from step 1.4 (e.g. `https://astra.tail1234.ts.net`, no trailing slash).
+     **No Tailscale yet?** Leave it out. The site then runs in offline mode
+     (recorded example answers only); add the variable and redeploy later.
 4. Click **Deploy**. When it finishes, copy the address, e.g.
    `https://isro-knowledge-graph-rag.vercel.app`.
 
@@ -95,6 +97,7 @@ redeploys.
 | Browser console shows a CORS error | `FRONTEND_ORIGIN` in `deploy/public.env` must exactly match the Vercel address (https, no trailing slash). Restart the script. |
 | Script says Tailscale isn't running | Open Tailscale from the Start menu and sign in. |
 | Funnel says it isn't enabled | Repeat step 1.4 and approve the link it prints. |
+| tailscale.com won't load (connection reset) | Your network blocks VPN/tunnel services, which is common on college and office networks. Set up and go live from a network that allows it (e.g. home). Don't try to work around the block. |
 | The address changed | Renaming the machine changes it. Update `VITE_API_URL` in Vercel and redeploy. |
 
 ## Good to know
