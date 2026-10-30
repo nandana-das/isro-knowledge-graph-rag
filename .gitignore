@@ -233,3 +233,6 @@ handoff/
 
 # Personal hosting settings (deploy/public.env.example is the template)
 deploy/public.env
+
+# Local Claude Code settings
+.claude/
