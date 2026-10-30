@@ -26,6 +26,19 @@ Main findings:
 - **Spot-check:** the pre-registered spot-check **failed** its agreement threshold (Krippendorff's α = 0.64 < 0.667 for correctness). Report the primary scores as AI-drafted and human-reviewed, not as independently validated.
 - **Direction:** every rater scored A above Vanilla.
 
+## `study2_generators/`: Study 2, independent rating across three generators (in progress)
+
+Protocol: [`reports/preregistration_study2_generators.md`](../../reports/preregistration_study2_generators.md).
+
+| File | Contents | Produced by |
+|---|---|---|
+| `evidence.jsonl` | The exact evidence text Mistral received in the corrected rerun; given unchanged to every generator | `src.evaluation.run_generator_study --build-evidence` |
+| `generation_results_{mistral,llama3.1,qwen2.5}.jsonl` | V and A answers for the 72 questions. Mistral's are imported unchanged from the corrected rerun | `src.evaluation.run_generator_study` |
+| `run_manifest.json`, `run_log.txt` | Approved-protocol commit, hashes, Ollama version, per-call log | `src.evaluation.run_generator_study` |
+| `rating_mapping.json`, `rating_package_manifest.json` | Blinding key (labels A–F) for the rating package; raters never see it | `src.evaluation.build_study2_rating_package` |
+
+Ratings: three independent raters, imported with `python -m src.evaluation.analyze_generator_study --import <workbook> --rater N`. Analysis: `python -m src.evaluation.analyze_generator_study`.
+
 ## `relation_aware/`: frozen retrieval input
 
 `generation_results.jsonl` is the earlier relation-aware run. The rerun reuses only its **retrieved contexts** (frozen retrieval) and regenerates every answer. Its answers and scores are not used. `run_manifest.json` records how that retrieval was produced (`src.evaluation.run_relation_aware_experiment`).

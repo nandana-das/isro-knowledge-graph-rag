@@ -1,0 +1,2173 @@
+{
+  "seed": 20261008,
+  "labels": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F"
+  ],
+  "mapping": {
+    "rakg_001": {
+      "label_to_candidate": {
+        "A": {
+          "generator": "mistral",
+          "system": "A_CURRENT"
+        },
+        "B": {
+          "generator": "qwen2.5",
+          "system": "A_CURRENT"
+        },
+        "C": {
+          "generator": "qwen2.5",
+          "system": "V_VANILLA"
+        },
+        "D": {
+          "generator": "llama3.1",
+          "system": "A_CURRENT"
+        },
+        "E": {
+          "generator": "mistral",
+          "system": "V_VANILLA"
+        },
+        "F": {
+          "generator": "llama3.1",
+          "system": "V_VANILLA"
+        }
+      },
+      "label_hashes": {
+        "A": "6b4167ad687c619d8b04b1db07149e8995795698fdac7dcaa3c84fc7c0b8cc1e",
+        "B": "f05f14220fbb6e857e262a6867ca623bfa29f5aae30cc3d70e11bc4349cbaf4d",
+        "C": "7e19a9617ba06e1ddb14d063e87e8f68bd0fa09208078c1260d3ad91364b4db1",
+        "D": "c873a701cecfe719daeac2265f35c1fbf7b664841c7857929d3e0a40a1a5876e",
+        "E": "a6fdc8083fa4d9cdd1c2fa97bdc62d13bb47b99ce2a42edd65483aeb57ffa05d",
+        "F": "f430b4f75de5c1e9eb835814d7d3e19697a0d853622acd47ee2608460efd734d"
+      }
+    },
+    "rakg_002": {
+      "label_to_candidate": {
+        "A": {
+          "generator": "qwen2.5",
+          "system": "A_CURRENT"
+        },
+        "B": {
+          "generator": "qwen2.5",
+          "system": "V_VANILLA"
+        },
+        "C": {
+          "generator": "llama3.1",
+          "system": "A_CURRENT"
+        },
+        "D": {
+          "generator": "mistral",
+          "system": "A_CURRENT"
+        },
+        "E": {
+          "generator": "mistral",
+          "system": "V_VANILLA"
+        },
+        "F": {
+          "generator": "llama3.1",
+          "system": "V_VANILLA"
+        }
+      },
+      "label_hashes": {
+        "A": "c735e6a0075ed0f2f7bab51990c03a664c129d748264ffefff5ac4cde26bc935",
+        "B": "abeb6bf335e6f67f9cc326bccd7956cd42e67b86cdd3026d4b2e5d24df0a7d09",
+        "C": "ec16428a70055becba932b803132fbc496f92291323ba74ffb6751da49513f79",
+        "D": "b71e791d654801bf108c22219cb1c75d9ac0508f311dcfbb6c697247482465f9",
+        "E": "bc25e797b7526f495ce39f1b74dc50a68e26cd4956450d6acfb89a00e7371ec6",
+        "F": "24c60e0c1ec9b1738d0c43bae1bddd369847e82838290e6f92e4fb8a31410a5d"
+      }
+    },
+    "rakg_005": {
+      "label_to_candidate": {
+        "A": {
+          "generator": "llama3.1",
+          "system": "V_VANILLA"
+        },
+        "B": {
+          "generator": "mistral",
+          "system": "A_CURRENT"
+        },
+        "C": {
+          "generator": "qwen2.5",
+          "system": "V_VANILLA"
+        },
+        "D": {
+          "generator": "qwen2.5",
+          "system": "A_CURRENT"
+        },
+        "E": {
+          "generator": "mistral",
+          "system": "V_VANILLA"
+        },
+        "F": {
+          "generator": "llama3.1",
+          "system": "A_CURRENT"
+        }
+      },
+      "label_hashes": {
+        "A": "64777273ec1352bccf209c764927f9800712684e90c5303cbe05f045cae62793",
+        "B": "b71e791d654801bf108c22219cb1c75d9ac0508f311dcfbb6c697247482465f9",
+        "C": "abeb6bf335e6f67f9cc326bccd7956cd42e67b86cdd3026d4b2e5d24df0a7d09",
+        "D": "8e80a5ad3f8ec9cb94cc12eb23b6a3e103326053aa661e7cb1d9f89ed1dc1bd9",
+        "E": "bc25e797b7526f495ce39f1b74dc50a68e26cd4956450d6acfb89a00e7371ec6",
+        "F": "1af2bccbbd2c4f32937a45e4ea9ae8571b7b80e273ab8f86ed0305154bcd13d3"
+      }
+    },
+    "rakg_007": {
+      "label_to_candidate": {
+        "A": {
+          "generator": "mistral",
+          "system": "V_VANILLA"
+        },
+        "B": {
+          "generator": "qwen2.5",
+          "system": "A_CURRENT"
+        },
+        "C": {
+          "generator": "llama3.1",
+          "system": "A_CURRENT"
+        },
+        "D": {
+          "generator": "qwen2.5",
+          "system": "V_VANILLA"
+        },
+        "E": {
+          "generator": "mistral",
+          "system": "A_CURRENT"
+        },
+        "F": {
+          "generator": "llama3.1",
+          "system": "V_VANILLA"
+        }
+      },
+      "label_hashes": {
+        "A": "7a640a60f2d7f7df8447a01937a053659e7b53a9291976f0110489fdb53d9473",
+        "B": "887a306eeed788943b9bc679fe26c2d0cce115b9ed2a9d51b021eff91990dccb",
+        "C": "a4cfb86b2c2709580f87ef56ed3b320edc83275700fb6adeb2245ddfb3a86b0d",
+        "D": "a10e7b4b0f947ddeb3ef945590509ad781bcecad8ea7ff64f25654f4b01e57e3",
+        "E": "b1ec356573452f98143a9edcc3fd5019e329db482f37e66e1cae1019b09800e8",
+        "F": "49b0f5e090d886dc1545afac31988112a9a09173b25e975d03c877197d002b20"
+      }
+    },
+    "rakg_008": {
+      "label_to_candidate": {
+        "A": {
+          "generator": "llama3.1",
+          "system": "A_CURRENT"
+        },
+        "B": {
+          "generator": "qwen2.5",
+          "system": "V_VANILLA"
+        },
+        "C": {
+          "generator": "llama3.1",
+          "system": "V_VANILLA"
+        },
+        "D": {
+          "generator": "qwen2.5",
+          "system": "A_CURRENT"
+        },
+        "E": {
+          "generator": "mistral",
+          "system": "A_CURRENT"
+        },
+        "F": {
+          "generator": "mistral",
+          "system": "V_VANILLA"
+        }
+      },
+      "label_hashes": {
+        "A": "1ee27bb7c1415dc6eba39940bb9e3aeb313a5123d2f71df2c7b374159ec723ae",
+        "B": "7e19a9617ba06e1ddb14d063e87e8f68bd0fa09208078c1260d3ad91364b4db1",
+        "C": "7e19a9617ba06e1ddb14d063e87e8f68bd0fa09208078c1260d3ad91364b4db1",
+        "D": "ec745d7102cb2c3331029c5cfaf1a28b90a5acd478ddacc669f89a4ce8e8064e",
+        "E": "15441896c0a48cbef5c085c1946e9248c2274faf401ae0cff30601e7b460a0d3",
+        "F": "8191808910316a3eafbcf53f6ea6f7f5374156be2d280591b0ee8ea48ae719e0"
+      }
+    },
+    "rakg_009": {
+      "label_to_candidate": {
+        "A": {
+          "generator": "mistral",
+          "system": "V_VANILLA"
+        },
+        "B": {
+          "generator": "llama3.1",
+          "system": "V_VANILLA"
+        },
+        "C": {
+          "generator": "mistral",
+          "system": "A_CURRENT"
+        },
+        "D": {
+          "generator": "qwen2.5",
+          "system": "V_VANILLA"
+        },
+        "E": {
+          "generator": "llama3.1",
+          "system": "A_CURRENT"
+        },
+        "F": {
+          "generator": "qwen2.5",
+          "system": "A_CURRENT"
+        }
+      },
+      "label_hashes": {
+        "A": "7caeea74ff42b57be25b850814921db175234c54fd324cfc046879d66a99aa3c",
+        "B": "3492ba2d32bb4a1eccbcce0025e83449daba7582f8442eb2ed0b41dc3f055fce",
+        "C": "1919903d7420b41dbe146fcc5539e9603b218dbc262f66edc4388a5897d9ef7a",
+        "D": "886b140fe9e9ae169f4669a2473a10c3d59e01f58439e05d8ec8c04b240eef99",
+        "E": "4c2b396d077447f35eeca18583ee8d133c68ef0ba8d66f004314154587fc4a40",
+        "F": "4c2b396d077447f35eeca18583ee8d133c68ef0ba8d66f004314154587fc4a40"
+      }
+    },
+    "rakg_010": {
+      "label_to_candidate": {
+        "A": {
+          "generator": "llama3.1",
+          "system": "A_CURRENT"
+        },
+        "B": {
+          "generator": "mistral",
+          "system": "A_CURRENT"
+        },
+        "C": {
+          "generator": "qwen2.5",
+          "system": "V_VANILLA"
+        },
+        "D": {
+          "generator": "llama3.1",
+          "system": "V_VANILLA"
+        },
+        "E": {
+          "generator": "qwen2.5",
+          "system": "A_CURRENT"
+        },
+        "F": {
+          "generator": "mistral",
+          "system": "V_VANILLA"
+        }
+      },
+      "label_hashes": {
+        "A": "a4cfb86b2c2709580f87ef56ed3b320edc83275700fb6adeb2245ddfb3a86b0d",
+        "B": "87c3e6d877370cb15a7c739c215d717cdb07c0b3dfed0fa9b39720fa91278aaa",
+        "C": "a10e7b4b0f947ddeb3ef945590509ad781bcecad8ea7ff64f25654f4b01e57e3",
+        "D": "49b0f5e090d886dc1545afac31988112a9a09173b25e975d03c877197d002b20",
+        "E": "047bd764f46e3233503b0aed4b20c52def2c1698bc35d2477f0cf3301ef79fa3",
+        "F": "7a640a60f2d7f7df8447a01937a053659e7b53a9291976f0110489fdb53d9473"
+      }
+    },
+    "rakg_012": {
+      "label_to_candidate": {
+        "A": {
+          "generator": "qwen2.5",
+          "system": "V_VANILLA"
+        },
+        "B": {
+          "generator": "llama3.1",
+          "system": "A_CURRENT"
+        },
+        "C": {
+          "generator": "mistral",
+          "system": "A_CURRENT"
+        },
+        "D": {
+          "generator": "qwen2.5",
+          "system": "A_CURRENT"
+        },
+        "E": {
+          "generator": "llama3.1",
+          "system": "V_VANILLA"
+        },
+        "F": {
+          "generator": "mistral",
+          "system": "V_VANILLA"
+        }
+      },
+      "label_hashes": {
+        "A": "886b140fe9e9ae169f4669a2473a10c3d59e01f58439e05d8ec8c04b240eef99",
+        "B": "4c2b396d077447f35eeca18583ee8d133c68ef0ba8d66f004314154587fc4a40",
+        "C": "1e833e8da8c0b00f8185b042d557611c7bb324209024d69c2800936614a8d61a",
+        "D": "4c2b396d077447f35eeca18583ee8d133c68ef0ba8d66f004314154587fc4a40",
+        "E": "3492ba2d32bb4a1eccbcce0025e83449daba7582f8442eb2ed0b41dc3f055fce",
+        "F": "06ecc47d124b2ea5ae4d7618ac1bec59e3a8b7746ac80abe9b52f0025a0cd55b"
+      }
+    },
+    "rakg_015": {
+      "label_to_candidate": {
+        "A": {
+          "generator": "mistral",
+          "system": "A_CURRENT"
+        },
+        "B": {
+          "generator": "llama3.1",
+          "system": "A_CURRENT"
+        },
+        "C": {
+          "generator": "qwen2.5",
+          "system": "A_CURRENT"
+        },
+        "D": {
+          "generator": "qwen2.5",
+          "system": "V_VANILLA"
+        },
+        "E": {
+          "generator": "mistral",
+          "system": "V_VANILLA"
+        },
+        "F": {
+          "generator": "llama3.1",
+          "system": "V_VANILLA"
+        }
+      },
+      "label_hashes": {
+        "A": "43228d829034042719c0363fb09b3391927a4721252ee86a08a9a6738d9a0dcf",
+        "B": "c7947977f9c2ec1043cbdd0e589dcdae313dc57d322220991700c58e75cb5464",
+        "C": "58b5a36a61f25f1ace8f18ea1421f10289a2b1eb6da206f80ea2f4dff3fb1b98",
+        "D": "7e19a9617ba06e1ddb14d063e87e8f68bd0fa09208078c1260d3ad91364b4db1",
+        "E": "7e19a9617ba06e1ddb14d063e87e8f68bd0fa09208078c1260d3ad91364b4db1",
+        "F": "7e19a9617ba06e1ddb14d063e87e8f68bd0fa09208078c1260d3ad91364b4db1"
+      }
+    },
+    "rakg_016": {
+      "label_to_candidate": {
+        "A": {
+          "generator": "qwen2.5",
+          "system": "V_VANILLA"
+        },
+        "B": {
+          "generator": "mistral",
+          "system": "V_VANILLA"
+        },
+        "C": {
+          "generator": "llama3.1",
+          "system": "A_CURRENT"
+        },
+        "D": {
+          "generator": "mistral",
+          "system": "A_CURRENT"
+        },
+        "E": {
+          "generator": "llama3.1",
+          "system": "V_VANILLA"
+        },
+        "F": {
+          "generator": "qwen2.5",
+          "system": "A_CURRENT"
+        }
+      },
+      "label_hashes": {
+        "A": "72c70269456fcfe6c909d0c886306ae909f37e20b6dd0f981efbacffd31feacd",
+        "B": "03f2589659ed4e5cd3d5584f9e21b1c2c6c095aa9d2243afa20cf1badc48cf80",
+        "C": "23842e5b6c0a030d8ab0126b927429282a3314c93972f7705ff347b1e4543a73",
+        "D": "c4228e86befbf27cb6c7464588770efef740d6f9a1c1e9070b002c306337db79",
+        "E": "157a4a2edeb48cb045b0c5fb30f734b285d4659955b9ed7bc011fb2e1b59bd9f",
+        "F": "23842e5b6c0a030d8ab0126b927429282a3314c93972f7705ff347b1e4543a73"
+      }
+    },
+    "rakg_017": {
+      "label_to_candidate": {
+        "A": {
+          "generator": "mistral",
+          "system": "A_CURRENT"
+        },
+        "B": {
+          "generator": "qwen2.5",
+          "system": "V_VANILLA"
+        },
+        "C": {
+          "generator": "llama3.1",
+          "system": "A_CURRENT"
+        },
+        "D": {
+          "generator": "qwen2.5",
+          "system": "A_CURRENT"
+        },
+        "E": {
+          "generator": "llama3.1",
+          "system": "V_VANILLA"
+        },
+        "F": {
+          "generator": "mistral",
+          "system": "V_VANILLA"
+        }
+      },
+      "label_hashes": {
+        "A": "7e19a9617ba06e1ddb14d063e87e8f68bd0fa09208078c1260d3ad91364b4db1",
+        "B": "7e19a9617ba06e1ddb14d063e87e8f68bd0fa09208078c1260d3ad91364b4db1",
+        "C": "7e19a9617ba06e1ddb14d063e87e8f68bd0fa09208078c1260d3ad91364b4db1",
+        "D": "7e19a9617ba06e1ddb14d063e87e8f68bd0fa09208078c1260d3ad91364b4db1",
+        "E": "7e19a9617ba06e1ddb14d063e87e8f68bd0fa09208078c1260d3ad91364b4db1",
+        "F": "7e19a9617ba06e1ddb14d063e87e8f68bd0fa09208078c1260d3ad91364b4db1"
+      }
+    },
+    "rakg_018": {
+      "label_to_candidate": {
+        "A": {
+          "generator": "mistral",
+          "system": "A_CURRENT"
+        },
+        "B": {
+          "generator": "llama3.1",
+          "system": "V_VANILLA"
+        },
+        "C": {
+          "generator": "qwen2.5",
+          "system": "A_CURRENT"
+        },
+        "D": {
+          "generator": "llama3.1",
+          "system": "A_CURRENT"
+        },
+        "E": {
+          "generator": "qwen2.5",
+          "system": "V_VANILLA"
+        },
+        "F": {
+          "generator": "mistral",
+          "system": "V_VANILLA"
+        }
+      },
+      "label_hashes": {
+        "A": "22b4387e9952a32eeada127422d751f0a1289660b4e4b2d6187e74924cb4400b",
+        "B": "be1ef0b111f95df70c051753048d52d71bf345f03b509b903b92dfbdcc57de94",
+        "C": "b439227f693f4018f780b305337145616f540d6681ccc2c0b0af47eba0bf7745",
+        "D": "9a835760cd3a6a1583a29b766cc2673b3130c5cd966294f0c3f838eebb07b86c",
+        "E": "0457042efc239dec5c6e8dfd174f84a78975f5867f74cd5355ac24e0034fa1e3",
+        "F": "b439227f693f4018f780b305337145616f540d6681ccc2c0b0af47eba0bf7745"
+      }
+    },
+    "rakg_019": {
+      "label_to_candidate": {
+        "A": {
+          "generator": "mistral",
+          "system": "A_CURRENT"
+        },
+        "B": {
+          "generator": "llama3.1",
+          "system": "V_VANILLA"
+        },
+        "C": {
+          "generator": "qwen2.5",
+          "system": "A_CURRENT"
+        },
+        "D": {
+          "generator": "llama3.1",
+          "system": "A_CURRENT"
+        },
+        "E": {
+          "generator": "mistral",
+          "system": "V_VANILLA"
+        },
+        "F": {
+          "generator": "qwen2.5",
+          "system": "V_VANILLA"
+        }
+      },
+      "label_hashes": {
+        "A": "d1745454af8d5031260feb6fdbbbea070910eee9976aa00466311f71994d7609",
+        "B": "b003de488049f71ac18eecbeb72cb9a33a87d9ebbd07d3c7eb3ad75258236686",
+        "C": "0dacf40475536c21765daeb0afe1a1851f8b739f5e175484b17d3ad706721d52",
+        "D": "8ceeceb11d01205491559d9713f0e64f3c3529fcf61d17eb888b3c5e8522deb3",
+        "E": "9a918581165d9fa45dd71d1f343322bd6e11f5260881d2f03dd4553edc2531a9",
+        "F": "0ce1fc358660d32b67a449aa9efc4208c9c8a237d4d91327aee0a86c026675f4"
+      }
+    },
+    "rakg_020": {
+      "label_to_candidate": {
+        "A": {
+          "generator": "mistral",
+          "system": "V_VANILLA"
+        },
+        "B": {
+          "generator": "qwen2.5",
+          "system": "A_CURRENT"
+        },
+        "C": {
+          "generator": "llama3.1",
+          "system": "V_VANILLA"
+        },
+        "D": {
+          "generator": "qwen2.5",
+          "system": "V_VANILLA"
+        },
+        "E": {
+          "generator": "mistral",
+          "system": "A_CURRENT"
+        },
+        "F": {
+          "generator": "llama3.1",
+          "system": "A_CURRENT"
+        }
+      },
+      "label_hashes": {
+        "A": "c81a4b42789493b0988350d39a5e23a9ff95acd10e2df342b73d0a3c45738dc3",
+        "B": "8ceeceb11d01205491559d9713f0e64f3c3529fcf61d17eb888b3c5e8522deb3",
+        "C": "01cc6e2494f64cc7e1c70126f21ec2fde8c3d294952fbf559ba4f09fdf439117",
+        "D": "701dcaa5b802d76cdf28043a0c1b6bb128cc0f9f3b35ac129ead5f590f52b93d",
+        "E": "c81a4b42789493b0988350d39a5e23a9ff95acd10e2df342b73d0a3c45738dc3",
+        "F": "9a835760cd3a6a1583a29b766cc2673b3130c5cd966294f0c3f838eebb07b86c"
+      }
+    },
+    "rakg_022": {
+      "label_to_candidate": {
+        "A": {
+          "generator": "qwen2.5",
+          "system": "V_VANILLA"
+        },
+        "B": {
+          "generator": "qwen2.5",
+          "system": "A_CURRENT"
+        },
+        "C": {
+          "generator": "mistral",
+          "system": "A_CURRENT"
+        },
+        "D": {
+          "generator": "llama3.1",
+          "system": "V_VANILLA"
+        },
+        "E": {
+          "generator": "mistral",
+          "system": "V_VANILLA"
+        },
+        "F": {
+          "generator": "llama3.1",
+          "system": "A_CURRENT"
+        }
+      },
+      "label_hashes": {
+        "A": "a10e7b4b0f947ddeb3ef945590509ad781bcecad8ea7ff64f25654f4b01e57e3",
+        "B": "047bd764f46e3233503b0aed4b20c52def2c1698bc35d2477f0cf3301ef79fa3",
+        "C": "b1ec356573452f98143a9edcc3fd5019e329db482f37e66e1cae1019b09800e8",
+        "D": "49b0f5e090d886dc1545afac31988112a9a09173b25e975d03c877197d002b20",
+        "E": "7a640a60f2d7f7df8447a01937a053659e7b53a9291976f0110489fdb53d9473",
+        "F": "a4cfb86b2c2709580f87ef56ed3b320edc83275700fb6adeb2245ddfb3a86b0d"
+      }
+    },
+    "rakg_023": {
+      "label_to_candidate": {
+        "A": {
+          "generator": "mistral",
+          "system": "A_CURRENT"
+        },
+        "B": {
+          "generator": "llama3.1",
+          "system": "A_CURRENT"
+        },
+        "C": {
+          "generator": "qwen2.5",
+          "system": "A_CURRENT"
+        },
+        "D": {
+          "generator": "llama3.1",
+          "system": "V_VANILLA"
+        },
+        "E": {
+          "generator": "qwen2.5",
+          "system": "V_VANILLA"
+        },
+        "F": {
+          "generator": "mistral",
+          "system": "V_VANILLA"
+        }
+      },
+      "label_hashes": {
+        "A": "b71e791d654801bf108c22219cb1c75d9ac0508f311dcfbb6c697247482465f9",
+        "B": "1af2bccbbd2c4f32937a45e4ea9ae8571b7b80e273ab8f86ed0305154bcd13d3",
+        "C": "8e80a5ad3f8ec9cb94cc12eb23b6a3e103326053aa661e7cb1d9f89ed1dc1bd9",
+        "D": "64777273ec1352bccf209c764927f9800712684e90c5303cbe05f045cae62793",
+        "E": "abeb6bf335e6f67f9cc326bccd7956cd42e67b86cdd3026d4b2e5d24df0a7d09",
+        "F": "bc25e797b7526f495ce39f1b74dc50a68e26cd4956450d6acfb89a00e7371ec6"
+      }
+    },
+    "rakg_025": {
+      "label_to_candidate": {
+        "A": {
+          "generator": "mistral",
+          "system": "V_VANILLA"
+        },
+        "B": {
+          "generator": "llama3.1",
+          "system": "V_VANILLA"
+        },
+        "C": {
+          "generator": "qwen2.5",
+          "system": "V_VANILLA"
+        },
+        "D": {
+          "generator": "llama3.1",
+          "system": "A_CURRENT"
+        },
+        "E": {
+          "generator": "mistral",
+          "system": "A_CURRENT"
+        },
+        "F": {
+          "generator": "qwen2.5",
+          "system": "A_CURRENT"
+        }
+      },
+      "label_hashes": {
+        "A": "710151e54ef4be139add15f2ee636e78028f2d8f51f53e7b20233f0a280ae8cb",
+        "B": "9ae05b94613d36079922523dfc81a41afe85601725233cec0f22a62e47e4546b",
+        "C": "e01dd10132d71aee8812a423ae948079e45202fec52065caa9edf0f34de13221",
+        "D": "2bcea55cf7b3b48c1296203e277e95761b0f17d1080260c53c06de017d5874c3",
+        "E": "c448e532ba0e0c665d8db9a355449c8257543e64c0f02562083c4a210629aaca",
+        "F": "2bcea55cf7b3b48c1296203e277e95761b0f17d1080260c53c06de017d5874c3"
+      }
+    },
+    "rakg_026": {
+      "label_to_candidate": {
+        "A": {
+          "generator": "qwen2.5",
+          "system": "V_VANILLA"
+        },
+        "B": {
+          "generator": "llama3.1",
+          "system": "V_VANILLA"
+        },
+        "C": {
+          "generator": "llama3.1",
+          "system": "A_CURRENT"
+        },
+        "D": {
+          "generator": "mistral",
+          "system": "V_VANILLA"
+        },
+        "E": {
+          "generator": "mistral",
+          "system": "A_CURRENT"
+        },
+        "F": {
+          "generator": "qwen2.5",
+          "system": "A_CURRENT"
+        }
+      },
+      "label_hashes": {
+        "A": "7e11523814465a79617fb834f9b578f65265b77e1cf8dda1a769f4afbbc727b4",
+        "B": "7e19a9617ba06e1ddb14d063e87e8f68bd0fa09208078c1260d3ad91364b4db1",
+        "C": "0074d0bb549340afc06cf53885e182ce9c8b0242b2953ea42b2a91741444c19e",
+        "D": "68b00fca2d924eb85db085dec13d5f63c182e8b5d60c68c34920a4bdb8ec6cec",
+        "E": "fcd63ef06260442d48be5dbb88080eeac937429d9fd45547c0bf9f575e9bc8d1",
+        "F": "c15ea95fd9ea0dff89c904b3f73143f885fb4aa1f2028921f17194013b53d518"
+      }
+    },
+    "rakg_027": {
+      "label_to_candidate": {
+        "A": {
+          "generator": "qwen2.5",
+          "system": "A_CURRENT"
+        },
+        "B": {
+          "generator": "qwen2.5",
+          "system": "V_VANILLA"
+        },
+        "C": {
+          "generator": "mistral",
+          "system": "A_CURRENT"
+        },
+        "D": {
+          "generator": "llama3.1",
+          "system": "A_CURRENT"
+        },
+        "E": {
+          "generator": "mistral",
+          "system": "V_VANILLA"
+        },
+        "F": {
+          "generator": "llama3.1",
+          "system": "V_VANILLA"
+        }
+      },
+      "label_hashes": {
+        "A": "5e51f79341d85b67eb130db74df94b4a3952e7af693545fd09c4a8f9d6403a77",
+        "B": "5e51f79341d85b67eb130db74df94b4a3952e7af693545fd09c4a8f9d6403a77",
+        "C": "baf536f27bb4b2c2c5e5c6c778e23e6f17df353657c806ed8544a2e7a2a521e7",
+        "D": "5e51f79341d85b67eb130db74df94b4a3952e7af693545fd09c4a8f9d6403a77",
+        "E": "5b148bfd555e74b2c3c7210ce669e970d21d2e0a8cce81343041dbd13a2e80c3",
+        "F": "5e51f79341d85b67eb130db74df94b4a3952e7af693545fd09c4a8f9d6403a77"
+      }
+    },
+    "rakg_029": {
+      "label_to_candidate": {
+        "A": {
+          "generator": "llama3.1",
+          "system": "A_CURRENT"
+        },
+        "B": {
+          "generator": "mistral",
+          "system": "A_CURRENT"
+        },
+        "C": {
+          "generator": "qwen2.5",
+          "system": "A_CURRENT"
+        },
+        "D": {
+          "generator": "mistral",
+          "system": "V_VANILLA"
+        },
+        "E": {
+          "generator": "llama3.1",
+          "system": "V_VANILLA"
+        },
+        "F": {
+          "generator": "qwen2.5",
+          "system": "V_VANILLA"
+        }
+      },
+      "label_hashes": {
+        "A": "a327d661bafcbd97c36dcd136b5994fe4cb3dfadcb1dbf32feaae702f8d5c491",
+        "B": "ba5b1b48866e965579bef7b18a8d82305d9bb9cd4f83bc65a514b0a3d0df7d05",
+        "C": "a327d661bafcbd97c36dcd136b5994fe4cb3dfadcb1dbf32feaae702f8d5c491",
+        "D": "ef219b7eb3b9dcef2f78040fa09e7ac1db4b4df432ce472281bf47e1c93a770c",
+        "E": "ab28f59ebe8707a849b253d7a9324400d4acc051f72e445d1eaf0703fa4a4b2b",
+        "F": "ad4c02fa859dd77ac0aae96d31bb6d13a8ea6cb6a9601ac0a7d56e727ba29d83"
+      }
+    },
+    "rakg_030": {
+      "label_to_candidate": {
+        "A": {
+          "generator": "llama3.1",
+          "system": "A_CURRENT"
+        },
+        "B": {
+          "generator": "mistral",
+          "system": "A_CURRENT"
+        },
+        "C": {
+          "generator": "qwen2.5",
+          "system": "A_CURRENT"
+        },
+        "D": {
+          "generator": "mistral",
+          "system": "V_VANILLA"
+        },
+        "E": {
+          "generator": "qwen2.5",
+          "system": "V_VANILLA"
+        },
+        "F": {
+          "generator": "llama3.1",
+          "system": "V_VANILLA"
+        }
+      },
+      "label_hashes": {
+        "A": "c7ae3c3645235ae97a17c2c0e106f4a44aeacbfd898962464f3eaf853e3eb9a3",
+        "B": "6a9b1b97e5ef6bf5269c18bdeaacc58200afc54574b431ce56e29bb52dbd2532",
+        "C": "5841d5644f95de2f92abc4c7e3e5581d72b2b9cc0c9217342916f212eaf6cf90",
+        "D": "eeb722a265ce3f8383f51d93607ae232b565dea5c1196ec013485dcacc0da98d",
+        "E": "86549e54135c32fbdb6290bac52666ab8c872557363b6cbaabfa8bcdd3295475",
+        "F": "efc83fcb6819f6a33211c4339189d458d4f7dc381a8b6d85b1e525ecc43b2444"
+      }
+    },
+    "rakg_031": {
+      "label_to_candidate": {
+        "A": {
+          "generator": "llama3.1",
+          "system": "V_VANILLA"
+        },
+        "B": {
+          "generator": "mistral",
+          "system": "A_CURRENT"
+        },
+        "C": {
+          "generator": "llama3.1",
+          "system": "A_CURRENT"
+        },
+        "D": {
+          "generator": "qwen2.5",
+          "system": "A_CURRENT"
+        },
+        "E": {
+          "generator": "qwen2.5",
+          "system": "V_VANILLA"
+        },
+        "F": {
+          "generator": "mistral",
+          "system": "V_VANILLA"
+        }
+      },
+      "label_hashes": {
+        "A": "8d6de9487650a0814c64ef4f3742e2d75fefb2efb7f77e3df71195d351825166",
+        "B": "6a9b1b97e5ef6bf5269c18bdeaacc58200afc54574b431ce56e29bb52dbd2532",
+        "C": "2fdc656493692f64ef1e5a3a1eb3afb3f8acc2531155356ba4dd29f4182f09d2",
+        "D": "6e411e975214bcf37bd895c9264f8cce44744f12536142bcbce3dfb11c33d1dd",
+        "E": "86549e54135c32fbdb6290bac52666ab8c872557363b6cbaabfa8bcdd3295475",
+        "F": "eeb722a265ce3f8383f51d93607ae232b565dea5c1196ec013485dcacc0da98d"
+      }
+    },
+    "rakg_032": {
+      "label_to_candidate": {
+        "A": {
+          "generator": "llama3.1",
+          "system": "V_VANILLA"
+        },
+        "B": {
+          "generator": "mistral",
+          "system": "A_CURRENT"
+        },
+        "C": {
+          "generator": "qwen2.5",
+          "system": "V_VANILLA"
+        },
+        "D": {
+          "generator": "llama3.1",
+          "system": "A_CURRENT"
+        },
+        "E": {
+          "generator": "qwen2.5",
+          "system": "A_CURRENT"
+        },
+        "F": {
+          "generator": "mistral",
+          "system": "V_VANILLA"
+        }
+      },
+      "label_hashes": {
+        "A": "07b1076f28a155611e07dfb12e6f70aa1d4c7f91baca15d1dc6ab169c32e0ae3",
+        "B": "9f333477a808ab1ceb70e036002f8369943e3b4083e914f95d4511c745019f28",
+        "C": "bd47c0a882a6f058ff9a0231db92286cdb7f35601e18e758698a3ecbbbaf8083",
+        "D": "a327d661bafcbd97c36dcd136b5994fe4cb3dfadcb1dbf32feaae702f8d5c491",
+        "E": "a327d661bafcbd97c36dcd136b5994fe4cb3dfadcb1dbf32feaae702f8d5c491",
+        "F": "8e0cb6f83304518f9e6e216303dc52a7ddda062a07b32a8452e6c1c17ec390b1"
+      }
+    },
+    "rakg_033": {
+      "label_to_candidate": {
+        "A": {
+          "generator": "qwen2.5",
+          "system": "V_VANILLA"
+        },
+        "B": {
+          "generator": "mistral",
+          "system": "V_VANILLA"
+        },
+        "C": {
+          "generator": "qwen2.5",
+          "system": "A_CURRENT"
+        },
+        "D": {
+          "generator": "llama3.1",
+          "system": "V_VANILLA"
+        },
+        "E": {
+          "generator": "mistral",
+          "system": "A_CURRENT"
+        },
+        "F": {
+          "generator": "llama3.1",
+          "system": "A_CURRENT"
+        }
+      },
+      "label_hashes": {
+        "A": "7e19a9617ba06e1ddb14d063e87e8f68bd0fa09208078c1260d3ad91364b4db1",
+        "B": "7e19a9617ba06e1ddb14d063e87e8f68bd0fa09208078c1260d3ad91364b4db1",
+        "C": "b3dfdfa06d49215cbb76dcbb4a95f92a18908ceca9e42c3f2dba60c856727cf9",
+        "D": "7e19a9617ba06e1ddb14d063e87e8f68bd0fa09208078c1260d3ad91364b4db1",
+        "E": "9f10480dc1b473dbb80157e4e4e2c666cacd533cd3191f5b7c22e9ab65f01612",
+        "F": "b8f9663e083c4ec23730cc42d7e527bb7a55ba2ddb6c40119834daeb2fe13565"
+      }
+    },
+    "rakg_034": {
+      "label_to_candidate": {
+        "A": {
+          "generator": "mistral",
+          "system": "V_VANILLA"
+        },
+        "B": {
+          "generator": "qwen2.5",
+          "system": "A_CURRENT"
+        },
+        "C": {
+          "generator": "llama3.1",
+          "system": "A_CURRENT"
+        },
+        "D": {
+          "generator": "qwen2.5",
+          "system": "V_VANILLA"
+        },
+        "E": {
+          "generator": "mistral",
+          "system": "A_CURRENT"
+        },
+        "F": {
+          "generator": "llama3.1",
+          "system": "V_VANILLA"
+        }
+      },
+      "label_hashes": {
+        "A": "eeb722a265ce3f8383f51d93607ae232b565dea5c1196ec013485dcacc0da98d",
+        "B": "6e411e975214bcf37bd895c9264f8cce44744f12536142bcbce3dfb11c33d1dd",
+        "C": "2fdc656493692f64ef1e5a3a1eb3afb3f8acc2531155356ba4dd29f4182f09d2",
+        "D": "86549e54135c32fbdb6290bac52666ab8c872557363b6cbaabfa8bcdd3295475",
+        "E": "6a9b1b97e5ef6bf5269c18bdeaacc58200afc54574b431ce56e29bb52dbd2532",
+        "F": "8d6de9487650a0814c64ef4f3742e2d75fefb2efb7f77e3df71195d351825166"
+      }
+    },
+    "rakg_035": {
+      "label_to_candidate": {
+        "A": {
+          "generator": "qwen2.5",
+          "system": "V_VANILLA"
+        },
+        "B": {
+          "generator": "mistral",
+          "system": "V_VANILLA"
+        },
+        "C": {
+          "generator": "llama3.1",
+          "system": "A_CURRENT"
+        },
+        "D": {
+          "generator": "llama3.1",
+          "system": "V_VANILLA"
+        },
+        "E": {
+          "generator": "qwen2.5",
+          "system": "A_CURRENT"
+        },
+        "F": {
+          "generator": "mistral",
+          "system": "A_CURRENT"
+        }
+      },
+      "label_hashes": {
+        "A": "0a7295ef5741e4eed435e9ee1e1358cdad806e3b6e83afe4d29fd0cd09a66998",
+        "B": "5bd0eb30b631a1213e3eb34896da963ee1fc392fcafd58bccbd87315ca647c5b",
+        "C": "0a7295ef5741e4eed435e9ee1e1358cdad806e3b6e83afe4d29fd0cd09a66998",
+        "D": "7a3064eb7138bf7ac69726943b3a04526efa72b30160ede5571f1ff9ca12725c",
+        "E": "d0fa20fce86591fa92fc7f4244e30f09410a3d6d1c3770fc0eba4e9e3dcba980",
+        "F": "9b5e913d68ae2caeeccd0a54309d23dabec9cdc803cf20b57508cbc4e9849e3c"
+      }
+    },
+    "rakg_036": {
+      "label_to_candidate": {
+        "A": {
+          "generator": "llama3.1",
+          "system": "A_CURRENT"
+        },
+        "B": {
+          "generator": "mistral",
+          "system": "V_VANILLA"
+        },
+        "C": {
+          "generator": "llama3.1",
+          "system": "V_VANILLA"
+        },
+        "D": {
+          "generator": "qwen2.5",
+          "system": "V_VANILLA"
+        },
+        "E": {
+          "generator": "mistral",
+          "system": "A_CURRENT"
+        },
+        "F": {
+          "generator": "qwen2.5",
+          "system": "A_CURRENT"
+        }
+      },
+      "label_hashes": {
+        "A": "6876c78e27fdccf386123364292a7c3b5522052cf6a964fef7980ebc1421380e",
+        "B": "d152a09982e82936c251075d484ab104c7c0df7cb1c481100be10646ae7b7230",
+        "C": "5fb304897ab90b2cf14db7e131bd7e15e212f92e667152ce92e6ca0ce916b958",
+        "D": "eccbaa452647bae36a632259bb94db585e7c68e52696f96ddee120141c79bcc8",
+        "E": "8eafdcad848f2cde149773e18cec8dfdbe75fbaf6b60f48f5e5f8df4c06140e1",
+        "F": "ee155f3cc7cc1c5358cc3bed63705fb64f7a76275ec587bd7f4e1da38ae0fd12"
+      }
+    },
+    "rakg_037": {
+      "label_to_candidate": {
+        "A": {
+          "generator": "qwen2.5",
+          "system": "V_VANILLA"
+        },
+        "B": {
+          "generator": "mistral",
+          "system": "A_CURRENT"
+        },
+        "C": {
+          "generator": "mistral",
+          "system": "V_VANILLA"
+        },
+        "D": {
+          "generator": "llama3.1",
+          "system": "V_VANILLA"
+        },
+        "E": {
+          "generator": "llama3.1",
+          "system": "A_CURRENT"
+        },
+        "F": {
+          "generator": "qwen2.5",
+          "system": "A_CURRENT"
+        }
+      },
+      "label_hashes": {
+        "A": "aaade28bb76bdcf7628339e0a8f0bb22b109c36f47d01a2ea637db2457615b51",
+        "B": "8b9e555157972e8447eb234b5ebcfe8c71f48a115ea7ef770ce3548da737190f",
+        "C": "9763459d2f41f1646870c3c829e0ed613cc37405a24e7de6d34c6f6d22fb965d",
+        "D": "96ef12936ca7821299c043b2fe26710aa831daa8c65939b3473f65abd9d72fd4",
+        "E": "2914406c4059a60fbf10f9f545ca355d588f60bb63dcdbf6162af00cbd7fbbca",
+        "F": "1468354a9c980b5f832569f7de3bfd2075a5325e37ea3cf85810543e6675ea83"
+      }
+    },
+    "rakg_038": {
+      "label_to_candidate": {
+        "A": {
+          "generator": "llama3.1",
+          "system": "A_CURRENT"
+        },
+        "B": {
+          "generator": "llama3.1",
+          "system": "V_VANILLA"
+        },
+        "C": {
+          "generator": "qwen2.5",
+          "system": "V_VANILLA"
+        },
+        "D": {
+          "generator": "mistral",
+          "system": "V_VANILLA"
+        },
+        "E": {
+          "generator": "mistral",
+          "system": "A_CURRENT"
+        },
+        "F": {
+          "generator": "qwen2.5",
+          "system": "A_CURRENT"
+        }
+      },
+      "label_hashes": {
+        "A": "7e19a9617ba06e1ddb14d063e87e8f68bd0fa09208078c1260d3ad91364b4db1",
+        "B": "c8c461fdeabc23fc65d0d696a4f457ad0e16241dd2b605f8017e501a0e64744b",
+        "C": "7a7b333fef9fd9d6a928e3fbee6ebb4c56b66e759af11f803e1f54715e801c0e",
+        "D": "0a2d9a4a241f74193740b6c0c62d13caec7ff4c9200143e03f26729ea64e838c",
+        "E": "7e19a9617ba06e1ddb14d063e87e8f68bd0fa09208078c1260d3ad91364b4db1",
+        "F": "7e19a9617ba06e1ddb14d063e87e8f68bd0fa09208078c1260d3ad91364b4db1"
+      }
+    },
+    "rakg_040": {
+      "label_to_candidate": {
+        "A": {
+          "generator": "llama3.1",
+          "system": "A_CURRENT"
+        },
+        "B": {
+          "generator": "qwen2.5",
+          "system": "A_CURRENT"
+        },
+        "C": {
+          "generator": "llama3.1",
+          "system": "V_VANILLA"
+        },
+        "D": {
+          "generator": "qwen2.5",
+          "system": "V_VANILLA"
+        },
+        "E": {
+          "generator": "mistral",
+          "system": "V_VANILLA"
+        },
+        "F": {
+          "generator": "mistral",
+          "system": "A_CURRENT"
+        }
+      },
+      "label_hashes": {
+        "A": "1af2bccbbd2c4f32937a45e4ea9ae8571b7b80e273ab8f86ed0305154bcd13d3",
+        "B": "8e80a5ad3f8ec9cb94cc12eb23b6a3e103326053aa661e7cb1d9f89ed1dc1bd9",
+        "C": "64777273ec1352bccf209c764927f9800712684e90c5303cbe05f045cae62793",
+        "D": "abeb6bf335e6f67f9cc326bccd7956cd42e67b86cdd3026d4b2e5d24df0a7d09",
+        "E": "bc25e797b7526f495ce39f1b74dc50a68e26cd4956450d6acfb89a00e7371ec6",
+        "F": "b71e791d654801bf108c22219cb1c75d9ac0508f311dcfbb6c697247482465f9"
+      }
+    },
+    "rakg_041": {
+      "label_to_candidate": {
+        "A": {
+          "generator": "qwen2.5",
+          "system": "A_CURRENT"
+        },
+        "B": {
+          "generator": "llama3.1",
+          "system": "A_CURRENT"
+        },
+        "C": {
+          "generator": "llama3.1",
+          "system": "V_VANILLA"
+        },
+        "D": {
+          "generator": "qwen2.5",
+          "system": "V_VANILLA"
+        },
+        "E": {
+          "generator": "mistral",
+          "system": "A_CURRENT"
+        },
+        "F": {
+          "generator": "mistral",
+          "system": "V_VANILLA"
+        }
+      },
+      "label_hashes": {
+        "A": "7a85320ce351ba823d9ee2b81ce2381851f6edb1be852e5567d4a94edea6a2aa",
+        "B": "292eac4766333c6b828fb111a4ad7506ae4916c647140215dd2a999bc138ecca",
+        "C": "e23f834bb78b229def236e1f4a5aa95ef05e6dd330e7435947ebbad3467b0474",
+        "D": "e23f834bb78b229def236e1f4a5aa95ef05e6dd330e7435947ebbad3467b0474",
+        "E": "1aa3fa9b8e2b963851030f1a4913218819bf778283145a3f1693bc80e7fa3e72",
+        "F": "ca5ba3fce3cdf8ac5da6a65bc00a5a1225aa9d2e8a214be748535c4c35aad494"
+      }
+    },
+    "rakg_042": {
+      "label_to_candidate": {
+        "A": {
+          "generator": "mistral",
+          "system": "A_CURRENT"
+        },
+        "B": {
+          "generator": "llama3.1",
+          "system": "V_VANILLA"
+        },
+        "C": {
+          "generator": "qwen2.5",
+          "system": "V_VANILLA"
+        },
+        "D": {
+          "generator": "mistral",
+          "system": "V_VANILLA"
+        },
+        "E": {
+          "generator": "qwen2.5",
+          "system": "A_CURRENT"
+        },
+        "F": {
+          "generator": "llama3.1",
+          "system": "A_CURRENT"
+        }
+      },
+      "label_hashes": {
+        "A": "b71e791d654801bf108c22219cb1c75d9ac0508f311dcfbb6c697247482465f9",
+        "B": "64777273ec1352bccf209c764927f9800712684e90c5303cbe05f045cae62793",
+        "C": "abeb6bf335e6f67f9cc326bccd7956cd42e67b86cdd3026d4b2e5d24df0a7d09",
+        "D": "bc25e797b7526f495ce39f1b74dc50a68e26cd4956450d6acfb89a00e7371ec6",
+        "E": "8e80a5ad3f8ec9cb94cc12eb23b6a3e103326053aa661e7cb1d9f89ed1dc1bd9",
+        "F": "1af2bccbbd2c4f32937a45e4ea9ae8571b7b80e273ab8f86ed0305154bcd13d3"
+      }
+    },
+    "rakg_043": {
+      "label_to_candidate": {
+        "A": {
+          "generator": "mistral",
+          "system": "V_VANILLA"
+        },
+        "B": {
+          "generator": "qwen2.5",
+          "system": "V_VANILLA"
+        },
+        "C": {
+          "generator": "llama3.1",
+          "system": "V_VANILLA"
+        },
+        "D": {
+          "generator": "llama3.1",
+          "system": "A_CURRENT"
+        },
+        "E": {
+          "generator": "qwen2.5",
+          "system": "A_CURRENT"
+        },
+        "F": {
+          "generator": "mistral",
+          "system": "A_CURRENT"
+        }
+      },
+      "label_hashes": {
+        "A": "df58f19229ae3c5349d3539951b151d3f9765a15cd2c876bcca7cd955646d0b6",
+        "B": "e90bcef9944084db24e30bee6a84be2eeb4a7bc172d17f234da8f0bc69dafdbe",
+        "C": "4b06dcc95582157d2084689102ce345e83862668e45bb146061b44ae25a19cd5",
+        "D": "8ae156aa83a273e2ccfa041b46202ff04f9a172e33dfe6cb80e76093f22c7a8f",
+        "E": "849b4ea54ae3b5463c3e31c29c428ab0ee1263332ad78471d6c272b6211d86e8",
+        "F": "9d14fe2d6bde14efb65eefad0bfd32e1205fc0c690bc755ba5abc4eeab26bcad"
+      }
+    },
+    "rakg_046": {
+      "label_to_candidate": {
+        "A": {
+          "generator": "qwen2.5",
+          "system": "V_VANILLA"
+        },
+        "B": {
+          "generator": "mistral",
+          "system": "A_CURRENT"
+        },
+        "C": {
+          "generator": "mistral",
+          "system": "V_VANILLA"
+        },
+        "D": {
+          "generator": "llama3.1",
+          "system": "V_VANILLA"
+        },
+        "E": {
+          "generator": "llama3.1",
+          "system": "A_CURRENT"
+        },
+        "F": {
+          "generator": "qwen2.5",
+          "system": "A_CURRENT"
+        }
+      },
+      "label_hashes": {
+        "A": "7e19a9617ba06e1ddb14d063e87e8f68bd0fa09208078c1260d3ad91364b4db1",
+        "B": "f5fcd323259c849fb26b848062a5f37b3a0379d8b81b44bd7fafaa1e97d32de0",
+        "C": "aa071429e4ccbef7ad2f01ff5408a8de4da4c25753f55e714ece6301c806c1b7",
+        "D": "7e19a9617ba06e1ddb14d063e87e8f68bd0fa09208078c1260d3ad91364b4db1",
+        "E": "e51df4619486ac7f687ffc6a9ad35e340ca427c5b4a2ba9ad3020d97c387f939",
+        "F": "deb4d8d205c3a6db0e0e5ac7e475d4ca541f09d118e99c925672baf29e947865"
+      }
+    },
+    "rakg_047": {
+      "label_to_candidate": {
+        "A": {
+          "generator": "qwen2.5",
+          "system": "V_VANILLA"
+        },
+        "B": {
+          "generator": "mistral",
+          "system": "A_CURRENT"
+        },
+        "C": {
+          "generator": "llama3.1",
+          "system": "V_VANILLA"
+        },
+        "D": {
+          "generator": "mistral",
+          "system": "V_VANILLA"
+        },
+        "E": {
+          "generator": "llama3.1",
+          "system": "A_CURRENT"
+        },
+        "F": {
+          "generator": "qwen2.5",
+          "system": "A_CURRENT"
+        }
+      },
+      "label_hashes": {
+        "A": "60be10d31e8a027021479e53a229fc4517fb907241ec78ad283c6d7577dad9e7",
+        "B": "d0924ed3301e179cb4b08586c1dda20f6eb7f76ddc573af461e8197e2823e703",
+        "C": "9e010248b3627ff8e21f378112e6bcd38518717d696754ee14dc8a57d9a58921",
+        "D": "613f51fedb62090a0081272e8dbb49941fad02db21ab188ce0fdb78ab1e3b641",
+        "E": "1964e7ec131e14da4b7a0d2c2df06e0a530adf3e52f2343e4d8cef3fdca5fceb",
+        "F": "1964e7ec131e14da4b7a0d2c2df06e0a530adf3e52f2343e4d8cef3fdca5fceb"
+      }
+    },
+    "rakg_048": {
+      "label_to_candidate": {
+        "A": {
+          "generator": "mistral",
+          "system": "A_CURRENT"
+        },
+        "B": {
+          "generator": "mistral",
+          "system": "V_VANILLA"
+        },
+        "C": {
+          "generator": "llama3.1",
+          "system": "V_VANILLA"
+        },
+        "D": {
+          "generator": "llama3.1",
+          "system": "A_CURRENT"
+        },
+        "E": {
+          "generator": "qwen2.5",
+          "system": "V_VANILLA"
+        },
+        "F": {
+          "generator": "qwen2.5",
+          "system": "A_CURRENT"
+        }
+      },
+      "label_hashes": {
+        "A": "316b28915ea414d0c9f55ca7f2908377052cc951f0aac8bda0b5e2d7a0c5226b",
+        "B": "ca4123e91f91db28d36fe9e503992b89b5967bfdf234f8de25b5bde87f05ac87",
+        "C": "7e19a9617ba06e1ddb14d063e87e8f68bd0fa09208078c1260d3ad91364b4db1",
+        "D": "82b03a56f0f5db0b03de3cd8146fe5a8bd38659a214de6e9e897b3546facbbe9",
+        "E": "7e19a9617ba06e1ddb14d063e87e8f68bd0fa09208078c1260d3ad91364b4db1",
+        "F": "98b9c2f0c5e1379950a1429000eef9abcd6857dee09e568abc7284ad807b98d0"
+      }
+    },
+    "rakg_049": {
+      "label_to_candidate": {
+        "A": {
+          "generator": "mistral",
+          "system": "V_VANILLA"
+        },
+        "B": {
+          "generator": "llama3.1",
+          "system": "V_VANILLA"
+        },
+        "C": {
+          "generator": "qwen2.5",
+          "system": "V_VANILLA"
+        },
+        "D": {
+          "generator": "mistral",
+          "system": "A_CURRENT"
+        },
+        "E": {
+          "generator": "qwen2.5",
+          "system": "A_CURRENT"
+        },
+        "F": {
+          "generator": "llama3.1",
+          "system": "A_CURRENT"
+        }
+      },
+      "label_hashes": {
+        "A": "c6925c9a1d31ddefcaa558980c86b13a75bc346e97c7eed41a9ea97be8d2a837",
+        "B": "b7056908de48e470950fe9a84fdb9c6b07e45833ce94dc14c3763c87f81e5821",
+        "C": "886b140fe9e9ae169f4669a2473a10c3d59e01f58439e05d8ec8c04b240eef99",
+        "D": "219cf206f1273e5964dd40877ecb760e50144635f247249ec60b10a958466fb0",
+        "E": "4c2b396d077447f35eeca18583ee8d133c68ef0ba8d66f004314154587fc4a40",
+        "F": "4c2b396d077447f35eeca18583ee8d133c68ef0ba8d66f004314154587fc4a40"
+      }
+    },
+    "rakg_050": {
+      "label_to_candidate": {
+        "A": {
+          "generator": "llama3.1",
+          "system": "A_CURRENT"
+        },
+        "B": {
+          "generator": "llama3.1",
+          "system": "V_VANILLA"
+        },
+        "C": {
+          "generator": "mistral",
+          "system": "V_VANILLA"
+        },
+        "D": {
+          "generator": "qwen2.5",
+          "system": "V_VANILLA"
+        },
+        "E": {
+          "generator": "mistral",
+          "system": "A_CURRENT"
+        },
+        "F": {
+          "generator": "qwen2.5",
+          "system": "A_CURRENT"
+        }
+      },
+      "label_hashes": {
+        "A": "21dc60d02dc7d7e286b8321a0dbd9ed7ea27ccb915d2d42b698446352a7b379b",
+        "B": "3f59c5d94af69907b744b10d7d9d9a26a5dfdf8a2ec509f995d84800f16ce485",
+        "C": "0e8d684aa1f9ac7234dd13b006488955c1b5bccc264f66f89c07116208adf18c",
+        "D": "3f59c5d94af69907b744b10d7d9d9a26a5dfdf8a2ec509f995d84800f16ce485",
+        "E": "0a091b13ff1ab9a534c979f21df7a1eaed23f2fd7305568e8741e3d6b6a22d54",
+        "F": "c84e449f174b3d2ca7987f18de785d9fe08ff337f538366cad6125054ad96e79"
+      }
+    },
+    "rakg_051": {
+      "label_to_candidate": {
+        "A": {
+          "generator": "mistral",
+          "system": "A_CURRENT"
+        },
+        "B": {
+          "generator": "qwen2.5",
+          "system": "A_CURRENT"
+        },
+        "C": {
+          "generator": "mistral",
+          "system": "V_VANILLA"
+        },
+        "D": {
+          "generator": "qwen2.5",
+          "system": "V_VANILLA"
+        },
+        "E": {
+          "generator": "llama3.1",
+          "system": "V_VANILLA"
+        },
+        "F": {
+          "generator": "llama3.1",
+          "system": "A_CURRENT"
+        }
+      },
+      "label_hashes": {
+        "A": "eb636b4c4ffaeca256d803c6070e5d718e88071aa1cc1331bb4830913b7a5142",
+        "B": "e0361e383e0022dee9b07358e62ffe2bb43939b967117035db1ac937cc90331c",
+        "C": "81452f7f6878e83121b136cba016fa0d76125022eebfd31b134a7fe79e3875d7",
+        "D": "7e19a9617ba06e1ddb14d063e87e8f68bd0fa09208078c1260d3ad91364b4db1",
+        "E": "7e19a9617ba06e1ddb14d063e87e8f68bd0fa09208078c1260d3ad91364b4db1",
+        "F": "e0361e383e0022dee9b07358e62ffe2bb43939b967117035db1ac937cc90331c"
+      }
+    },
+    "rakg_052": {
+      "label_to_candidate": {
+        "A": {
+          "generator": "qwen2.5",
+          "system": "A_CURRENT"
+        },
+        "B": {
+          "generator": "mistral",
+          "system": "A_CURRENT"
+        },
+        "C": {
+          "generator": "qwen2.5",
+          "system": "V_VANILLA"
+        },
+        "D": {
+          "generator": "mistral",
+          "system": "V_VANILLA"
+        },
+        "E": {
+          "generator": "llama3.1",
+          "system": "A_CURRENT"
+        },
+        "F": {
+          "generator": "llama3.1",
+          "system": "V_VANILLA"
+        }
+      },
+      "label_hashes": {
+        "A": "8121a465fc0f10b841ff7084234cd7d6d81f4d4779b7d2a316f699bfcdbbb5c6",
+        "B": "8eafdcad848f2cde149773e18cec8dfdbe75fbaf6b60f48f5e5f8df4c06140e1",
+        "C": "eccbaa452647bae36a632259bb94db585e7c68e52696f96ddee120141c79bcc8",
+        "D": "d152a09982e82936c251075d484ab104c7c0df7cb1c481100be10646ae7b7230",
+        "E": "6876c78e27fdccf386123364292a7c3b5522052cf6a964fef7980ebc1421380e",
+        "F": "5fb304897ab90b2cf14db7e131bd7e15e212f92e667152ce92e6ca0ce916b958"
+      }
+    },
+    "rakg_053": {
+      "label_to_candidate": {
+        "A": {
+          "generator": "qwen2.5",
+          "system": "A_CURRENT"
+        },
+        "B": {
+          "generator": "llama3.1",
+          "system": "A_CURRENT"
+        },
+        "C": {
+          "generator": "llama3.1",
+          "system": "V_VANILLA"
+        },
+        "D": {
+          "generator": "mistral",
+          "system": "V_VANILLA"
+        },
+        "E": {
+          "generator": "qwen2.5",
+          "system": "V_VANILLA"
+        },
+        "F": {
+          "generator": "mistral",
+          "system": "A_CURRENT"
+        }
+      },
+      "label_hashes": {
+        "A": "58b5a36a61f25f1ace8f18ea1421f10289a2b1eb6da206f80ea2f4dff3fb1b98",
+        "B": "c7947977f9c2ec1043cbdd0e589dcdae313dc57d322220991700c58e75cb5464",
+        "C": "7e19a9617ba06e1ddb14d063e87e8f68bd0fa09208078c1260d3ad91364b4db1",
+        "D": "7e19a9617ba06e1ddb14d063e87e8f68bd0fa09208078c1260d3ad91364b4db1",
+        "E": "7e19a9617ba06e1ddb14d063e87e8f68bd0fa09208078c1260d3ad91364b4db1",
+        "F": "43228d829034042719c0363fb09b3391927a4721252ee86a08a9a6738d9a0dcf"
+      }
+    },
+    "rakg_054": {
+      "label_to_candidate": {
+        "A": {
+          "generator": "mistral",
+          "system": "V_VANILLA"
+        },
+        "B": {
+          "generator": "llama3.1",
+          "system": "V_VANILLA"
+        },
+        "C": {
+          "generator": "mistral",
+          "system": "A_CURRENT"
+        },
+        "D": {
+          "generator": "qwen2.5",
+          "system": "V_VANILLA"
+        },
+        "E": {
+          "generator": "llama3.1",
+          "system": "A_CURRENT"
+        },
+        "F": {
+          "generator": "qwen2.5",
+          "system": "A_CURRENT"
+        }
+      },
+      "label_hashes": {
+        "A": "7e19a9617ba06e1ddb14d063e87e8f68bd0fa09208078c1260d3ad91364b4db1",
+        "B": "7e19a9617ba06e1ddb14d063e87e8f68bd0fa09208078c1260d3ad91364b4db1",
+        "C": "7e19a9617ba06e1ddb14d063e87e8f68bd0fa09208078c1260d3ad91364b4db1",
+        "D": "7e19a9617ba06e1ddb14d063e87e8f68bd0fa09208078c1260d3ad91364b4db1",
+        "E": "98fe4be886238f6a672625b4aba5347cfd03554594d627fb89fb65bcfa253dc6",
+        "F": "98fe4be886238f6a672625b4aba5347cfd03554594d627fb89fb65bcfa253dc6"
+      }
+    },
+    "rakg_055": {
+      "label_to_candidate": {
+        "A": {
+          "generator": "mistral",
+          "system": "V_VANILLA"
+        },
+        "B": {
+          "generator": "llama3.1",
+          "system": "V_VANILLA"
+        },
+        "C": {
+          "generator": "qwen2.5",
+          "system": "V_VANILLA"
+        },
+        "D": {
+          "generator": "qwen2.5",
+          "system": "A_CURRENT"
+        },
+        "E": {
+          "generator": "llama3.1",
+          "system": "A_CURRENT"
+        },
+        "F": {
+          "generator": "mistral",
+          "system": "A_CURRENT"
+        }
+      },
+      "label_hashes": {
+        "A": "406c3172bbd5cbc86b7e9b51203319f1e8c08b6e110b035f1bb679b102a39c2f",
+        "B": "7e19a9617ba06e1ddb14d063e87e8f68bd0fa09208078c1260d3ad91364b4db1",
+        "C": "94b8bc15d03a410f59217cf9b8efc4343b8426fa4035f93fbddec87c2e0fe61a",
+        "D": "92bfa3a6a9b863c877696a24493b488742cb44e074620cc4a5d7200c3dab8fcb",
+        "E": "89499f35d394afa3974344bd1e4abaf834ceb8b18fa3cd27e45e22da6c9f2896",
+        "F": "7a78e972d8fa0c0743ff315b4ca4abfe07eca8000a1646cb28c72d31ffdc3095"
+      }
+    },
+    "rakg_056": {
+      "label_to_candidate": {
+        "A": {
+          "generator": "qwen2.5",
+          "system": "V_VANILLA"
+        },
+        "B": {
+          "generator": "llama3.1",
+          "system": "V_VANILLA"
+        },
+        "C": {
+          "generator": "llama3.1",
+          "system": "A_CURRENT"
+        },
+        "D": {
+          "generator": "mistral",
+          "system": "A_CURRENT"
+        },
+        "E": {
+          "generator": "qwen2.5",
+          "system": "A_CURRENT"
+        },
+        "F": {
+          "generator": "mistral",
+          "system": "V_VANILLA"
+        }
+      },
+      "label_hashes": {
+        "A": "a221ffd977e057b7cfc26435409856e25c5eda979231b2771ad7115a0bffcd1a",
+        "B": "4b06dcc95582157d2084689102ce345e83862668e45bb146061b44ae25a19cd5",
+        "C": "254e7c8932c560149f62d664cf0d0b04fa4f546cd57e68c3980e7026f557340b",
+        "D": "9d14fe2d6bde14efb65eefad0bfd32e1205fc0c690bc755ba5abc4eeab26bcad",
+        "E": "849b4ea54ae3b5463c3e31c29c428ab0ee1263332ad78471d6c272b6211d86e8",
+        "F": "df58f19229ae3c5349d3539951b151d3f9765a15cd2c876bcca7cd955646d0b6"
+      }
+    },
+    "rakg_057": {
+      "label_to_candidate": {
+        "A": {
+          "generator": "mistral",
+          "system": "V_VANILLA"
+        },
+        "B": {
+          "generator": "mistral",
+          "system": "A_CURRENT"
+        },
+        "C": {
+          "generator": "llama3.1",
+          "system": "V_VANILLA"
+        },
+        "D": {
+          "generator": "qwen2.5",
+          "system": "A_CURRENT"
+        },
+        "E": {
+          "generator": "qwen2.5",
+          "system": "V_VANILLA"
+        },
+        "F": {
+          "generator": "llama3.1",
+          "system": "A_CURRENT"
+        }
+      },
+      "label_hashes": {
+        "A": "0bc435f76171ce1a666081f4c60d03850afd486b9ea65845285a4fc28a09ff34",
+        "B": "6912d3c43ffb0a7ee0f85ac049a521aa6ee0aba7537a508cc24894236f241fe0",
+        "C": "2065f0dcc6f5e567c1797c88cb94f1ebd13b62b74c5f7a61148d95579dd2a6d7",
+        "D": "45ec8eebfc840ea1cd3417276170af8969a4b0f6806e000d70772634dc0efa64",
+        "E": "7ad9da60ca30421ad363ca7b1717f9679b8af0eca262b4c9a9897f3721e431ff",
+        "F": "195dcbacea117725c7a022543f1cce377002d99327dcb4db10ec63cb23cbb4b5"
+      }
+    },
+    "rakg_058": {
+      "label_to_candidate": {
+        "A": {
+          "generator": "qwen2.5",
+          "system": "A_CURRENT"
+        },
+        "B": {
+          "generator": "llama3.1",
+          "system": "A_CURRENT"
+        },
+        "C": {
+          "generator": "mistral",
+          "system": "A_CURRENT"
+        },
+        "D": {
+          "generator": "qwen2.5",
+          "system": "V_VANILLA"
+        },
+        "E": {
+          "generator": "llama3.1",
+          "system": "V_VANILLA"
+        },
+        "F": {
+          "generator": "mistral",
+          "system": "V_VANILLA"
+        }
+      },
+      "label_hashes": {
+        "A": "8ceeceb11d01205491559d9713f0e64f3c3529fcf61d17eb888b3c5e8522deb3",
+        "B": "8ceeceb11d01205491559d9713f0e64f3c3529fcf61d17eb888b3c5e8522deb3",
+        "C": "f45f6c7e0a96730cf2eec2af25df55075db072f1c29bbf8bc283da48684bfd3d",
+        "D": "7e19a9617ba06e1ddb14d063e87e8f68bd0fa09208078c1260d3ad91364b4db1",
+        "E": "7e19a9617ba06e1ddb14d063e87e8f68bd0fa09208078c1260d3ad91364b4db1",
+        "F": "7e19a9617ba06e1ddb14d063e87e8f68bd0fa09208078c1260d3ad91364b4db1"
+      }
+    },
+    "rakg_059": {
+      "label_to_candidate": {
+        "A": {
+          "generator": "mistral",
+          "system": "V_VANILLA"
+        },
+        "B": {
+          "generator": "mistral",
+          "system": "A_CURRENT"
+        },
+        "C": {
+          "generator": "llama3.1",
+          "system": "A_CURRENT"
+        },
+        "D": {
+          "generator": "llama3.1",
+          "system": "V_VANILLA"
+        },
+        "E": {
+          "generator": "qwen2.5",
+          "system": "A_CURRENT"
+        },
+        "F": {
+          "generator": "qwen2.5",
+          "system": "V_VANILLA"
+        }
+      },
+      "label_hashes": {
+        "A": "1b2ff5f8288239c4615e740d5c3b9d5dae92be655868ffe117dc2a7e53a4caff",
+        "B": "9a330d3695a386f3c8f63b6811b7f0b0d7f13b43bcaf44dc82b5fede04b619a4",
+        "C": "35c7b613262c4fda7b9bfb9ba803fefafcc5c744a2e74fd91727934e2a213fad",
+        "D": "7e19a9617ba06e1ddb14d063e87e8f68bd0fa09208078c1260d3ad91364b4db1",
+        "E": "35c7b613262c4fda7b9bfb9ba803fefafcc5c744a2e74fd91727934e2a213fad",
+        "F": "7e19a9617ba06e1ddb14d063e87e8f68bd0fa09208078c1260d3ad91364b4db1"
+      }
+    },
+    "rakg_060": {
+      "label_to_candidate": {
+        "A": {
+          "generator": "qwen2.5",
+          "system": "A_CURRENT"
+        },
+        "B": {
+          "generator": "mistral",
+          "system": "V_VANILLA"
+        },
+        "C": {
+          "generator": "mistral",
+          "system": "A_CURRENT"
+        },
+        "D": {
+          "generator": "qwen2.5",
+          "system": "V_VANILLA"
+        },
+        "E": {
+          "generator": "llama3.1",
+          "system": "A_CURRENT"
+        },
+        "F": {
+          "generator": "llama3.1",
+          "system": "V_VANILLA"
+        }
+      },
+      "label_hashes": {
+        "A": "407dd2eed8e50ef3f62a8b3d37e4445f7deeec03b50eeaddde88dd8535c8232f",
+        "B": "7e19a9617ba06e1ddb14d063e87e8f68bd0fa09208078c1260d3ad91364b4db1",
+        "C": "189ee5ea381272bd1f80f91a603f885d65e186ad1e49f4feb0c0931e64d9b20c",
+        "D": "7e19a9617ba06e1ddb14d063e87e8f68bd0fa09208078c1260d3ad91364b4db1",
+        "E": "407dd2eed8e50ef3f62a8b3d37e4445f7deeec03b50eeaddde88dd8535c8232f",
+        "F": "7e19a9617ba06e1ddb14d063e87e8f68bd0fa09208078c1260d3ad91364b4db1"
+      }
+    },
+    "rakg_061": {
+      "label_to_candidate": {
+        "A": {
+          "generator": "mistral",
+          "system": "V_VANILLA"
+        },
+        "B": {
+          "generator": "qwen2.5",
+          "system": "A_CURRENT"
+        },
+        "C": {
+          "generator": "mistral",
+          "system": "A_CURRENT"
+        },
+        "D": {
+          "generator": "qwen2.5",
+          "system": "V_VANILLA"
+        },
+        "E": {
+          "generator": "llama3.1",
+          "system": "A_CURRENT"
+        },
+        "F": {
+          "generator": "llama3.1",
+          "system": "V_VANILLA"
+        }
+      },
+      "label_hashes": {
+        "A": "7e19a9617ba06e1ddb14d063e87e8f68bd0fa09208078c1260d3ad91364b4db1",
+        "B": "7e19a9617ba06e1ddb14d063e87e8f68bd0fa09208078c1260d3ad91364b4db1",
+        "C": "7e19a9617ba06e1ddb14d063e87e8f68bd0fa09208078c1260d3ad91364b4db1",
+        "D": "7e19a9617ba06e1ddb14d063e87e8f68bd0fa09208078c1260d3ad91364b4db1",
+        "E": "7e19a9617ba06e1ddb14d063e87e8f68bd0fa09208078c1260d3ad91364b4db1",
+        "F": "7e19a9617ba06e1ddb14d063e87e8f68bd0fa09208078c1260d3ad91364b4db1"
+      }
+    },
+    "rakg_062": {
+      "label_to_candidate": {
+        "A": {
+          "generator": "llama3.1",
+          "system": "V_VANILLA"
+        },
+        "B": {
+          "generator": "mistral",
+          "system": "A_CURRENT"
+        },
+        "C": {
+          "generator": "llama3.1",
+          "system": "A_CURRENT"
+        },
+        "D": {
+          "generator": "qwen2.5",
+          "system": "A_CURRENT"
+        },
+        "E": {
+          "generator": "mistral",
+          "system": "V_VANILLA"
+        },
+        "F": {
+          "generator": "qwen2.5",
+          "system": "V_VANILLA"
+        }
+      },
+      "label_hashes": {
+        "A": "c8c461fdeabc23fc65d0d696a4f457ad0e16241dd2b605f8017e501a0e64744b",
+        "B": "bc03b8d338f23c2fd510cc459b2cadba84a599ae1519e9695c1be255bf09e11d",
+        "C": "7e19a9617ba06e1ddb14d063e87e8f68bd0fa09208078c1260d3ad91364b4db1",
+        "D": "7e19a9617ba06e1ddb14d063e87e8f68bd0fa09208078c1260d3ad91364b4db1",
+        "E": "b0ca097804836a2cdf715d3c5cbf0db95dd1edcdc8d39a7f9993299d4f6bd650",
+        "F": "7a7b333fef9fd9d6a928e3fbee6ebb4c56b66e759af11f803e1f54715e801c0e"
+      }
+    },
+    "rakg_063": {
+      "label_to_candidate": {
+        "A": {
+          "generator": "mistral",
+          "system": "A_CURRENT"
+        },
+        "B": {
+          "generator": "mistral",
+          "system": "V_VANILLA"
+        },
+        "C": {
+          "generator": "llama3.1",
+          "system": "A_CURRENT"
+        },
+        "D": {
+          "generator": "qwen2.5",
+          "system": "V_VANILLA"
+        },
+        "E": {
+          "generator": "qwen2.5",
+          "system": "A_CURRENT"
+        },
+        "F": {
+          "generator": "llama3.1",
+          "system": "V_VANILLA"
+        }
+      },
+      "label_hashes": {
+        "A": "b71e791d654801bf108c22219cb1c75d9ac0508f311dcfbb6c697247482465f9",
+        "B": "bc25e797b7526f495ce39f1b74dc50a68e26cd4956450d6acfb89a00e7371ec6",
+        "C": "1af2bccbbd2c4f32937a45e4ea9ae8571b7b80e273ab8f86ed0305154bcd13d3",
+        "D": "abeb6bf335e6f67f9cc326bccd7956cd42e67b86cdd3026d4b2e5d24df0a7d09",
+        "E": "8e80a5ad3f8ec9cb94cc12eb23b6a3e103326053aa661e7cb1d9f89ed1dc1bd9",
+        "F": "64777273ec1352bccf209c764927f9800712684e90c5303cbe05f045cae62793"
+      }
+    },
+    "rakg_064": {
+      "label_to_candidate": {
+        "A": {
+          "generator": "mistral",
+          "system": "A_CURRENT"
+        },
+        "B": {
+          "generator": "llama3.1",
+          "system": "V_VANILLA"
+        },
+        "C": {
+          "generator": "llama3.1",
+          "system": "A_CURRENT"
+        },
+        "D": {
+          "generator": "mistral",
+          "system": "V_VANILLA"
+        },
+        "E": {
+          "generator": "qwen2.5",
+          "system": "V_VANILLA"
+        },
+        "F": {
+          "generator": "qwen2.5",
+          "system": "A_CURRENT"
+        }
+      },
+      "label_hashes": {
+        "A": "23429824fdaea3d25503d0b7ae4fff1418d4f5d9744b3ec6138b71a88d26d225",
+        "B": "1bf1629854fb4de091e8087d0c79b94ab25e13db4d1dec4fd9c9b7008d386936",
+        "C": "205f8a5f076a2100160afdb45b0e6c23fe72e01d7c36e5f04e72c5a34f8539df",
+        "D": "bca43cf7f683ed42162518585f4b338ede76bfd22ad02f433a95a4c4ea16a307",
+        "E": "d53f344b5a41606e2efe9431081f00eaf0ef916288050e99b84f40e68adfa228",
+        "F": "6ed327a1497edb521516170f1f37f9fd712da2a386b98e90273745f70e4b03cb"
+      }
+    },
+    "rakg_065": {
+      "label_to_candidate": {
+        "A": {
+          "generator": "llama3.1",
+          "system": "V_VANILLA"
+        },
+        "B": {
+          "generator": "qwen2.5",
+          "system": "A_CURRENT"
+        },
+        "C": {
+          "generator": "qwen2.5",
+          "system": "V_VANILLA"
+        },
+        "D": {
+          "generator": "mistral",
+          "system": "V_VANILLA"
+        },
+        "E": {
+          "generator": "mistral",
+          "system": "A_CURRENT"
+        },
+        "F": {
+          "generator": "llama3.1",
+          "system": "A_CURRENT"
+        }
+      },
+      "label_hashes": {
+        "A": "7e19a9617ba06e1ddb14d063e87e8f68bd0fa09208078c1260d3ad91364b4db1",
+        "B": "865ab5659fbbb56f83b0dd0bdb575a548c261452c02d21648968a9bde2e3bbdf",
+        "C": "d6162ce3bb4bddf17df5d63a0265155538236084867d3892017a04c3ea8667a2",
+        "D": "23e006f904311bfb65427ff0f91c27cdbd6943a29a090efc682f19d3b7ff9e11",
+        "E": "d3a04286aa2173b7d2529f98afb7b034a15a19675684918bb9c459b4a4d442dc",
+        "F": "865ab5659fbbb56f83b0dd0bdb575a548c261452c02d21648968a9bde2e3bbdf"
+      }
+    },
+    "rakg_066": {
+      "label_to_candidate": {
+        "A": {
+          "generator": "llama3.1",
+          "system": "A_CURRENT"
+        },
+        "B": {
+          "generator": "llama3.1",
+          "system": "V_VANILLA"
+        },
+        "C": {
+          "generator": "qwen2.5",
+          "system": "V_VANILLA"
+        },
+        "D": {
+          "generator": "mistral",
+          "system": "V_VANILLA"
+        },
+        "E": {
+          "generator": "qwen2.5",
+          "system": "A_CURRENT"
+        },
+        "F": {
+          "generator": "mistral",
+          "system": "A_CURRENT"
+        }
+      },
+      "label_hashes": {
+        "A": "e0361e383e0022dee9b07358e62ffe2bb43939b967117035db1ac937cc90331c",
+        "B": "40562ebd2c46ddd0f3ff9fc69c5015bb031503e91421eba65ee7c855abfeda67",
+        "C": "7e19a9617ba06e1ddb14d063e87e8f68bd0fa09208078c1260d3ad91364b4db1",
+        "D": "0ae7c284948c9a085c52f645cbd68bc2633fd8d3a706206772538916555554cc",
+        "E": "e0361e383e0022dee9b07358e62ffe2bb43939b967117035db1ac937cc90331c",
+        "F": "0074afce1a8f21af018b0ecdf9bd73212232fef8556e3c93298a11725c367194"
+      }
+    },
+    "rakg_067": {
+      "label_to_candidate": {
+        "A": {
+          "generator": "mistral",
+          "system": "A_CURRENT"
+        },
+        "B": {
+          "generator": "qwen2.5",
+          "system": "V_VANILLA"
+        },
+        "C": {
+          "generator": "llama3.1",
+          "system": "A_CURRENT"
+        },
+        "D": {
+          "generator": "mistral",
+          "system": "V_VANILLA"
+        },
+        "E": {
+          "generator": "llama3.1",
+          "system": "V_VANILLA"
+        },
+        "F": {
+          "generator": "qwen2.5",
+          "system": "A_CURRENT"
+        }
+      },
+      "label_hashes": {
+        "A": "6c45978406ee9e36bb880cd0cf6ed921066233a1d340a33eb085efb610de5c0f",
+        "B": "48e3c99e40d527d546c3daf9176d0176ddfff96cc2c33b22c4d05539768aa21c",
+        "C": "4b7f49e651992694e489cc40663ba035088fc978360c146fa7c5e4a7062bef2d",
+        "D": "9a788a4951045f1c8a02ce2503f44e5cf5daf1fa615829e2e233b550536f14b3",
+        "E": "48e3c99e40d527d546c3daf9176d0176ddfff96cc2c33b22c4d05539768aa21c",
+        "F": "a07e4877b40f43b3556b039a5bd5d9cfc79797f1e5d64f971c93ec78f83d7ddb"
+      }
+    },
+    "rakg_068": {
+      "label_to_candidate": {
+        "A": {
+          "generator": "mistral",
+          "system": "V_VANILLA"
+        },
+        "B": {
+          "generator": "llama3.1",
+          "system": "V_VANILLA"
+        },
+        "C": {
+          "generator": "mistral",
+          "system": "A_CURRENT"
+        },
+        "D": {
+          "generator": "llama3.1",
+          "system": "A_CURRENT"
+        },
+        "E": {
+          "generator": "qwen2.5",
+          "system": "A_CURRENT"
+        },
+        "F": {
+          "generator": "qwen2.5",
+          "system": "V_VANILLA"
+        }
+      },
+      "label_hashes": {
+        "A": "d94ed3a99998f66220a7c365250e47b771cdc89100a4716e7919683066a82c3a",
+        "B": "7e19a9617ba06e1ddb14d063e87e8f68bd0fa09208078c1260d3ad91364b4db1",
+        "C": "6d6aa08833282307d2eb8678fbcb1e367aae8c764001cd46637f26a904fc2579",
+        "D": "6876c78e27fdccf386123364292a7c3b5522052cf6a964fef7980ebc1421380e",
+        "E": "6876c78e27fdccf386123364292a7c3b5522052cf6a964fef7980ebc1421380e",
+        "F": "7e19a9617ba06e1ddb14d063e87e8f68bd0fa09208078c1260d3ad91364b4db1"
+      }
+    },
+    "rakg_069": {
+      "label_to_candidate": {
+        "A": {
+          "generator": "mistral",
+          "system": "A_CURRENT"
+        },
+        "B": {
+          "generator": "llama3.1",
+          "system": "A_CURRENT"
+        },
+        "C": {
+          "generator": "qwen2.5",
+          "system": "V_VANILLA"
+        },
+        "D": {
+          "generator": "llama3.1",
+          "system": "V_VANILLA"
+        },
+        "E": {
+          "generator": "qwen2.5",
+          "system": "A_CURRENT"
+        },
+        "F": {
+          "generator": "mistral",
+          "system": "V_VANILLA"
+        }
+      },
+      "label_hashes": {
+        "A": "dd98f44f4af2707507eab7a112b8c597fe36d1f10550ced3e0011b380f1a6c94",
+        "B": "bf75c0f492f16c68ca530564058e6aeb4a3776ae15e30df48a17cb47a17c205b",
+        "C": "7e19a9617ba06e1ddb14d063e87e8f68bd0fa09208078c1260d3ad91364b4db1",
+        "D": "7e19a9617ba06e1ddb14d063e87e8f68bd0fa09208078c1260d3ad91364b4db1",
+        "E": "d24c83c9f297e791ffec1dd8903c6b490a6b5c7fa240c90f04dfad94d8fbbba6",
+        "F": "7541f055635d0d037f0b8b5b7926bc98390f3296607e2277192d503e3e4d60a8"
+      }
+    },
+    "rakg_070": {
+      "label_to_candidate": {
+        "A": {
+          "generator": "qwen2.5",
+          "system": "V_VANILLA"
+        },
+        "B": {
+          "generator": "llama3.1",
+          "system": "A_CURRENT"
+        },
+        "C": {
+          "generator": "qwen2.5",
+          "system": "A_CURRENT"
+        },
+        "D": {
+          "generator": "llama3.1",
+          "system": "V_VANILLA"
+        },
+        "E": {
+          "generator": "mistral",
+          "system": "V_VANILLA"
+        },
+        "F": {
+          "generator": "mistral",
+          "system": "A_CURRENT"
+        }
+      },
+      "label_hashes": {
+        "A": "abeb6bf335e6f67f9cc326bccd7956cd42e67b86cdd3026d4b2e5d24df0a7d09",
+        "B": "1af2bccbbd2c4f32937a45e4ea9ae8571b7b80e273ab8f86ed0305154bcd13d3",
+        "C": "8e80a5ad3f8ec9cb94cc12eb23b6a3e103326053aa661e7cb1d9f89ed1dc1bd9",
+        "D": "64777273ec1352bccf209c764927f9800712684e90c5303cbe05f045cae62793",
+        "E": "bc25e797b7526f495ce39f1b74dc50a68e26cd4956450d6acfb89a00e7371ec6",
+        "F": "b71e791d654801bf108c22219cb1c75d9ac0508f311dcfbb6c697247482465f9"
+      }
+    },
+    "rakg_071": {
+      "label_to_candidate": {
+        "A": {
+          "generator": "llama3.1",
+          "system": "V_VANILLA"
+        },
+        "B": {
+          "generator": "qwen2.5",
+          "system": "V_VANILLA"
+        },
+        "C": {
+          "generator": "qwen2.5",
+          "system": "A_CURRENT"
+        },
+        "D": {
+          "generator": "mistral",
+          "system": "A_CURRENT"
+        },
+        "E": {
+          "generator": "llama3.1",
+          "system": "A_CURRENT"
+        },
+        "F": {
+          "generator": "mistral",
+          "system": "V_VANILLA"
+        }
+      },
+      "label_hashes": {
+        "A": "7e19a9617ba06e1ddb14d063e87e8f68bd0fa09208078c1260d3ad91364b4db1",
+        "B": "7e19a9617ba06e1ddb14d063e87e8f68bd0fa09208078c1260d3ad91364b4db1",
+        "C": "a30646a804075f670f857f838979c74de7ad84ef589ce0898a4c5d3f6c072cb5",
+        "D": "fc10044d1ef8aa8f8db80ee6e1a31111f6d0562de5b669e343476363eaa33bb5",
+        "E": "a30646a804075f670f857f838979c74de7ad84ef589ce0898a4c5d3f6c072cb5",
+        "F": "7e19a9617ba06e1ddb14d063e87e8f68bd0fa09208078c1260d3ad91364b4db1"
+      }
+    },
+    "rakg_072": {
+      "label_to_candidate": {
+        "A": {
+          "generator": "qwen2.5",
+          "system": "A_CURRENT"
+        },
+        "B": {
+          "generator": "mistral",
+          "system": "V_VANILLA"
+        },
+        "C": {
+          "generator": "qwen2.5",
+          "system": "V_VANILLA"
+        },
+        "D": {
+          "generator": "llama3.1",
+          "system": "V_VANILLA"
+        },
+        "E": {
+          "generator": "mistral",
+          "system": "A_CURRENT"
+        },
+        "F": {
+          "generator": "llama3.1",
+          "system": "A_CURRENT"
+        }
+      },
+      "label_hashes": {
+        "A": "af8d048ed56879119fd68e7153a0fbef03a3c804d6d8773ab82c77821f74edd2",
+        "B": "471ad234653bd9ab0d361e11159e694f38ac7dda6110cf9e75df013a39b5b24a",
+        "C": "7e19a9617ba06e1ddb14d063e87e8f68bd0fa09208078c1260d3ad91364b4db1",
+        "D": "7e19a9617ba06e1ddb14d063e87e8f68bd0fa09208078c1260d3ad91364b4db1",
+        "E": "12240ee232df31df4d950bd3dfc5e09226d66f55b2d868351b4b70245e5b3d97",
+        "F": "01715a89285d8da48725154e0eac3fcfb9c128ce650dfea4b4e76007a0906ed8"
+      }
+    }
+  }
+}
