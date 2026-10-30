@@ -44,7 +44,7 @@ def _rows(path: Path):
         yield from load_workbook(path, data_only=True)["Scoring"].iter_rows(min_row=2, values_only=True)
 
 
-def read_workbook(path: Path) -> dict[tuple[str, str], dict]:
+def read_workbook(path: Path, labels: tuple[str, ...] = LABELS) -> dict[tuple[str, str], dict]:
     entries: dict[tuple[str, str], dict] = {}
     question_id = None
     for row in _rows(path):
@@ -52,7 +52,7 @@ def read_workbook(path: Path) -> dict[tuple[str, str], dict]:
         if row[1]:
             question_id = str(row[1])
         label = row[5]
-        if label not in LABELS:
+        if label not in labels:
             continue
         scores = {}
         for offset, name in enumerate(SCORES):
@@ -66,20 +66,20 @@ def read_workbook(path: Path) -> dict[tuple[str, str], dict]:
     return entries
 
 
-def main(workbook: Path, force: bool, output: Path | None = None) -> None:
+def main(workbook: Path, force: bool, output: Path | None = None, blank: Path = BLANK, labels: tuple[str, ...] = LABELS) -> None:
     output = output or FILLED
     if output.exists() and not force:
         raise FileExistsError(f"{output} already exists; pass --force to replace it")
-    with BLANK.open(encoding="utf8", newline="") as handle:
+    with blank.open(encoding="utf8", newline="") as handle:
         reader = csv.DictReader(handle)
         fields, rows = reader.fieldnames, list(reader)
-    entries = read_workbook(workbook)
-    expected = {(r["question_id"], label) for r in rows for label in LABELS}
+    entries = read_workbook(workbook, labels)
+    expected = {(r["question_id"], label) for r in rows for label in labels}
     if set(entries) != expected:
         raise ValueError(f"Workbook answers do not match the package: missing {sorted(expected - set(entries))}")
     notes = []
     for row in rows:
-        for label in LABELS:
+        for label in labels:
             entry = entries[(row["question_id"], label)]
             if norm(entry["answer"]) != norm(row[f"candidate_{label}"]):
                 raise ValueError(f"{row['question_id']} answer {label}: text differs from the package")

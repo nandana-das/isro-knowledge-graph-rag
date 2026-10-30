@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import os
 import re
 import time
 import warnings
@@ -12,7 +13,7 @@ from src.generator.prompt import SYSTEM_PROMPT, build_user_prompt
 from src.generator.token_budget import EVIDENCE, fit_evidence, with_context_window
 
 OLLAMA_URL = "http://127.0.0.1:11434/api/generate"
-MODEL_NAME = "mistral:7b-instruct-q4_K_M"
+MODEL_NAME = os.environ.get("KG_RAG_MODEL", "mistral:7b-instruct-q4_K_M")
 OLLAMA_TIMEOUT = (5, 180)
 UNKNOWN = "I don't know."
 FILLER_MARKERS = (

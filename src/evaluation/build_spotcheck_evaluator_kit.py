@@ -107,14 +107,14 @@ def lines_needed(text: str, width_chars: float) -> int:
     return sum(max(1, ceil(len(part) / per_line)) for part in (text or "").split("\n"))
 
 
-def build_instructions(ws) -> None:
+def build_instructions(ws, sections=SECTIONS) -> None:
     ws.title = "Instructions"
     ws.sheet_view.showGridLines = False
     ws.column_dimensions["A"].width = 120
     row = 1
     ws.cell(row, 1, TITLE).font = Font(name=ARIAL, size=16, bold=True, color="1F3864")
     row += 2
-    for heading, paragraphs in SECTIONS:
+    for heading, paragraphs in sections:
         ws.cell(row, 1, heading).font = Font(name=ARIAL, size=12, bold=True, color="1F3864")
         row += 1
         for text in paragraphs:
@@ -148,7 +148,7 @@ def build_instructions(ws) -> None:
     ws.row_dimensions[row].height = 14 * lines_needed(example, 120)
 
 
-def build_scoring(ws, blank: list[dict]) -> None:
+def build_scoring(ws, blank: list[dict], labels: tuple[str, ...] = LABELS) -> None:
     ws.title = "Scoring"
     headers = ["#", "Question ID", "Question", "Reference / acceptable answers", "Evidence pack",
                "Answer", "Candidate answer", "Correctness (1-5)", "Completeness (1-5)",
@@ -177,12 +177,12 @@ def build_scoring(ws, blank: list[dict]) -> None:
         reference = f"Reference: {item['reference_answer']}\n\nAcceptable: {item['acceptable_answers']}"
         shared = {1: number, 2: item["question_id"], 3: item["question"], 4: reference, 5: item["evidence_pack"]}
         for col, value in shared.items():
-            ws.merge_cells(start_row=row, start_column=col, end_row=row + 2, end_column=col)
+            ws.merge_cells(start_row=row, start_column=col, end_row=row + len(labels) - 1, end_column=col)
             cell = ws.cell(row, col, value)
             cell.font = Font(name=ARIAL, size=9 if col == 5 else 10, bold=col == 3)
             cell.alignment = Alignment(wrap_text=True, vertical="top")
         evidence_lines = max(lines_needed(item["evidence_pack"], widths[4]), lines_needed(reference, widths[3]))
-        for offset, label in enumerate(LABELS):
+        for offset, label in enumerate(labels):
             r = row + offset
             answer = item[f"candidate_{label}"]
             ws.cell(r, 6, label).alignment = Alignment(horizontal="center", vertical="top")
@@ -201,9 +201,9 @@ def build_scoring(ws, blank: list[dict]) -> None:
                 ws.cell(r, col).border = BOX
                 if col < 8:
                     ws.cell(r, col).fill = band
-            needed = max(lines_needed(answer, widths[6]), ceil(evidence_lines / 3), 3)
+            needed = max(lines_needed(answer, widths[6]), ceil(evidence_lines / len(labels)), 3)
             ws.row_dimensions[r].height = min(409, 13 * needed)
-        row += 3
+        row += len(labels)
     last = row - 1
     scale.add(f"H2:K{last}")
     flag.add(f"L2:L{last}")
@@ -214,7 +214,8 @@ def build_scoring(ws, blank: list[dict]) -> None:
     ws.protection.formatRows = False
 
 
-def build_pdf() -> None:
+def build_pdf(path: Path | None = None, sections=SECTIONS) -> None:
+    path = path or PDF
     from reportlab.lib import colors
     from reportlab.lib.pagesizes import A4
     from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
@@ -233,7 +234,7 @@ def build_pdf() -> None:
         return text.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
 
     story = [Paragraph(TITLE, title), Spacer(1, 6)]
-    for name, paragraphs in SECTIONS:
+    for name, paragraphs in sections:
         story.append(Paragraph(name, heading))
         for text in paragraphs:
             if text.startswith("- "):
@@ -264,7 +265,7 @@ def build_pdf() -> None:
         ("ALIGN", (0, 0), (0, -1), "CENTER"),
     ]))
     story += [table, Spacer(1, 6), Paragraph("Unsupported claim: 0 = none, 1 = at least one material claim the evidence pack does not support.", body)]
-    SimpleDocTemplate(str(PDF), pagesize=A4, leftMargin=2 * cm, rightMargin=2 * cm, topMargin=1.8 * cm,
+    SimpleDocTemplate(str(path), pagesize=A4, leftMargin=2 * cm, rightMargin=2 * cm, topMargin=1.8 * cm,
                       bottomMargin=1.8 * cm, title=TITLE).build(story)
 
 

@@ -6,9 +6,11 @@ part that disappears. Every prompt must therefore be fitted to the window
 before it is sent, counting real model tokens rather than whitespace words.
 
 Token counts use the tokenizer extracted from the model's own GGUF file
-(``src/generator/extract_tokenizer.py``) and the Ollama template
-``[INST] {system} {prompt} [/INST]``. Counts match Ollama's
-``prompt_eval_count`` exactly.
+(``src/generator/extract_tokenizer.py``) and the model's Ollama prompt
+template (``TEMPLATES``; Mistral by default). Counts match Ollama's
+``prompt_eval_count`` exactly. Other generators are selected with the
+``KG_RAG_MODEL``, ``KG_RAG_TOKENIZER`` and ``KG_RAG_TEMPLATE`` environment
+variables.
 """
 
 from __future__ import annotations
@@ -30,8 +32,24 @@ TOKENIZER_PATH = Path(
 DEFAULT_NUM_CTX = 2048
 DEFAULT_RESPONSE_RESERVE = 256
 SAFETY_MARGIN = 8
-# Ollama counts BOS plus one extra token beyond the encoded template.
-TEMPLATE_OVERHEAD = 2
+# Ollama prompt templates per model family, with the number of tokens Ollama
+# counts beyond the encoded template (BOS and similar). Overheads for llama3 and
+# qwen2 are calibrated against prompt_eval_count by src.generator.calibrate_template.
+TEMPLATES = {
+    "mistral": ("[INST] {system} {user} [/INST]", 2),
+    "llama3": (
+        "<|start_header_id|>system<|end_header_id|>\n\n{system}<|eot_id|>"
+        "<|start_header_id|>user<|end_header_id|>\n\n{user}<|eot_id|>"
+        "<|start_header_id|>assistant<|end_header_id|>\n\n",
+        1,
+    ),
+    "qwen2": (
+        "<|im_start|>system\n{system}<|im_end|>\n<|im_start|>user\n{user}<|im_end|>\n<|im_start|>assistant\n",
+        0,
+    ),
+}
+TEMPLATE_NAME = os.environ.get("KG_RAG_TEMPLATE", "mistral")
+PROMPT_TEMPLATE, TEMPLATE_OVERHEAD = TEMPLATES[TEMPLATE_NAME]
 EVIDENCE = "\x00EVIDENCE\x00"
 # Worst observed ratio on this corpus is ~2.1 characters per token.
 FALLBACK_CHARS_PER_TOKEN = 2.0
@@ -69,7 +87,7 @@ def count_tokens(text: str) -> int:
 
 def prompt_tokens(system: str, user: str) -> int:
     """Tokens Ollama will evaluate for this system and user prompt."""
-    return TEMPLATE_OVERHEAD + count_tokens(f"[INST] {system} {user} [/INST]")
+    return TEMPLATE_OVERHEAD + count_tokens(PROMPT_TEMPLATE.format(system=system, user=user))
 
 
 def window_limit(options: dict[str, Any] | None) -> int:
