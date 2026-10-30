@@ -99,6 +99,54 @@ Authoritative files: [`data/corpus/chunks.jsonl`](data/corpus/chunks.jsonl), [`d
 
 ---
 
+## System Architecture
+
+System A (relation-aware KG-RAG), as served by the API and evaluated in the corrected rerun:
+
+```mermaid
+flowchart TD
+    subgraph offline["Offline: corpus and KG build (src/corpus)"]
+        S["33 official ISRO / ISSDC pages and PDFs<br/>document_registry.json"] --> X["Extract, clean,<br/>section/page-aware chunking"]
+        X --> CH["chunks.jsonl<br/>1,006 chunks"]
+        CH --> FA["Manually reviewed fact annotations"]
+        FA --> KG["Knowledge graph<br/>123 entities, 134 triples<br/>each with document, URL, chunk, excerpt"]
+        CH --> IDX["FAISS index<br/>all-MiniLM-L6-v2"]
+        CH --> BM["BM25 index"]
+    end
+
+    subgraph online["Online: answering a question (src/api/pipeline.py)"]
+        Q["Question"] --> QA["Query analysis<br/>entity aliases + relation keywords<br/>FACTUAL / RELATIONAL / MULTI_HOP, 1–2 hops"]
+        Q --> D["Dense retrieval, top 3"]
+        Q --> L["BM25 retrieval, top 3"]
+        QA --> P["Relation-constrained path search<br/>over the KG"]
+        D -- chunk scores --> R
+        L -- chunk scores --> R
+        P --> R["Path ranking<br/>0.30 relation + 0.20 entity + 0.20 dense<br/>+ 0.15 lexical + 0.15 provenance"]
+        R --> F["KG-first evidence fusion<br/>paths + source text, then dense passages"]
+        D -- passages --> F
+        F --> B["Exact token budget<br/>GGUF tokenizer, fits num_ctx 2048"]
+        B --> G["mistral:7b-instruct-q4_K_M via Ollama<br/>temperature 0.1, seed fixed"]
+        G --> A["Answer or #quot;I don#39;t know#quot;<br/>+ KG paths + official sources"]
+    end
+
+    KG --> P
+    IDX --> D
+    BM --> L
+```
+
+The baselines differ only at the retrieval step:
+
+- **Vanilla:** dense passages only, with no KG.
+- **System C:** System A's evidence, plus a plan-then-answer generation step.
+
+**Serving:**
+
+- the ASTRA web app (`kgrag-web`, on Vercel) calls the FastAPI service (`src/api`);
+- the API runs System A on a laptop with Ollama and is exposed through a Tailscale Funnel;
+- when the API is offline, the site serves recorded System A answers for the example questions.
+
+---
+
 ## Application Interface: ASTRA (React + FastAPI)
 
 The primary supported product interface is **ASTRA** (`kgrag-web`), backed by the FastAPI service (`src/api`):
@@ -164,7 +212,7 @@ Automated testing is configured via GitHub Actions in [`.github/workflows/ci.yml
 
 ## Manuscript Versioning Policy
 
-Per repository policy, the academic manuscript directory `paper/` and zip bundles (`*_updated.zip`) are explicitly excluded from Git tracking in `.gitignore`:
+Per repository policy, the academic manuscript directory `paper/` and zip bundles (`paper.zip`, `*_updated.zip`) are explicitly excluded from Git tracking in `.gitignore`:
 - **Policy Rationale:** Academic manuscripts undergo active drafting, peer review, and journal/conference formatting. Keeping the manuscript local prevents premature dissemination of unreviewed drafts or camera-ready conflicts while peer review is underway.
 - **Audit Consistency:** All benchmark figures, rater scores, and statistical tests reported in any submitted manuscript correspond directly to the immutable Git commit hashes and artifacts recorded in this repository.
 
