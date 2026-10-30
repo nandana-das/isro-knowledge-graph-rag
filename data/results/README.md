@@ -17,6 +17,7 @@ Protocol: [`reports/preregistration_corrected_rerun.md`](../../reports/preregist
 | `analysis.json`, `analysis.md` | Primary analysis of the rater-1 scores (AI-drafted, human-reviewed) | `src.evaluation.analyze_corrected_rerun` |
 | `spotcheck_selection.json` | The 20 randomly sampled spot-check questions | `src.evaluation.build_corrected_rerun_spotcheck` |
 | `spotcheck_analysis.json` | Pre-registered independent spot-check, Checker 1 | `src.evaluation.analyze_corrected_rerun_spotcheck` |
+| `exploratory_analysis.json` | Post hoc, descriptive analyses (preregistration §19). Breakdowns by category and mission, evidence availability, outcome types, estimated truncation in the earlier run, cost, and pairwise agreement | `src.evaluation.analyze_corrected_rerun_exploratory` |
 | `spotcheck2_analysis.json`, `spotcheck3_analysis.json` | Exploratory spot-checks, Checkers 2 and 3 (added post hoc, preregistration §17–§18) | `src.evaluation.analyze_corrected_rerun_spotcheck` |
 
 Main findings:
