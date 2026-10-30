@@ -134,7 +134,7 @@ flowchart TD
     BM --> L
 ```
 
-The baselines differ only at the retrieval step:
+The other two systems in the rerun use the same corpus, model and settings:
 
 - **Vanilla:** dense passages only, with no KG.
 - **System C:** System A's evidence, plus a plan-then-answer generation step.
