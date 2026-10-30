@@ -5,7 +5,6 @@ from __future__ import annotations
 import csv
 import hashlib
 import json
-import pickle
 import subprocess
 from collections import Counter
 from pathlib import Path

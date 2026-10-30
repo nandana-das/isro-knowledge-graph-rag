@@ -26,7 +26,6 @@ import subprocess
 import sys
 import time
 import urllib.request
-from collections import defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
 from statistics import mean, stdev
@@ -40,7 +39,7 @@ if str(ROOT) not in sys.path:
 from src.baselines.bm25_llm import retrieve_context as bm25_retrieve, _load_bm25
 from src.baselines.graphrag import retrieve_context as graphrag_retrieve
 from src.baselines.vanilla_rag import retrieve_context as vanilla_retrieve, _load_index
-from src.evaluation.analysis_utils import TEST_IDS_PATH, load_frozen_rows, load_json
+from src.evaluation.analysis_utils import load_frozen_rows, load_json
 from src.generator.ollama_api import generate_with_metrics
 from src.retriever.hybrid import retrieve as hybrid_retrieve
 from src.retriever.kg_retriever import _load_graph

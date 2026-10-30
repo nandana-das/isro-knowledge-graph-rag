@@ -7,7 +7,6 @@ import re
 from dataclasses import asdict, dataclass
 from pathlib import Path
 
-from src.kg_builder.relations import normalize_entity
 
 ROOT = Path(__file__).resolve().parents[2]
 TRIPLES_PATH = ROOT / "data" / "corpus" / "triples.jsonl"

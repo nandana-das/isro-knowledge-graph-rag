@@ -1,6 +1,5 @@
 """Generate publication figure for Corpus Distraction / Expansion Analysis."""
 
-import json
 from pathlib import Path
 import matplotlib
 matplotlib.use("Agg")

@@ -6,9 +6,7 @@ import csv
 import hashlib
 import json
 import re
-from collections import defaultdict
 from pathlib import Path
-from statistics import mean, median
 
 ROOT = Path(__file__).resolve().parents[2]
 RESULTS = ROOT / "data" / "results" / "relation_aware"

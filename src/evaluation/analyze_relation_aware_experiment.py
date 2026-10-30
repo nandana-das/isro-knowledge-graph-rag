@@ -7,8 +7,6 @@ import hashlib
 import json
 import math
 import random
-import subprocess
-from collections import defaultdict
 from pathlib import Path
 from statistics import mean, median
 

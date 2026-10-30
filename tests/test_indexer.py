@@ -1,5 +1,4 @@
 import json
-from pathlib import Path
 
 from src.indexer.encode import encode_chunks
 from src.indexer.build_index import build_faiss_index

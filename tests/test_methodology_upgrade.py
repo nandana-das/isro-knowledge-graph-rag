@@ -5,9 +5,7 @@
 - Dense + KG evidence fusion and context budget
 """
 
-import json
 from pathlib import Path
-import pytest
 
 from src.kg_builder.relations import (
     ProvenanceTriple,

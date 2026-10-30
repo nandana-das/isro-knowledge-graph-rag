@@ -2,13 +2,10 @@
 
 from __future__ import annotations
 
-import json
 from dataclasses import asdict, dataclass, field
-from pathlib import Path
 from typing import Any
 
 from src.generator.ollama_api import generate_with_metrics
-from src.generator.prompt import build_user_prompt
 from src.retriever.evidence_fusion import FusedContext, fuse_evidence
 
 GROUNDED_SYSTEM_PROMPT = (

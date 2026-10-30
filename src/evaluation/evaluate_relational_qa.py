@@ -13,7 +13,6 @@ from collections import Counter
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
 from pathlib import Path
-from statistics import mean, median, stdev
 from typing import Any
 
 import numpy as np

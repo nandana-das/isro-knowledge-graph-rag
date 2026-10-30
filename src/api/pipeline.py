@@ -25,7 +25,7 @@ from src.config.runtime import (
     DEFAULT_GENERATION_OPTIONS as OPTIONS,
 )
 from src.generator.kg_grounded_generator import _evidence_budget
-from src.generator.ollama_api import MODEL_NAME, OLLAMA_URL, UNKNOWN
+from src.generator.ollama_api import OLLAMA_URL, UNKNOWN
 from src.generator.prompt import SYSTEM_PROMPT
 from src.generator.token_budget import EVIDENCE, trim_to_tokens
 from src.retriever.relation_aware import RelationAwareKG, RelationEvidence, fuse_relation_evidence

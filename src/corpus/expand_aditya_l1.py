@@ -12,7 +12,6 @@ import argparse
 import csv
 import json
 import re
-import sys
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.request import Request, urlopen

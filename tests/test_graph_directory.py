@@ -1,4 +1,3 @@
-from pathlib import Path
 
 from src.kg_builder.build_kg import build_graph_from_directory
 

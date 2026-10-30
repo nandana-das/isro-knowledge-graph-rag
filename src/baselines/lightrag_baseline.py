@@ -32,7 +32,7 @@ if str(ROOT) not in sys.path:
 
 from src.generator.ollama_api import generate, generate_with_metrics
 from src.retriever.embedding_model import get_embedding_model
-from src.retriever.kg_retriever import _load_graph, get_kg_context
+from src.retriever.kg_retriever import get_kg_context
 from src.retriever.hybrid import _extract_entities
 
 KG_PATH = ROOT / "data" / "kg" / "knowledge_graph.json"

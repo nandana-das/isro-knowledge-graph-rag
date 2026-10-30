@@ -7,7 +7,6 @@ import logging
 import pickle
 import re
 from pathlib import Path
-from typing import Iterable
 
 import networkx as nx
 import spacy

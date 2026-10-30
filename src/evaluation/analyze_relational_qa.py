@@ -6,7 +6,7 @@ import argparse
 import json
 import math
 import random
-from collections import Counter, defaultdict
+from collections import defaultdict
 from pathlib import Path
 from statistics import mean, median, stdev
 from typing import Any

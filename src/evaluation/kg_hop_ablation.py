@@ -15,13 +15,11 @@ Performs paired statistical testing across variants.
 
 from __future__ import annotations
 
-import argparse
 import json
 import math
 import os
 import sys
 import time
-from collections import defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
 from statistics import mean, stdev
