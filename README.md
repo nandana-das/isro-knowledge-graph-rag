@@ -65,19 +65,18 @@ As a result, earlier benchmarks (180-question test set, Aditya-L1, Relational v1
 
 ---
 
-## Experimental History & Audit Trail
+## Earlier Experiments
 
-All historical experimental outputs are permanently retained in [`data/results/`](data/results/README.md) as an immutable audit trail:
+Every experiment before the corrected rerun ran under the truncation bug, so none of them is valid evidence. They were:
 
-| Stage | Benchmark | Result Summary | Status / Notes |
-|---|---|---|---|
-| **Canonical Benchmark** | 180 test questions | No KG gain (ROUGE-L: BM25 .292, Vanilla .278, KG-RAG .274) | Under truncation. Audit revealed 0 of 180 questions strictly required KG. |
-| **Aditya-L1 Targeted** | 36 researcher questions | KG-RAG +.094 ROUGE-L (p = .005) | Under truncation. Selection-biased, not independent. |
-| **Relational QA v1** | 62 questions (26 KG-required) | No significant KG advantage | Under truncation. Traced to evaluation/KG mismatch. |
-| **Phase 7 Structured KG** | 26 KG-required, human-rated | Descriptive gains; not statistically significant | Under truncation. |
-| **Relation-Aware Retrieval** | 72 questions × 7 systems | All 60 KG paths recovered; human eval NOT SUPPORTED | Under truncation. |
-| **Two-Stage Generation** | 60 KG-required, 13 held out | Lexical gains; held-out human eval NOT SUPPORTED | Under truncation. |
-| **Corrected Rerun** | **72 questions × 3 systems** | **KG systems beat Vanilla; spot-check failed reliability threshold** | **Authoritative rerun; see Current Status above.** |
+- the 180-question benchmark;
+- the Aditya-L1 benchmark;
+- Relational QA v1;
+- the Phase 7 structured-KG evaluation;
+- the 7-system relation-aware study;
+- the first two-stage generation run.
+
+Their code and outputs were removed from the main branch. They stay available, unchanged, in the git tag [`archive/full-research-history`](https://github.com/nandana-das/isro-knowledge-graph-rag/tree/archive/full-research-history). The rerun reuses only one thing from them: the frozen retrieved contexts of the relation-aware study (see [`data/results/README.md`](data/results/README.md)).
 
 ### Frozen Benchmark Limitations (v2)
 The Relation-Aware Benchmark v2 is frozen for reproducibility and carries documented limitations:
@@ -92,8 +91,11 @@ The Relation-Aware Benchmark v2 is frozen for reproducibility and carries docume
 
 - **Corpus:** 33 Tier-1 official sources (24 ISRO, 9 ISSDC); 1,006 chunks; ~65.6k words.
 - **Knowledge Graph:** 123 entities, 134 provenance-linked triples. Every triple carries its source document, chunk ID, official URL, and exact text excerpt.
-- **Relations:** `HAS_PAYLOAD`, `HAS_OBJECTIVE`, `OBSERVES`, `STUDIES`, `DEVELOPED_BY`, `LAUNCHED_BY`, `LAUNCHED_FROM`, `LAUNCHED_ON`.
+- **Relations (12 types):**
+  - main: `HAS_PAYLOAD`, `HAS_OBJECTIVE`, `DEVELOPED_BY`, `OBSERVES`, `ORBITS`, `LAUNCHED_ON`, `LAUNCHED_BY`, `LAUNCHED_FROM`, `STUDIES`;
+  - one triple each: `PRECEDED_BY`, `LED_BY`, `OPERATED_BY`.
 - **Missions Covered:** Aditya-L1, AstroSat, Chandrayaan-1, Chandrayaan-2, Chandrayaan-3, Gaganyaan, Mars Orbiter Mission.
+- **Text retrieval store (separate from the KG corpus):** dense and BM25 retrieval, for all three systems, search an earlier automated crawl of isro.gov.in (791 documents, 27,545 chunks, not manually curated, local only). See [`data/README.md`](data/README.md).
 
 Authoritative files: [`data/corpus/chunks.jsonl`](data/corpus/chunks.jsonl), [`data/corpus/triples.jsonl`](data/corpus/triples.jsonl), [`data/corpus/entities.jsonl`](data/corpus/entities.jsonl). For reproduction instructions, see [`data/corpus/README.md`](data/corpus/README.md) and [`data/README.md`](data/README.md).
 
@@ -105,13 +107,14 @@ System A (relation-aware KG-RAG), as served by the API and evaluated in the corr
 
 ```mermaid
 flowchart TD
-    subgraph offline["Offline: corpus and KG build (src/corpus)"]
+    subgraph offline["Offline: KG and retrieval-index build"]
         S["33 official ISRO / ISSDC pages and PDFs<br/>document_registry.json"] --> X["Extract, clean,<br/>section/page-aware chunking"]
-        X --> CH["chunks.jsonl<br/>1,006 chunks"]
+        X --> CH["Audited corpus<br/>data/corpus/chunks.jsonl, 1,006 chunks"]
         CH --> FA["Manually reviewed fact annotations"]
         FA --> KG["Knowledge graph<br/>123 entities, 134 triples<br/>each with document, URL, chunk, excerpt"]
-        CH --> IDX["FAISS index<br/>all-MiniLM-L6-v2"]
-        CH --> BM["BM25 index"]
+        PC["Pilot web crawl of isro.gov.in<br/>791 documents, not curated"] --> PCH["data/chunks/chunks.json<br/>27,545 chunks (local, not in git)"]
+        PCH --> IDX["FAISS index<br/>all-MiniLM-L6-v2"]
+        PCH --> BM["BM25 index"]
     end
 
     subgraph online["Online: answering a question (src/api/pipeline.py)"]
@@ -224,22 +227,26 @@ Per repository policy, the academic manuscript directory `paper/` and zip bundle
 .github/workflows/ci.yml GitHub Actions CI workflow (Python 3.11 + React)
 config/tokenizer/        Tokenizer extracted from Ollama GGUF (exact token counts)
 data/
-  corpus/                Authoritative Phase 1 corpus: chunks, entities, triples, registry
-  benchmark/             Canonical 200-question benchmark and splits (historical)
-  relational_benchmark/  Relational QA v1 (62 questions, historical)
+  corpus/                Audited corpus and KG: chunks, entities, triples, registry
   relation_aware_benchmark/ Relation-Aware QA v2 (72 questions, frozen benchmark)
-  annotations/           Rater templates, guidelines, completed evaluations (data/annotations/README.md)
-  results/               Authoritative and historical experiment outputs (data/results/README.md)
-    corrected_rerun/     Pre-registered rerun: generations, statistical tests, spot-check
-kgrag-web/               Canonical React 19 web frontend (ASTRA)
+  annotations/           Rating sheets and guidelines (data/annotations/README.md)
+  results/
+    corrected_rerun/     Pre-registered rerun: generations, analyses, spot-checks
+    relation_aware/      Frozen retrieved contexts reused by the rerun
+deploy/                  Public hosting guide and script (Vercel + Tailscale Funnel)
+docs/frontend/           API documentation for frontend developers
+kgrag-web/               React 19 web frontend (ASTRA)
+reports/                 Preregistration and corpus audit reports
 src/
-  api/                   FastAPI HTTP application services and schemas
-  config/                Runtime configuration, token budgets, and default settings
-  corpus/                Official document collection, extraction, chunking, and KG assembly
-  retriever/             Dense FAISS, lexical BM25, and relation-aware graph retrieval
-  generator/             Ollama client, exact token budgeting, and prompt construction
-  baselines/             BM25 + LLM, Vanilla Dense RAG, GraphRAG, LightRAG
-  evaluation/            Benchmark runners, statistical analyses, and human-eval package builders
+  api/                   FastAPI service (System A)
+  config/                Runtime configuration and artifact paths
+  corpus/                Official document collection, extraction, chunking, KG assembly
+  scraper/, preprocessing/, indexer/  Pilot crawl, chunking and FAISS index (text retrieval store)
+  retriever/             Dense FAISS, BM25, and relation-aware graph retrieval
+  generator/             Ollama client, exact token budgeting, prompts
+  baselines/             BM25 retrieval helpers
+  kg_builder/            Entity ruler used for query entity matching
+  evaluation/            Rerun runner, benchmark builder, analyses, rating-package builders
 tests/                   Pytest test suite
 requirements.txt         Core application and API dependencies
 requirements-lock.txt    Tested pinned dependency set on Python 3.11.9

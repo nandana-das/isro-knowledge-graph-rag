@@ -1,75 +1,64 @@
-# Data Directory
+# Data (`data/`)
 
-This directory contains the datasets, corpus files, benchmarks, human-annotation sheets, and experimental results for the ISRO Knowledge Graph RAG project.
+The system uses **two chunk collections**:
 
-## Authoritative Corpus vs Tracked Artifacts
+| Collection | What it is | Used for | In git |
+|---|---|---|---|
+| `data/corpus/` (audited corpus) | 33 official ISRO/ISSDC sources, 1,006 chunks, manually reviewed facts | Building the knowledge graph (123 entities, 134 triples) | yes |
+| `data/chunks/chunks.json` (pilot crawl) | Automated crawl of isro.gov.in: 791 documents, 27,545 chunks, not manually curated | Dense (FAISS) and BM25 text retrieval, for all three systems | no (local only) |
 
-Contrary to older documentation, **key data artifacts are actively tracked in Git** to maintain an immutable audit trail and support zero-setup mock runs.
+The corrected rerun reuses frozen retrieved contexts (`results/relation_aware/generation_results.jsonl`). Reproducing the rerun therefore needs no local index. Live mode in the API does need it.
 
-### Tracked in Git
-- **`data/corpus/`** — **The authoritative Phase 1 corpus.** Contains 33 Tier-1 official ISRO/ISSDC sources, 1,006 chunks (~65.6k words), 123 entities, and 134 provenance-linked triples.
-  - `document_registry.json`: Registry of official sources with SHA-256 checksums and URLs.
-  - `chunks.jsonl`: Semantic section/page-aware chunks with metadata.
-  - `entities.jsonl`: Extracted and normalized ISRO entities.
-  - `triples.jsonl`: Provenance-grounded facts with source document, chunk, URL, and excerpt.
-  - `fact_annotations.jsonl`: Manually verified source claims with chunk locators.
-  - `ontology.json`, `relations.json`: Entity and relation schema definitions.
-  - Reproducibility reports: `extraction_report.json`, `chunking_report.json`, `validation_report.json`, etc.
-  - For full details, see [`data/corpus/README.md`](corpus/README.md).
-- **`data/relation_aware_benchmark/`** — The frozen Relation-Aware QA v2 benchmark (`relation_aware_qa_v2.json`, 72 questions) used for the pre-registered corrected rerun.
-- **`data/relational_benchmark/`** — Relational QA v1 benchmark (`relational_qa_v1.json`, 62 questions).
-- **`data/benchmark/`** — The canonical 200-question benchmark (20-dev / 180-test split) from early project phases.
-- **`data/annotations/`** — Evaluation templates, rater guidelines, completed human evaluation workbooks, and spot-checks. See [`data/annotations/README.md`](annotations/README.md).
-- **`data/results/`** — Frozen experimental outputs, generation logs, and analysis summaries across all project phases. See [`data/results/README.md`](results/README.md).
-- **`data/source_manifest.csv`**, **`data/abstention/`**, **`data/documents/`** — Supplemental manifests and documentation.
+## Tracked in git
 
-### Gitignored (Local Scratch & Cache)
-Per `.gitignore`, large or machine-generated intermediate caches are excluded from version control:
-- `data/raw/`: Raw downloaded documents from web crawling.
-- `data/chunks/`: Intermediate scratch chunks from historical crawler pipelines.
-- `data/kg/`: Legacy NetworkX graph pickles (`kg.gpickle`).
-- `data/index/`: Local FAISS dense vector index (`faiss.index`, `chunks.jsonl`).
-- `data/cleaned/`: Intermediate text cleaning scratch.
+- `corpus/`: the audited corpus and KG. Main files:
+  - `document_registry.json`: sources, URLs and SHA-256 checksums;
+  - `chunks.jsonl`;
+  - `fact_annotations.jsonl`;
+  - `entities.jsonl`;
+  - `triples.jsonl`;
+  - `ontology.json`, `relations.json`;
+  - validation reports.
 
----
+  Details in [`corpus/README.md`](corpus/README.md).
+- `documents/aditya_l1/official/`: official Aditya-L1 documents. They feed the pilot store, and one of them, the second booklet, is also a registered corpus source.
+- `source_manifest.csv`: the Aditya-L1 source list for the pilot store.
+- `relation_aware_benchmark/`: the frozen 72-question Relation-Aware QA v2 benchmark used in the rerun.
+- `annotations/`: rating sheets and guidelines. See [`annotations/README.md`](annotations/README.md).
+- `results/`: rerun outputs and the frozen retrieval input. See [`results/README.md`](results/README.md).
 
-## Reproducing the Authoritative Corpus
+## Local only (git-ignored)
 
-The current system relies on the audited Phase 1 corpus pipeline in `src/corpus/`. To reproduce the corpus from scratch from the repository root:
+- `raw/`: pilot crawl output.
+- `chunks/`: pilot chunks, including `chunks.json`.
+- `index/faiss_index.index`: the dense index.
+- `cleaned/`, `kg/`: intermediate files.
 
-```bash
-# 1. Download official Tier-1 documents registered in document_registry.json
-python -m src.corpus.download_documents
+## Rebuilding the audited corpus and KG
 
-# 2. Extract text and structural records from downloaded documents
-python -m src.corpus.extract_documents
-
-# 3. Clean whitespace and remove repeated margin headers
-python -m src.corpus.clean_documents
-
-# 4. Chunk text into semantic section-aware units (up to 350 words)
-python -m src.corpus.chunk_documents
-
-# 5. Build KG-ready entities and triples from fact annotations
-python -m src.corpus.build_kg_ready
-
-# 6. Analyze relation coverage and graph statistics
-python -m src.corpus.coverage_analysis
-
-# 7. Validate corpus integrity and provenance constraints
-python -m src.corpus.validate_corpus
-```
-
-> **Note on Fact Annotations:** `fact_annotations.jsonl` contains human-reviewed source claims. Rebuilding KG-ready outputs validates these facts against the source documents rather than generating facts automatically from an unverified LLM.
-
----
-
-## Building the Local Dense Retrieval Index
-
-To run the live pipeline locally with dense FAISS retrieval:
+Run from the repository root:
 
 ```bash
-python -m src.indexer.build_index
+python -m src.corpus.download_documents   # 1. download registered official sources
+python -m src.corpus.extract_documents    # 2. extract text with section/page structure
+python -m src.corpus.clean_documents      # 3. normalise whitespace, drop repeated margins
+python -m src.corpus.chunk_documents      # 4. section/page-aware chunks
+python -m src.corpus.build_kg_ready       # 5. entities and triples from fact annotations
+python -m src.corpus.coverage_analysis    # 6. relation coverage statistics
+python -m src.corpus.validate_corpus      # 7. integrity and provenance checks
 ```
 
-This encodes the chunks into 384-dimensional dense vectors using `all-MiniLM-L6-v2` and writes the FAISS FlatL2 index to `data/index/faiss.index`.
+`fact_annotations.jsonl` holds the manually reviewed facts. Step 5 validates them against the sources; it never generates facts with a model.
+
+## Rebuilding the pilot retrieval store
+
+The crawl needs a Firecrawl API key in `.env`. The live site has changed since the original crawl, so a new crawl will not reproduce the 27,545 chunks exactly. The original run was not logged command by command, so treat this order as a best reconstruction.
+
+```bash
+python -m src.scraper.crawl              # 1. crawl isro.gov.in into data/raw/
+python -m src.corpus.expand_aditya_l1    # 2. add official Aditya-L1 pages (58 chunks) to data/raw/
+python -m src.preprocessing.chunk        # 3. chunk data/raw/ into data/chunks/chunks.json (512 words, stride 128)
+python -m src.corpus.rebuild_index       # 4. FAISS index (all-MiniLM-L6-v2) in data/index/
+```
+
+Step 2 records its sources in `source_manifest.csv` and `results/aditya_l1_collection_report.json`. The PDFs and pages it reads are in `documents/aditya_l1/official/`.
