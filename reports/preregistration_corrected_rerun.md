@@ -315,3 +315,66 @@ Recorded 2026-10-11, before running any agreement analysis on this rating.
   `spotcheck3_analysis.json`), pairwise agreement with IS and checker 2,
   and pooled Krippendorff α across the three independent checkers. All
   descriptive, with no PASS/FAIL claim for the study.
+
+## 19. Post hoc exploratory analyses (recorded before they were computed)
+
+Recorded 2026-10-30, before any of these analyses was computed. They were
+added at the paper-writing stage to describe the result in more depth.
+
+- **Status:** NOT pre-registered. None of them tests a hypothesis, and none
+  changes the §5–§7 primary result or the §14 outcome.
+- **Reporting:** everything listed below is reported whatever it shows. No
+  analysis is added, dropped or reshaped after its output is seen.
+- **Data:** only existing files are used: the rerun generations, the rater-1
+  scores, the frozen retrieved contexts and the benchmark. The archived earlier
+  run under tag `archive/full-research-history` is used only for item 5. No
+  model is called and no rating is collected.
+- **Code:** `src/evaluation/analyze_corrected_rerun_exploratory.py`. Output
+  goes to `data/results/corrected_rerun/exploratory_analysis.json`.
+
+The analyses:
+
+1. **By question category.** The 60 KG-required items are split into
+   SINGLE_RELATION, TWO_HOP_RELATION, MULTI_RELATION and the KG-required
+   DIRECT_CONTROL items. For each category, report per-system means on all
+   five endpoints, plus A−V and C−V correctness differences with
+   10,000-resample bootstrap CIs (seed 20261008). No p-values.
+2. **By mission.** Same as item 1, grouped by the benchmark's `mission` field.
+3. **Evidence availability.** For each of the 60 items:
+   - **Context sent:** use the exact context each system received in the
+     rerun. It is rebuilt from the frozen context with the rerun's own
+     trimming function and evidence budget.
+   - **Answer in V's context:** whether any acceptable answer occurs in V's
+     context, after lower-casing and whitespace normalisation.
+   - **Answer in A's context:** the same check on A's context.
+   - **Required path found:** the frozen `required_path_found` flag of A's
+     retrieval.
+
+   Report the A−V correctness differences and wins/losses/ties,
+   cross-tabulated by whether the answer is in V's context.
+4. **Outcome types.** Each answer is classed by its rater-1 scores and its
+   text, with every step fixed:
+   - **abstained:** the metric code's `is_idk` flags it;
+   - **correct:** correctness 4–5;
+   - **partial:** correctness 3;
+   - **wrong:** correctness 1–2.
+
+   Unsupported-claim rates are reported within each class. Qualitative
+   examples for the paper are chosen by rule, not by hand: for each system
+   pair, the lowest question ID in each win/loss cell.
+5. **Truncation in the earlier run.** Use the archived relation-aware run,
+   which is the run whose retrieval the rerun froze.
+   - **Token counts:** count each prompt's tokens exactly, as system prompt
+     plus user prompt.
+   - **Kept and lost:** apply the observed server rule, which keeps the last
+     1,027 tokens of an over-long prompt (§1, verified by a needle test).
+     Estimate how many tokens were lost, and how much of the KG evidence
+     section, whose end is marked by `[DENSE EVIDENCE]`, fell in the lost
+     head.
+   - **Scope:** report this for V and A. It is an estimate under that rule,
+     not a measurement of the server.
+6. **Cost.** Per system: median and maximum prompt tokens, generated tokens,
+   model calls and wall-clock latency, taken from the rerun telemetry.
+7. **Agreement detail.** For the 20 spot-check items, a table of every
+   pairwise Krippendorff α per dimension: rater 1 and checkers 1–3. These
+   values come from the existing spot-check outputs.
