@@ -1,9 +1,8 @@
 # Pre-registration: Study 2, independent human rating across three generators
 
-Status: **DRAFT, awaiting approval** by the project owner. Nothing in this
-study has been generated or rated. The generation runner
-(`src/evaluation/run_generator_study.py`) refuses to run while this line
-says DRAFT, or while this file or any source code is uncommitted.
+Status: **APPROVED 2026-10-30** by the project owner, before any Study 2
+generation or rating. The commit of this approved version is recorded in the
+run manifest. Any later change to this file is reported as a deviation.
 
 ## 1. Why this study exists
 
