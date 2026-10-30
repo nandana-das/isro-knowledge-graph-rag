@@ -370,7 +370,10 @@ The analyses:
      1,027 tokens of an over-long prompt (§1, verified by a needle test).
      Estimate how many tokens were lost, and how much of the KG evidence
      section, whose end is marked by `[DENSE EVIDENCE]`, fell in the lost
-     head.
+     head. Also report whether any acceptable answer, under item 3's
+     matching rule, occurs in the full prompt's context and in the kept
+     tail. (This answer check was added on 2026-10-30, the day §19 was
+     recorded, before anything was computed.)
    - **Scope:** report this for V and A. It is an estimate under that rule,
      not a measurement of the server.
 6. **Cost.** Per system: median and maximum prompt tokens, generated tokens,
