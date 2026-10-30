@@ -1,0 +1,33 @@
+{
+  "preregistration": "reports\\preregistration_study2_generators.md",
+  "preregistration_commit": "9c4f09e8bfbaba6900edf6ad1e2601ed98fd5088",
+  "preregistration_sha256": "7884726c66ddc92c17963da15ead23bf10e5b36c8169e33cfe4b300a9c94a5a4",
+  "code_commit": "9c4f09e8bfbaba6900edf6ad1e2601ed98fd5088",
+  "evidence_sha256": "1e7183598fe466eb4a72caee92e06804705a30414753997d221ec8b22b8d69e1",
+  "results_sha256": {
+    "mistral": "875a4c3281db8e6332eab5abed65fba84211593c1398328b417cb8b335143335",
+    "llama3.1": "48ec6615787a2472569fe70fd55e78afdd7a908e641f845e7c7dd0754cc95878",
+    "qwen2.5": "ee355f8a88636b9347901dd9d6ba1c3ef8ab2a6c2b06fbde5bbfd2da82dd9f3e"
+  },
+  "generators": {
+    "mistral": {
+      "model": "mistral:7b-instruct-q4_K_M",
+      "tokenizer": "mistral-7b-instruct-q4_K_M",
+      "template": "mistral"
+    },
+    "llama3.1": {
+      "model": "llama3.1:8b-instruct-q4_K_M",
+      "tokenizer": "llama3.1-8b-instruct-q4_K_M",
+      "template": "llama3"
+    },
+    "qwen2.5": {
+      "model": "qwen2.5:7b-instruct-q4_K_M",
+      "tokenizer": "qwen2.5-7b-instruct-q4_K_M",
+      "template": "qwen2"
+    }
+  },
+  "ollama_version": "ollama version is 0.40.13",
+  "python": "3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]",
+  "platform": "Windows-10-10.0.26300-SP0",
+  "created_utc": "2026-10-30T18:32:13.623657+00:00"
+}

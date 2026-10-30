@@ -1,0 +1,322 @@
+llama3.1 rakg_001 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_001 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_002 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_002 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_003 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_003 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_004 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_004 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_005 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_005 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_006 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_006 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_007 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_007 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_008 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_008 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_009 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_009 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_010 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_010 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_011 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_011 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_012 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_012 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_013 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_013 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_014 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_014 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_015 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_015 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_016 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_016 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_017 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_017 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_018 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_018 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_019 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_019 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_020 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_020 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_021 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_021 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_022 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_022 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_023 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_023 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_024 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_024 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_025 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_025 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_026 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_026 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_027 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_027 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_028 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_028 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_029 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_029 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_030 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_030 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_031 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_031 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_032 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_032 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_033 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_033 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_034 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_034 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_035 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_035 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_036 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_036 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_037 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_037 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_038 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_038 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_039 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_039 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_040 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_040 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_041 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_041 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_042 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_042 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_043 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_043 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_044 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_044 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_045 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_045 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_046 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_046 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_047 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_047 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_048 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_048 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_049 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_049 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_050 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_050 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_051 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_051 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_052 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_052 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_053 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_053 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_054 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_054 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_055 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_055 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_056 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_056 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_057 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_057 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_058 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_058 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_059 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_059 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_060 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_060 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_061 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_061 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_062 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_062 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_063 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_063 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_064 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_064 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_065 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_065 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_066 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_066 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_067 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_067 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_068 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_068 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_069 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_069 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_070 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_070 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_071 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_071 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_072 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+llama3.1 rakg_072 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_001 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_001 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_002 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_002 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_003 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_003 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_004 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_004 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_005 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_005 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_006 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_006 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_007 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_007 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_008 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_008 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_009 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_009 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_010 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_010 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_011 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_011 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_012 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_012 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_013 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_013 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_014 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_014 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_015 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_015 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_016 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_016 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_017 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_017 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_018 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_018 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_019 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_019 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_020 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_020 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_021 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_021 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_022 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_022 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_023 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_023 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_024 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_024 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_025 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_025 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_026 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_026 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_027 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_027 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_028 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_028 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_029 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_029 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_030 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_030 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_031 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_031 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_032 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_032 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_033 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_033 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_034 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_034 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_035 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_035 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_036 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_036 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_037 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_037 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_038 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_038 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_039 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_039 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_040 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_040 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_041 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_041 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_042 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_042 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_043 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_043 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_044 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_044 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_045 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_045 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_046 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_046 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_047 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_047 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_048 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_048 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_049 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_049 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_050 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_050 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_051 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_051 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_052 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_052 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_053 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_053 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_054 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_054 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_055 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_055 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_056 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_056 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_057 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_057 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_058 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_058 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_059 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_059 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_060 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_060 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_061 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_061 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_062 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_062 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_063 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_063 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_064 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_064 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_065 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_065 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_066 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_066 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_067 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_067 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_068 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_068 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_069 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_069 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_070 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_070 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_071 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_071 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_072 V_VANILLA ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+qwen2.5 rakg_072 A_CURRENT ok={'status_ok': True, 'prompt_count_match': True, 'ollama_truncated': False, 'context_trimmed': False, 'retried': False}
+imported D:\Nandana\MTECH\Semester 3\Projects\CP\KG-RAG-ISRO\data\results\study2_generators\generation_results_mistral.jsonl
+{
+  "preregistration": "reports\\preregistration_study2_generators.md",
+  "preregistration_commit": "9c4f09e8bfbaba6900edf6ad1e2601ed98fd5088",
+  "preregistration_sha256": "7884726c66ddc92c17963da15ead23bf10e5b36c8169e33cfe4b300a9c94a5a4",
+  "code_commit": "9c4f09e8bfbaba6900edf6ad1e2601ed98fd5088",
+  "evidence_sha256": "1e7183598fe466eb4a72caee92e06804705a30414753997d221ec8b22b8d69e1",
+  "results_sha256": {
+    "mistral": "875a4c3281db8e6332eab5abed65fba84211593c1398328b417cb8b335143335",
+    "llama3.1": "48ec6615787a2472569fe70fd55e78afdd7a908e641f845e7c7dd0754cc95878",
+    "qwen2.5": "ee355f8a88636b9347901dd9d6ba1c3ef8ab2a6c2b06fbde5bbfd2da82dd9f3e"
+  },
+  "generators": {
+    "mistral": {
+      "model": "mistral:7b-instruct-q4_K_M",
+      "tokenizer": "mistral-7b-instruct-q4_K_M",
+      "template": "mistral"
+    },
+    "llama3.1": {
+      "model": "llama3.1:8b-instruct-q4_K_M",
+      "tokenizer": "llama3.1-8b-instruct-q4_K_M",
+      "template": "llama3"
+    },
+    "qwen2.5": {
+      "model": "qwen2.5:7b-instruct-q4_K_M",
+      "tokenizer": "qwen2.5-7b-instruct-q4_K_M",
+      "template": "qwen2"
+    }
+  },
+  "ollama_version": "ollama version is 0.40.13",
+  "python": "3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]",
+  "platform": "Windows-10-10.0.26300-SP0",
+  "created_utc": "2026-10-30T18:32:13.623657+00:00"
+}
