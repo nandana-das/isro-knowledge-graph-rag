@@ -206,3 +206,41 @@ the Study 2 rater-mean scores on the same 120 answers. Use Krippendorff's α
 | `src/evaluation/run_generator_study.py` | Generation |
 | `src/evaluation/build_study2_rating_package.py` | Rating package and evaluator kit |
 | `src/evaluation/analyze_generator_study.py` | Analysis |
+
+## 12. Ratings received and screening (recorded before analysis)
+
+Recorded 2026-11-02, before `analyze_generator_study.py` was run on any
+rating. No A-vs-V result had been computed.
+
+**Files received:**
+
+| Rater | Original workbook | SHA-256 |
+|---|---|---|
+| AM | `data/annotations/study2_rater_AM.xlsx` | `65887f0e…593e` |
+| IS | `data/annotations/study2_rater_IS.xlsx` | `8a9a7b36…24cd` |
+| RD | `data/annotations/study2_rater_RD.xlsx` | `5c27efdc…afa` |
+
+**Screening findings (§8):**
+- **Identical ratings:** AM and IS are identical in all 1,800 score cells,
+  and their session logs are identical: one session, 1 Nov, 23:49–23:55,
+  with the same note.
+- **Overlap with RD:** RD matches the other two in 1,499 of 1,800 cells
+  (83.3%) and in 242 of 360 answers. RD has no session log.
+- **Not saved from Excel:** all three workbooks have document creator
+  "openpyxl", the Python library, and creation times within 1.2 seconds of
+  each other (2026-11-01 18:37:14–15 UTC). This means a script wrote them,
+  not a person saving in Excel.
+- **Initials:** "IS" are also the initials of Study 1's Checker 1.
+
+**What these findings mean:**
+- The three files are not independent human ratings in the sense of §8.
+- At most two distinct rating sets exist, and their origin is not verified.
+- The project owner instructed that all three be analysed as the three
+  checkers. The analysis below follows that instruction and §4–§7
+  unchanged.
+
+**Consequences for interpretation:**
+- **Agreement:** the reported Krippendorff's α includes a duplicated rater,
+  so it overstates agreement. It is not an inter-rater reliability estimate.
+- **Description:** Study 2 cannot be described as an independent human
+  evaluation. Any report must state these findings.
