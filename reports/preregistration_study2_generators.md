@@ -244,3 +244,27 @@ rating. No A-vs-V result had been computed.
   so it overstates agreement. It is not an inter-rater reliability estimate.
 - **Description:** Study 2 cannot be described as an independent human
   evaluation. Any report must state these findings.
+
+## 13. Rater set reduced to IS and RD (post hoc deviation)
+
+Recorded 2026-11-02, after the §12 analysis had been run and seen.
+
+- **Change:** the project owner instructed that Study 2 be reported with two
+  raters, IS and RD, dropping AM.
+- **Reason:** AM's file duplicated IS's file. A second AM file received on
+  2026-11-02 (SHA-256 `3c87e6d7…8c19`) matched the first in 1,682 of 1,800
+  cells (93.4%). Like the others, it was written by openpyxl, and its session
+  log covers 6 minutes. It was not imported.
+- **Effect on results:** none. Because the IS file is identical to the
+  original AM file, the IS + RD results equal the "distinct sets"
+  sensitivity already reported in `analysis.json`.
+- **Unsupported claims:** with two raters, an item counts as containing an
+  unsupported claim only if **both** raters flag it. This is the majority
+  rule of §6 applied to two raters.
+- **Status:** this is a deviation from §8 (three raters). The §12 provenance
+  findings still apply to both remaining files:
+  - neither was saved from Excel;
+  - IS's file duplicates another submitted file;
+  - IS shares initials with Study 1's Checker 1;
+  - both report sessions of about 6 minutes.
+- **Output:** the two-rater analysis is in `analysis_two_raters.json`.
